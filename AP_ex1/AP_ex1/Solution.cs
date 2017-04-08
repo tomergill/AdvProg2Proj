@@ -4,19 +4,19 @@ namespace AP_ex1
 {
     public class Solution<T>
     {
-        private Stack<T> path;
+        private Stack<State<T>> path;
 
         public Solution()
         {
-
+            this.path = new Stack<State<T>>();
         }
 
-        public void Push(T val)
+        public void Push(State<T> val)
         {
             path.Push(val);
         }
 
-        public T Pop(T val)
+        public State<T> Pop()
         {
             return path.Pop();
         }

@@ -15,6 +15,7 @@ namespace AP_ex1
         public State(T state)
         {
             this.state = state;
+            this.cost = 0;
             this.cameFrom = null;
         }
 
@@ -27,5 +28,26 @@ namespace AP_ex1
         {
             this.cameFrom = s;
         }
+
+        public double getCost()
+        {
+            return this.cost;
+        }
+
+        public State<T> getFather()
+        {
+            return this.cameFrom;
+        }
+
+        public void setCost(double val)
+        {
+            this.cost += val;
+        }
+
+        public void setCost(State<T> s)
+        {
+            this.cost += s.getCost();
+        }
+        
     }
 }

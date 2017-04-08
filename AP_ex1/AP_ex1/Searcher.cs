@@ -8,12 +8,12 @@ namespace AP_ex1
 {
     public abstract class Searcher<T> : ISearcher<T>
     {
-        private MyPriorityQueue<State<T>> openList;
+        private MyPriorityQueue<T> openList;
         private int evaluatedNodes;
 
         public Searcher()
         {
-            openList = new MyPriorityQueue<State<T>>();
+            openList = new MyPriorityQueue<T>();
             evaluatedNodes = 0;
         }
 
@@ -33,14 +33,35 @@ namespace AP_ex1
             return evaluatedNodes;
         }
 
-        public void addToOpenList(State<T> val)
+        protected void addToOpenList(State<T> val)
         {
             openList.Enqueue(val);
         }
 
-        public bool openContains(State<T> s)
+        protected bool openContains(State<T> s)
         {
             return openList.Contains(s);
+        }
+
+        protected State<T> findAndRerturnState(State<T> s)
+        {
+            MyPriorityQueue<T> tmpQueue = new MyPriorityQueue<T>();
+            State<T> desiredState = default(State<T>);
+            while (tmpQueue.count!=0)
+            {
+                State<T> checkState = popOpenList();
+                if (checkState.Equals(s))
+                {
+                    desiredState = checkState;
+                    break;
+                }
+                tmpQueue.Enqueue(checkState);
+            }
+            while (tmpQueue.count!=0)
+            {
+                addToOpenList(tmpQueue.Dequeue());
+            }
+            return desiredState;
         }
 
         public abstract Solution<T> search(ISearchable<T> searchable);
