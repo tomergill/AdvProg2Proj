@@ -43,7 +43,7 @@ namespace AP_ex1
                         if (!closed.Contains(s) && openContains(s))
                         {
                             State<T> tmpState = findAndRerturnState(s);
-                            if (tmpState.getCost() >= s.getCost())
+                            if (tmpState.getCost() > s.getCost())
                                 addToOpenList(s);
                             else
                                 addToOpenList(tmpState);

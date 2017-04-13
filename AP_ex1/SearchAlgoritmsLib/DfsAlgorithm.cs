@@ -7,17 +7,8 @@ using System.Threading.Tasks;
 
 namespace AP_ex1
 {
-    class DfsAlgorithm<T>
+    class DfsAlgorithm<T> 
     {
-        Stack<State<T>> edges;
-        int evaluatedNodes;
-
-        public DfsAlgorithm()
-        {
-            edges = new Stack<State<T>>();
-            evaluatedNodes = 0;
-        }
-
         private Solution<T> backTrace(State<T> s)
         {
             Solution<T> mySol = new Solution<T>();
@@ -32,29 +23,25 @@ namespace AP_ex1
 
         public Solution<T> search(ISearchable<T> serachable)
         {
+            Stack<State<T>> edges = new Stack<State<T>>();
             HashSet<State<T>> closed = new HashSet<State<T>>();
             edges.Push(serachable.getInitialState());
             while(edges.Count>0)
             {
                 State<T> n = edges.Pop();
-                evaluatedNodes++;
                 if (n.Equals(serachable.getGoalState()))
                     return backTrace(n);
-                closed.Add(n);
-                List<State<T>> successors = serachable.getAllPossibleStates(n);
-                foreach (State<T> s in successors)
+                if (!edges.Contains(n) && !closed.Contains(n))
                 {
-                    if (!edges.Contains(s) && !closed.Contains(s))
+                    closed.Add(n);
+                    List<State<T>> successors = serachable.getAllPossibleStates(n);
+                    foreach (State<T> s in successors)
+                    {
                         edges.Push(s);
-
+                    }
                 }
             }
             return default(Solution<T>);
-        }
-
-        public int getNumberOfNodesEvaluated()
-        {
-            return evaluatedNodes;
         }
     }
 }

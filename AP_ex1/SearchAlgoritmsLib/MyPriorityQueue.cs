@@ -11,7 +11,6 @@ namespace AP_ex1
         public MyPriorityQueue()
         {
             this.count = 0;
-            myElems = new SimplePriorityQueue<State<T>>();
         }
 
         public State<T> Dequeue()
@@ -28,7 +27,7 @@ namespace AP_ex1
         public void Enqueue(State<T> elem)
         {
             this.count += 1;
-            myElems.Enqueue(elem,(float) elem.getCost());
+            myElems.Enqueue(elem,(float)elem.getCost());
         }
 
         public bool Contains(State<T> elem)

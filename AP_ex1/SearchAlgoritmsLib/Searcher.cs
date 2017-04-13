@@ -47,7 +47,7 @@ namespace AP_ex1
         {
             MyPriorityQueue<T> tmpQueue = new MyPriorityQueue<T>();
             State<T> desiredState = default(State<T>);
-            while (OpenListSize!=0)
+            while (tmpQueue.count!=0)
             {
                 State<T> checkState = popOpenList();
                 if (checkState.Equals(s))

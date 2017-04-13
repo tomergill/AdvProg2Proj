@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BDB42EE5-45C3-4B42-B9BC-D396E4E00DE7}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{6A5292E8-32BF-4E55-ADB6-F01FAAE716A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AP_ex1</RootNamespace>
-    <AssemblyName>AP_ex1</AssemblyName>
+    <RootNamespace>SearchAlgoritmsLib</RootNamespace>
+    <AssemblyName>SearchAlgoritmsLib</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,15 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MazeGeneratorLib">
-      <HintPath>C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\תרגיל 1\MazeGeneratorLib.dll</HintPath>
-    </Reference>
-    <Reference Include="MazeLib">
-      <HintPath>C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\תרגיל 1\MazeLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Priority Queue, Version=4.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OptimizedPriorityQueue.4.0.4\lib\net45\Priority Queue.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Priority Queue">
+      <HintPath>..\packages\OptimizedPriorityQueue.4.0.4\lib\portable-net40+sl5+win8+wpa81+wp8\Priority Queue.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,12 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BfsAlgorithm.cs" />
-    <Compile Include="ObjectAdapter.cs" />
     <Compile Include="DfsAlgorithm.cs" />
     <Compile Include="ISearchable.cs" />
     <Compile Include="ISearcher.cs" />
     <Compile Include="MyPriorityQueue.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Searcher.cs" />
     <Compile Include="Solution.cs" />

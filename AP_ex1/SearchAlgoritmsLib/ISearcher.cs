@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AP_ex1
 {
-    class SearchAlgorithmsLib
+    interface ISearcher<T>
     {
+        Solution<T> search(ISearchable<T> searchable);
+        int getNumberOfNodesEvaluated();
     }
 }
