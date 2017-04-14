@@ -16,19 +16,19 @@ namespace AP_ex1
             Maze myMaze = myMazeGenerator.Generate(50, 50);
             Console.WriteLine(myMaze.ToString());
             Console.WriteLine("*******************************************");
-            ObjectAdapter objadptr = new ObjectAdapter(myMaze);
-            BfsAlgorithm<Position> BFSSearcher = new BfsAlgorithm<Position>();
-            DfsAlgorithm<Position> DFSSearcher = new DfsAlgorithm<Position>();
-            Solution<Position> solBFS = BFSSearcher.search(objadptr);
-            if (solBFS == default(Solution<Position>))
+            ObjectAdapter objectAdapter = new ObjectAdapter(myMaze);
+            BfsAlgorithm<Position> bfsSearcher = new BfsAlgorithm<Position>();
+            DfsAlgorithm<Position> dfsSearcher = new DfsAlgorithm<Position>();
+            Solution<Position> bfsSolution = bfsSearcher.Search(objectAdapter);
+            if (bfsSolution == default(Solution<Position>))
                 Console.WriteLine("no solution to this maze with BFS");
             else
-                Console.WriteLine("number of states developed in BFS: " + BFSSearcher.getNumberOfNodesEvaluated());
-            Solution<Position> solDFS = DFSSearcher.search(objadptr);
-            if (solDFS == default(Solution<Position>))
+                Console.WriteLine("number of states developed in BFS: " + bfsSearcher.GetNumberOfNodesEvaluated());
+            Solution<Position> dfsSolution = dfsSearcher.Search(objectAdapter);
+            if (dfsSolution == default(Solution<Position>))
                 Console.WriteLine("no solution to this maze with DFS");
             else
-                Console.WriteLine("number of states developed in DFS: " + DFSSearcher.getNumberOfNodesEvaluated());
+                Console.WriteLine("number of states developed in DFS: " + dfsSearcher.GetNumberOfNodesEvaluated());
         }
 
         static void Main(string[] args)

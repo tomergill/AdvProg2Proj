@@ -6,47 +6,62 @@ using System.Threading.Tasks;
 
 namespace AP_ex1
 {
+    /// <summary>
+    /// a searcher that uses the Breadth first search algorithm
+    /// </summary>
+    /// <typeparam name="T"> generic T type </typeparam>
     class BfsAlgorithm<T> : Searcher<T>
     {
 
-        private Solution<T> backTrace(State<T> s)
+        /// <summary>
+        /// backtraces the states and returning a stack 
+        /// representing the solution of the searchable object
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns> solution </returns>
+        private Solution<T> BackTrace(State<T> s)
         {
-            Solution<T> mySol = new Solution<T>();
-            State<T> father = s.getFather();
-            while (father!= default(State<T>))
+            Solution<T> mySolution = new Solution<T>();
+            State<T> fatherState = s.GetFatherState();
+            while (fatherState!= default(State<T>))
             {
-                mySol.Push(father);
-                father = father.getFather();
+                mySolution.Push(fatherState);
+                fatherState = fatherState.GetFatherState();
             }
-            return mySol;
+            return mySolution;
         }
 
-
-        public override Solution<T> search(ISearchable<T> serachable)
+        /// <summary>
+        /// searches the searchable object and returns the solution to it
+        /// according to the BFS algorithm
+        /// </summary>
+        /// <param name="serachable"></param>
+        /// <returns> a solution by calling BackTrace </returns>
+        public override Solution<T> Search(ISearchable<T> serachable)
         {
-            addToOpenList(serachable.getInitialState());
+            AddToOpenList(serachable.GetInitialState());
             HashSet<State<T>> closed = new HashSet<State<T>>();
             while (OpenListSize > 0)
             {
-                State<T> n = popOpenList();
+                State<T> n = PopOpenList();
                 closed.Add(n);
-                if (n.Equals(serachable.getGoalState()))
-                    return backTrace(n);
-                List<State<T>> successors = serachable.getAllPossibleStates(n);
+                if (n.Equals(serachable.GetGoalState()))
+                    return BackTrace(n);
+                List<State<T>> successors = serachable.GetAllPossibleStates(n);
                 foreach (State<T> s in successors)
                 {
-                    if (!closed.Contains(s) && !openContains(s))
+                    if (!closed.Contains(s) && !OpenContains(s))
                         //s.setcameFrom(n); //already done by getSuccessors
-                        addToOpenList(s);
+                        AddToOpenList(s);
                     else
                     {
-                        if (!closed.Contains(s) && openContains(s))
+                        if (!closed.Contains(s) && OpenContains(s))
                         {
-                            State<T> tmpState = findAndRerturnState(s);
-                            if (tmpState.getCost() >= s.getCost())
-                                addToOpenList(s);
+                            State<T> tmpState = FindAndRerturnState(s);
+                            if (tmpState.GetCost() >= s.GetCost())
+                                AddToOpenList(s);
                             else
-                                addToOpenList(tmpState);
+                                AddToOpenList(tmpState);
                         }
                     }
 

@@ -7,52 +7,81 @@ using System.Threading.Tasks;
 
 namespace AP_ex1
 {
+    /// <summary>
+    /// a searcher that uses Depth first algorithm
+    /// </summary>
+    /// <typeparam name="T"> generic T type </typeparam>
     class DfsAlgorithm<T>
     {
-        Stack<State<T>> edges;
+        /// <summary>
+        /// members
+        /// </summary>
+        /// <remarks> a stack of possible neighbouring states
+        ///           number of evaluated states along the search
+        /// </remarks>
+        Stack<State<T>> neighbouringStatesStack;
         int evaluatedNodes;
 
+        /// <summary>
+        /// constractor
+        /// </summary>
         public DfsAlgorithm()
         {
-            edges = new Stack<State<T>>();
+            neighbouringStatesStack = new Stack<State<T>>();
             evaluatedNodes = 0;
         }
 
-        private Solution<T> backTrace(State<T> s)
+        /// <summary>
+        /// backtraces the states and returning a stack 
+        /// representing the solution of the searchable object
+        /// </summary>
+        /// <param name="s"> state T </param>
+        /// <returns> solution of the searchable object</returns>
+        private Solution<T> BackTrace(State<T> s)
         {
-            Solution<T> mySol = new Solution<T>();
-            State<T> father = s.getFather();
-            while (father != default(State<T>))
+            Solution<T> mySolution = new Solution<T>();
+            State<T> fatherState = s.GetFatherState();
+            while (fatherState != default(State<T>))
             {
-                mySol.Push(father);
-                father = father.getFather();
+                mySolution.Push(fatherState);
+                fatherState = fatherState.GetFatherState();
             }
-            return mySol;
+            return mySolution;
         }
 
-        public Solution<T> search(ISearchable<T> serachable)
+        /// <summary>
+        /// searches the searchable object and returns the solution to it
+        /// according to the DFS algorithm
+        /// </summary>
+        /// <param name="serachable"></param>
+        /// <returns> solution by calling Backtrace </returns>
+        public Solution<T> Search(ISearchable<T> serachable)
         {
             HashSet<State<T>> closed = new HashSet<State<T>>();
-            edges.Push(serachable.getInitialState());
-            while(edges.Count>0)
+            neighbouringStatesStack.Push(serachable.GetInitialState());
+            while(neighbouringStatesStack.Count>0)
             {
-                State<T> n = edges.Pop();
+                State<T> n = neighbouringStatesStack.Pop();
                 evaluatedNodes++;
-                if (n.Equals(serachable.getGoalState()))
-                    return backTrace(n);
+                if (n.Equals(serachable.GetGoalState()))
+                    return BackTrace(n);
                 closed.Add(n);
-                List<State<T>> successors = serachable.getAllPossibleStates(n);
+                List<State<T>> successors = serachable.GetAllPossibleStates(n);
                 foreach (State<T> s in successors)
                 {
-                    if (!edges.Contains(s) && !closed.Contains(s))
-                        edges.Push(s);
+                    if (!neighbouringStatesStack.Contains(s) && !closed.Contains(s))
+                        neighbouringStatesStack.Push(s);
 
                 }
             }
             return default(Solution<T>);
         }
 
-        public int getNumberOfNodesEvaluated()
+        /// <summary>
+        /// returns the number of states developed
+        /// </summary>
+        /// <returns></returns>
+        public int GetNumberOfNodesEvaluated()
         {
             return evaluatedNodes;
         }
