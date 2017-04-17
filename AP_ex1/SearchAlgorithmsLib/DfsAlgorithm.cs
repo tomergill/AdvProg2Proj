@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AP_ex1
+namespace SearchAlgorithmsLib
 {
     /// <summary>
     /// a searcher that uses Depth first algorithm
     /// </summary>
     /// <typeparam name="T"> generic T type </typeparam>
-    class DfsAlgorithm<T>
+    public class DfsAlgorithm<T>
     {
         /// <summary>
         /// members

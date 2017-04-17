@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SearchAlgoritmsLib")]
+[assembly: AssemblyTitle("SearchAlgorithmsLib")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SearchAlgoritmsLib")]
+[assembly: AssemblyProduct("SearchAlgorithmsLib")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6a5292e8-32bf-4e55-adb6-f01faae716a9")]
+[assembly: Guid("38f0f79b-9bf5-4919-b64e-e3196557e639")]
 
 // Version information for an assembly consists of the following four values:
 //
