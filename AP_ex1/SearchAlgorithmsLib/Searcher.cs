@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AP_ex1
+namespace SearchAlgorithmsLib
 {
     /// <summary>
     /// a generic class representing an object that has the ability to search

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AP_ex1
+namespace SearchAlgorithmsLib
 {
     /// <summary>
     /// generic class representing a solution to a puzzle

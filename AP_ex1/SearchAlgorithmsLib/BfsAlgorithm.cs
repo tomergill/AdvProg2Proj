@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AP_ex1
+namespace SearchAlgorithmsLib
 {
     /// <summary>
     /// a searcher that uses the Breadth first search algorithm
     /// </summary>
     /// <typeparam name="T"> generic T type </typeparam>
-    class BfsAlgorithm<T> : Searcher<T>
+    public class BfsAlgorithm<T> : Searcher<T>
     {
 
         /// <summary>

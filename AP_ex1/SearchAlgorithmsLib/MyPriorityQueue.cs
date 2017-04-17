@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Priority_Queue;
-namespace AP_ex1
+namespace SearchAlgorithmsLib
 {
     /// <summary>
     /// the priority queue used in searcher
