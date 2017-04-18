@@ -40,6 +40,7 @@ namespace SearchAlgorithmsLib
         private Solution<T> BackTrace(State<T> s)
         {
             Solution<T> mySolution = new Solution<T>();
+            mySolution.Push(s);
             State<T> fatherState = s.GetFatherState();
             while (fatherState != default(State<T>))
             {
