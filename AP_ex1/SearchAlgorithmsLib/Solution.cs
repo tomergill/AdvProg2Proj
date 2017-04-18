@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SearchAlgorithmsLib
 {
@@ -36,7 +37,14 @@ namespace SearchAlgorithmsLib
         /// <returns> returns a state T </returns>
         public State<T> Pop()
         {
-            return path.Pop();
+            try
+            {
+                return path.Pop();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

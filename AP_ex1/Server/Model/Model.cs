@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MazeLib;
 using MazeGeneratorLib;
 using System.Net.Sockets;
+using SearchAlgorithmsLib;
 
 namespace Server
 {
@@ -17,14 +18,14 @@ namespace Server
         /// <summary>
         /// Dictionary that saves the mazes by thier name.
         /// </summary>
-        private Dictionary<string, Maze> mazes;
+        private Dictionary<string, Maze> singleplayerMazes;
 
         /// <summary>
         /// List that keeps names of Mazes that are open to join.
         /// </summary>
         private List<MultiplayerGame> multiplayerGames;
 
-        private Dictionary<TcpClient, Maze> mazesByPlayer;
+        private Dictionary<string, SolutionWithNodesEvaluated<Position>> solutions;
 
         /// <summary>
         /// An object that generates mazes.
@@ -37,10 +38,10 @@ namespace Server
         /// <param name="generator">Maze Generator to be used by the Model.</param>
         public Model(IMazeGenerator generator)
         {
-            mazes = new Dictionary<string, Maze>();
+            singleplayerMazes = new Dictionary<string, Maze>();
             this.generator = generator;
             multiplayerGames = new List<MultiplayerGame>();
-            mazesByPlayer = new Dictionary<TcpClient, Maze>();
+            solutions = new Dictionary<string, SolutionWithNodesEvaluated<Position>>();
         }
 
         /// <summary>
@@ -48,13 +49,16 @@ namespace Server
         /// </summary>
         /// <param name="player">First player of the game.</param>
         /// <param name="maze">Maze to play in.</param>
-        public MultiplayerGame AddMultiplayerGame(TcpClient player, Maze maze)
+        public MultiplayerGame AddMultiplayerGame(TcpClient player, string name, int rows, int cols)
         {
             MultiplayerGame game = null;
-            if (maze != null && player != null && player.Connected && mazes.ContainsKey(maze.Name))
-                game = new MultiplayerGame(maze, player);
-            if (null != game)
+            if (null == GetMultiplayerGameByName(name))
+            {
+                game = new MultiplayerGame(player);
+                game.Maze = generator.Generate(rows, cols);
+                game.Maze.Name = name;
                 multiplayerGames.Add(game);
+            }
             return game;
         }
 
@@ -67,11 +71,11 @@ namespace Server
         /// <returns>The newly created Maze.</returns>
         public Maze GenerateMaze(string name, int rows, int cols)
         {
-            if (mazes.ContainsKey(name))
-                return mazes[name];
+            if (singleplayerMazes.ContainsKey(name))
+                return singleplayerMazes[name];
             Maze m = generator.Generate(rows, cols);
             m.Name = name;
-            mazes.Add(name, m);
+            singleplayerMazes.Add(name, m);
             return m;
         }
 
@@ -82,9 +86,9 @@ namespace Server
         /// <returns>Requested maze, or null if doesn't exist.</returns>
         public Maze GetMazeByName(string name)
         {
-            if (!mazes.ContainsKey(name))
+            if (!singleplayerMazes.ContainsKey(name))
                 return null;
-            return mazes[name];
+            return singleplayerMazes[name];
         }
 
         /// <summary>
@@ -155,6 +159,30 @@ namespace Server
                 return null;
             multiplayerGames.Remove(game);
             return game;
+        }
+
+        public SolutionWithNodesEvaluated<Position> SolveMaze(string name, int algoId)
+        {
+            if (solutions.ContainsKey(name))
+                return solutions[name];
+            Maze maze = GetMazeByName(name);
+            if (maze == null)
+                return null;
+            SolutionWithNodesEvaluated<Position> sol;
+            if (algoId == 0)
+            {
+                BfsAlgorithm<Position> bfs = new BfsAlgorithm<Position>();
+                Solution<Position> temp = bfs.Search(new ObjectAdapter(maze));
+                solutions.Add(name, new SolutionWithNodesEvaluated<Position>(temp, bfs.GetNumberOfNodesEvaluated()));
+                return solutions["name"];
+            }
+            else
+            {
+                DfsAlgorithm<Position> dfs = new DfsAlgorithm<Position>();
+                Solution<Position> temp = dfs.Search(new ObjectAdapter(maze));
+                solutions.Add(name, new SolutionWithNodesEvaluated<Position>(temp, dfs.GetNumberOfNodesEvaluated()));
+                return solutions["name"];
+            }
         }
     }
 }

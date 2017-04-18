@@ -62,7 +62,8 @@ namespace Client
                 {
                     Maze maze = Maze.FromJSON(input);
                     Console.WriteLine(maze);
-                } else if (split[0] == "solve")
+                }
+                else if (split[0] == "solve")
                 {
                     JObject solution = JObject.Parse(input);
                     Console.WriteLine($"Solution of {solution["Name"]} takes {solution["NodesEvaluated"]} steps:");
@@ -88,7 +89,8 @@ namespace Client
                         default: s = "Down"; break;
                     }
                     Console.WriteLine(s + ".");
-                } else if (split[0] == "list")
+                }
+                else if (split[0] == "list")
                 {
                     
                     string s = "";
@@ -166,6 +168,9 @@ namespace Client
 
         public static void Main()
         {
+            Position p = new Position(2, 2);
+            Console.WriteLine(p.ToString());
+
             string ip = "127.0.0.1";
             int port = int.Parse(ConfigurationManager.AppSettings["port"]);
 

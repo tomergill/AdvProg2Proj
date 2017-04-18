@@ -36,9 +36,8 @@ namespace Server
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            Maze maze = model.GenerateMaze(name, rows, cols);
-            MultiplayerGame game = model.AddMultiplayerGame(client, maze);
-            if (maze == null || game == null)
+            MultiplayerGame game = model.AddMultiplayerGame(client, name, rows, cols);
+            if (game == null)
                 return null;
             //while (game.IsJoinable()) ;
             //sends to client maze's JSON representation.

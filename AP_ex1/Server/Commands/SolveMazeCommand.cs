@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using SearchAlgorithmsLib;
+using Newtonsoft.Json.Linq;
 
 namespace Server
 {
@@ -32,19 +34,42 @@ namespace Server
             shouldCloseConnection = true;
             if (args.Length != 2)
                 return null;
-            Maze m = model.GetMazeByName(args[0]);
-            if (null == m)
-                return null;
-            if (int.Parse(args[1]) == 1)
+            SolutionWithNodesEvaluated<Position> ret = model.SolveMaze(args[0], int.Parse(args[1]));
+            Solution<Position> sol = ret.Solution;
+            JObject solve = new JObject();
+            
+                solve["Name"] = args[0];
+            string jsonSolution = "";
+            State<Position> father, son;
+            father = sol.Pop();
+            son = sol.Pop();
+            while (father != null && son != null)
             {
-                //DFS
+                Position f = father.GetState();
+                Position s = son.GetState();
+                if (f.Col > s.Col)
+                {
+                    jsonSolution += "0"; //left
+                }
+                else if (f.Col < s.Col)
+                {
+                    jsonSolution += "1"; //right
+                }
+                else if (f.Row > s.Row)
+                {
+                    jsonSolution += "2"; //up
+                }
+                else //f.Row < s.Row
+                {
+                    jsonSolution += "3"; //down
+                }
+                father = son;
+                son = sol.Pop();
             }
-            else
-            {
-                //BFS
-            }
-            //TODO after lotan is finished, finish this method.
-            return "";
+            solve["Solution"] = jsonSolution;
+            solve["NodesEvaluated"] = ret.NodesEvaluated;
+
+            return solve.ToString();
         }
     }
 }

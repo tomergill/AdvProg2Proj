@@ -30,7 +30,7 @@ namespace Server
         /// <param name="maze">Maze reference, NOT NULL!</param>
         /// <param name="player1">First player refernce, NOT NULL!</param>
         /// <param name="player2">Second player reference, should be null.</param>
-        public MultiplayerGame(Maze maze, TcpClient player1, TcpClient player2 = null)
+        public MultiplayerGame(TcpClient player1, Maze maze = null, TcpClient player2 = null)
         {
             this.maze = maze;
             this.player1 = player1;
@@ -38,9 +38,14 @@ namespace Server
         }
 
         /// <summary>
-        /// Returns the maze.
+        /// Returns the maze, or sets it once.
         /// </summary>
-        public Maze Maze { get => maze; }
+        public Maze Maze { get => maze; set
+            {
+                if (maze == null)
+                    maze = value;
+            }
+        }
 
         /// <summary>
         /// Returns the first player.

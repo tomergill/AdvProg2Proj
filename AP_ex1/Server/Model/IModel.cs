@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
 using System.Net.Sockets;
+using SearchAlgorithmsLib;
 
 namespace Server
 {
@@ -40,7 +41,7 @@ namespace Server
         /// </summary>
         /// <param name="player">First player of the game.</param>
         /// <param name="maze">Maze to play in.</param>
-        MultiplayerGame AddMultiplayerGame(TcpClient player, Maze maze);
+        MultiplayerGame AddMultiplayerGame(TcpClient player, string name, int rows, int cols);
 
         /// <summary>
         /// Joins the mutiplayer game requested.
@@ -63,5 +64,7 @@ namespace Server
         /// <param name="name">Name of the game to shut down.</param>
         /// <returns>The requested game, or null if doesn't exist.</returns>
         MultiplayerGame CloseGame(string name);
+
+        SolutionWithNodesEvaluated<Position> SolveMaze(string name, int algoId);
     }
 }
