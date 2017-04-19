@@ -28,7 +28,7 @@ namespace Server
         /// <param name="args">[name of the maze, algorithm (0 for BFS, 1 for DFS)].</param>
         /// <param name="client">TcpClient to send data to. null if not specified</param>
         /// <returns>The maze info, or null if there was an error.</returns>
-        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null)
+        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null, BinaryWriter writer = null)
         {
             shouldCloseConnection = false;
             if (client == null || args.Length != 3)
@@ -36,17 +36,17 @@ namespace Server
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            MultiplayerGame game = model.AddMultiplayerGame(client, name, rows, cols);
+            MultiplayerGame game = model.AddMultiplayerGame(client, writer, name, rows, cols);
             if (game == null)
                 return null;
-            //while (game.IsJoinable()) ;
-            //sends to client maze's JSON representation.
+            while (game.IsJoinable()) { }
+            ////sends to client maze's JSON representation.
             //if (client != null && client.Connected)
             //{
             //    using (NetworkStream stream = client.GetStream())
             //    using (BinaryWriter writer = new BinaryWriter(stream))
             //    {
-            //        writer.Write(maze.ToJSON());
+            //        writer.Write(game.Maze.ToJSON());
             //    }
             //}
             return game.Maze.ToJSON();

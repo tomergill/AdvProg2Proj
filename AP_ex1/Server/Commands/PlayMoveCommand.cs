@@ -28,7 +28,7 @@ namespace Server
         /// <param name="args">[move direction].</param>
         /// <param name="client">TcpClient to send data to. null if not specified</param>
         /// <returns>Empty string if success, null otherwise.</returns>
-        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null)
+        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null, BinaryWriter writer = null)
         {
             shouldCloseConnection = false;
             if (client == null || args.Length != 1)
@@ -50,11 +50,10 @@ namespace Server
             TcpClient other = game.GetOtherPlayer(client);
             if (other == null)
                 return null;
-            using (NetworkStream stream = other.GetStream())
-            using (BinaryWriter writer = new BinaryWriter(stream))
-            {
-                writer.Write(json.ToString());
-            }
+            BinaryWriter writer2 = game.getPlayersWriter(other);
+            if (writer2 == null)
+                return null;
+            writer2.Write(json.ToString());
             return "";
         }
     }

@@ -8,10 +8,22 @@ using System.Threading.Tasks;
 
 namespace Server
 {
+    /// <summary>
+    /// Handles a client.
+    /// </summary>
+    /// <seealso cref="Server.IClientHandler" />
     public class ClientHandler : IClientHandler
     {
+        /// <summary>
+        /// True if should stop.
+        /// </summary>
         private bool stop = false;
 
+        /// <summary>
+        /// Handles the client.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        /// <param name="controller">The controller.</param>
         public void HandleClient(TcpClient client, IController controller)
         {
             Task t = new Task(() =>
@@ -22,17 +34,26 @@ namespace Server
                 {
                     while (!stop && client.Connected)
                     {
-                        string commandLine = reader.ReadString();
+                        string commandLine;
+                        try
+                        {
+                            commandLine = reader.ReadString();
+                        } catch (IOException)
+                        {
+                            continue;
+                        }
                         //Console.WriteLine("GOT " + commandLine);
-                        string result = controller.ExecuteCommand(commandLine, out bool shouldCloseConnection, client);
+                        string result = controller.ExecuteCommand(commandLine, out bool shouldCloseConnection, client, writer);
                         if (result != null)
                         {
                             //Console.WriteLine("SEND " + result);
-                            writer.Write(result);
+                            if (client.Connected)
+                                writer.Write(result);
                         }
                         else
                         {
-                            writer.Write("ERROR");
+                            if (client.Connected)
+                                writer.Write("ERROR");
                         }
                         if (shouldCloseConnection)
                         {
@@ -47,6 +68,9 @@ namespace Server
             //t.Wait();
         }
 
+        /// <summary>
+        /// Stops this instance.
+        /// </summary>
         public void Stop()
         {
             this.stop = true;

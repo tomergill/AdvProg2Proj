@@ -27,7 +27,7 @@ namespace Server
         /// <param name="args">[name of the maze].</param>
         /// <param name="client">TcpClient to send data to. null if not specified</param>
         /// <returns>Empty string if succes, otherwise null.</returns>
-        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null)
+        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null, BinaryWriter writer = null)
         {
             shouldCloseConnection = true;
             if (args.Length != 1)
@@ -38,13 +38,10 @@ namespace Server
 
             //send to other client
             TcpClient other = game.GetOtherPlayer(client);
-            if (other == null)
+            BinaryWriter writer2 = game.getPlayersWriter(other);
+            if (writer2 == null)
                 return null;
-            using (NetworkStream stream = other.GetStream())
-            using (BinaryWriter writer = new BinaryWriter(stream))
-            {
-                writer.Write("CLOSED " + game.GetMazeName());
-            }
+            writer2.Write("CLOSED " + game.GetMazeName());
             return "";
         }
     }

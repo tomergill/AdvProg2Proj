@@ -28,7 +28,7 @@ namespace Server
         /// <param name="args">None.</param>
         /// <param name="client">TcpClient to send data to. null if not specified</param>
         /// <returns>JSON represention of the open game list.</returns>
-        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null)
+        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null, BinaryWriter writer = null)
         {
             shouldCloseConnection = true;
             if (args.Length != 0)

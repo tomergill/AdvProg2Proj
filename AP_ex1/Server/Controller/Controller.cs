@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MazeGeneratorLib;
 using System.Net.Sockets;
+using System.IO;
 
 namespace Server
 {
@@ -47,7 +48,7 @@ namespace Server
         /// <param name="commandLine">Command line received from client.</param>
         /// <param name="client">Socket to client.</param>
         /// <returns>Output of the command, or "Command not found".</returns>
-        public string ExecuteCommand(string commandLine, out bool shouldCloseConnection, TcpClient client)
+        public string ExecuteCommand(string commandLine, out bool shouldCloseConnection, TcpClient client, BinaryWriter writer)
         {
             string[] arr = commandLine.Split(' ');
             string commandKey = arr[0];
@@ -58,7 +59,7 @@ namespace Server
             }
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
-            return command.Execute(args, out shouldCloseConnection, client);
+            return command.Execute(args, out shouldCloseConnection, client, writer);
         }
     }
 }

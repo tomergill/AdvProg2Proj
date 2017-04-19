@@ -27,7 +27,7 @@ namespace Server
         /// <param name="args">[name of the maze, number of rows, number of columns].</param>
         /// <param name="client">TcpClient to send data to. null if not specified</param>
         /// <returns>The new maze JSON representation.</returns>
-        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null)
+        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null, BinaryWriter writer = null)
         {
             shouldCloseConnection = true;
             if (args.Length != 3)

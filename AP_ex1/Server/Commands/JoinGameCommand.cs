@@ -28,17 +28,18 @@ namespace Server
         /// <param name="args">Name of the game.</param>
         /// <param name="client">TcpClient to send data to. null if not specified</param>
         /// <returns>JSON represention of the game, or null.</returns>
-        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client)
+        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client, BinaryWriter writer)
         {
             shouldCloseConnection = false;
             if (args.Length != 1)
                 return null;
             List<string> openGames = model.GetOpenGamesList();
-            if (client == null || !openGames.Contains(args[0]))
+            if (client == null || !openGames.Contains(args[0]) || writer ==  null)
                 return null;
-            MultiplayerGame game = model.JoinMultiplayerGame(args[0], client);
+            MultiplayerGame game = model.JoinMultiplayerGame(args[0], client, writer);
             if (game == null)
                 return null;
+            //game.Writer2 = writer;
             ////sends to client maze's JSON representation.
             //if (client != null && client.Connected)
             //{

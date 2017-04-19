@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SearchAlgorithmsLib;
 using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace Server
 {
@@ -29,16 +30,18 @@ namespace Server
         /// <param name="args">[name of the maze, algorithm (0 for BFS, 1 for DFS)].</param>
         /// <param name="client">TcpClient to send data to. null if not specified</param>
         /// <returns>The JSON representation of the solution of the maze, or null if something went wrong.</returns>
-        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null)
+        public override string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null, BinaryWriter writer = null)
         {
             shouldCloseConnection = true;
             if (args.Length != 2)
                 return null;
             SolutionWithNodesEvaluated<Position> ret = model.SolveMaze(args[0], int.Parse(args[1]));
+            if (null == ret)
+                return null;
             Solution<Position> sol = ret.Solution;
             JObject solve = new JObject();
-            
-                solve["Name"] = args[0];
+
+            solve["Name"] = args[0];
             string jsonSolution = "";
             State<Position> father, son;
             father = sol.Pop();

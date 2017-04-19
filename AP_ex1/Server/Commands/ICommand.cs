@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Server
         /// </summary>
         /// <param name="args">Arguments for the command.</param>
         /// <param name="client">TcpClient that can be used to send data to.</param>
-        /// <returns></returns>
-        string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null);
+        /// <returns>String to send to client</returns>
+        string Execute(string[] args, out bool shouldCloseConnection, TcpClient client = null, BinaryWriter writer = null);
     }
 }

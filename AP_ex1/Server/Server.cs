@@ -10,17 +10,49 @@ using MazeGeneratorLib;
 
 namespace Server
 {
+    /// <summary>
+    /// View of MVC server.
+    /// </summary>
+    /// <seealso cref="Server.IView" />
     public class Server : IView
     {
+        /// <summary>
+        /// The port of the server.
+        /// </summary>
         private int port;
+
+        /// <summary>
+        /// The listener for new clients.
+        /// </summary>
         private TcpListener listener;
+
+        /// <summary>
+        /// The ip address of the server.
+        /// </summary>
         private string ipAddr;
+
+        /// <summary>
+        /// The controller of the mvc server.
+        /// </summary>
         private IController controller;
+
+        /// <summary>
+        /// The client handler.
+        /// </summary>
         private IClientHandler ch;
+
+        /// <summary>
+        /// True if should stop.
+        /// </summary>
         private bool stop;
 
-        //int.Parse(ConfigurationManager.AppSettings["port"])
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Server"/> class.
+        /// </summary>
+        /// <param name="port">The port of the server.</param>
+        /// <param name="ipAddr">The ip address of the server.</param>
+        /// <param name="controller">The controller of the mvc server.</param>
+        /// <param name="ch">The client handler.</param>
         public Server(int port, string ipAddr, IController controller, IClientHandler ch)
         {
             this.port = port;
@@ -29,6 +61,9 @@ namespace Server
             this.ch = ch;
         }
 
+        /// <summary>
+        /// Starts this instance.
+        /// </summary>
         public void Start()
         {
             this.stop = false;
@@ -57,12 +92,18 @@ namespace Server
             receiveConnections.Start();
         }
 
+        /// <summary>
+        /// Stops this instance.
+        /// </summary>
         public void Stop()
         {
             ch.Stop();
             this.stop = true;
         }
 
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
         public static void Main()
         {
             int port = int.Parse(ConfigurationManager.AppSettings["port"]);
