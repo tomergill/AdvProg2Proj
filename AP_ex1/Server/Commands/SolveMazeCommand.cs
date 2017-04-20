@@ -38,27 +38,25 @@ namespace Server
             SolutionWithNodesEvaluated<Position> ret = model.SolveMaze(args[0], int.Parse(args[1]));
             if (null == ret)
                 return null;
-            Solution<Position> sol = ret.Solution;
+            List<State<Position>> sol = ret.Solution;
             JObject solve = new JObject();
 
             solve["Name"] = args[0];
             string jsonSolution = "";
-            State<Position> father, son;
-            father = sol.Pop();
-            son = sol.Pop();
-            while (father != null && son != null)
+
+            for (int i = 0; i < sol.Count - 1; i++)
             {
-                Position f = father.GetState();
-                Position s = son.GetState();
-                if (f.Col > s.Col)
+                Position father = sol[i].GetState();
+                Position son = sol[i + 1].GetState();
+                if (father.Col > son.Col)
                 {
                     jsonSolution += "0"; //left
                 }
-                else if (f.Col < s.Col)
+                else if (father.Col < son.Col)
                 {
                     jsonSolution += "1"; //right
                 }
-                else if (f.Row > s.Row)
+                else if (father.Row > son.Row)
                 {
                     jsonSolution += "2"; //up
                 }
@@ -66,8 +64,6 @@ namespace Server
                 {
                     jsonSolution += "3"; //down
                 }
-                father = son;
-                son = sol.Pop();
             }
             solve["Solution"] = jsonSolution;
             solve["NodesEvaluated"] = ret.NodesEvaluated;

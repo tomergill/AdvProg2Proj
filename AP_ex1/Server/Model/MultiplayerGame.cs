@@ -142,7 +142,7 @@ namespace Server
         /// </summary>
         /// <param name="player">The player.</param>
         /// <returns>The player's writer.</returns>
-        public BinaryWriter getPlayersWriter(TcpClient player)
+        public BinaryWriter GetPlayersWriter(TcpClient player)
         {
             if (player == Player1)
                 return writer1;

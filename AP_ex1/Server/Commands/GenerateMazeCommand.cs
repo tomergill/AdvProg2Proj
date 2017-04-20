@@ -37,7 +37,7 @@ namespace Server
             int cols = int.Parse(args[2]);
             Maze maze = model.GenerateMaze(name, rows, cols);
             if (maze == null)
-                return null;
+                return "ERROR - maze with this name already exist";
             ////sends to client maze's JSON representation.
             //if (client != null && client.Connected)
             //{

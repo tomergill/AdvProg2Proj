@@ -50,7 +50,7 @@ namespace Server
             TcpClient other = game.GetOtherPlayer(client);
             if (other == null)
                 return null;
-            BinaryWriter writer2 = game.getPlayersWriter(other);
+            BinaryWriter writer2 = game.GetPlayersWriter(other);
             if (writer2 == null)
                 return null;
             writer2.Write(json.ToString());

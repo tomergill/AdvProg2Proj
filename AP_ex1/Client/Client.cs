@@ -84,8 +84,8 @@ namespace Client
                     string input = reader.ReadString();
                     //Console.WriteLine("GOT " + input);
 
-                    if (input == "ERROR")
-                        Console.WriteLine("ERROR");
+                    if (input.Split()[0] == "ERROR")
+                        Console.WriteLine(input);
                     else if (split[0] == "generate")
                     {
                         Maze maze = Maze.FromJSON(input);
@@ -206,13 +206,14 @@ namespace Client
                     {
                         System.Environment.Exit(0);
                     }
-                    writer.Write(command);
-                    if (command.Split()[0] == "close")
+                    if (command == "close " + maze.Name)
                     {
+                        writer.Write(command);
                         stop = true;
                         read.Wait();
                         return "";
-                    }
+                    } else if (command.Split()[0] == "play")
+                        writer.Write(command);
                     command = Console.ReadLine();
                 }
                 return command;

@@ -72,11 +72,11 @@ namespace Server
         /// <param name="name">Name of the maze</param>
         /// <param name="rows">Number of rows. rows > 0</param>
         /// <param name="cols">Number of columns. cols > 0</param>
-        /// <returns>The newly created Maze.</returns>
+        /// <returns>The newly created Maze, or null if a maze with this name already exist.></returns>
         public Maze GenerateMaze(string name, int rows, int cols)
         {
             if (singleplayerMazes.ContainsKey(name))
-                return singleplayerMazes[name];
+                return null;
             Maze m = generator.Generate(rows, cols);
             m.Name = name;
             singleplayerMazes.Add(name, m);
@@ -181,14 +181,14 @@ namespace Server
             Maze maze = GetMazeByName(name);
             if (maze == null)
                 return null;
-            if (algoId == 0)
+            if (algoId == 0) //BFS
             {
                 BfsAlgorithm<Position> bfs = new BfsAlgorithm<Position>();
                 Solution<Position> temp = bfs.Search(new ObjectAdapter(maze));
                 solutions.Add(name, new SolutionWithNodesEvaluated<Position>(temp, bfs.GetNumberOfNodesEvaluated()));
                 return solutions[name];
             }
-            else
+            else //DFS  
             {
                 DfsAlgorithm<Position> dfs = new DfsAlgorithm<Position>();
                 Solution<Position> temp = dfs.Search(new ObjectAdapter(maze));

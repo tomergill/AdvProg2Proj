@@ -16,7 +16,7 @@ namespace Server
         /// <summary>
         /// The solution.
         /// </summary>
-        private Solution<T> solution;
+        private List<State<T>> solution;
 
         /// <summary>
         /// The number of nodes evaluated.
@@ -30,7 +30,13 @@ namespace Server
         /// <param name="nodes">The number of nodes evaulated.</param>
         public SolutionWithNodesEvaluated(Solution<T> sol, int nodes)
         {
-            solution = sol;
+            solution = new List<State<T>>();
+            State<T> head = sol.Pop();
+            while (head != null)
+            {
+                solution.Add(head);
+                head = sol.Pop();
+            }
             nodesEvaluated = nodes;
         }
 
@@ -40,7 +46,7 @@ namespace Server
         /// <value>
         /// The solution.
         /// </value>
-        public Solution<T> Solution { get => solution;}
+        public List<State<T>> Solution { get => solution;}
 
         /// <summary>
         /// Gets the number of nodes evaluated.

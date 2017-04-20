@@ -38,7 +38,7 @@ namespace Server
 
             //send to other client
             TcpClient other = game.GetOtherPlayer(client);
-            BinaryWriter writer2 = game.getPlayersWriter(other);
+            BinaryWriter writer2 = game.GetPlayersWriter(other);
             if (writer2 == null)
                 return null;
             writer2.Write("CLOSED " + game.GetMazeName());
