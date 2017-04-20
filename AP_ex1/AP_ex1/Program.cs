@@ -35,6 +35,7 @@ namespace AP_ex1
         static void Main(string[] args)
         {
             CompareSolvers();
+            Console.ReadKey();
         }
     }
 }

@@ -1,0 +1,90 @@
+commit b85870475de99e0b5be8c12d6a73de5c57a766c5
+Author: Tomer Gill <Tomer Gill@TOMER-PC>
+Date:   Thu Apr 20 16:40:16 2017 +0300
+
+    NOW everything is awesome.
+
+commit 92c800aea3d6dfb0452d0c062cbb1a2b54a67a83
+Author: Tomer Gill <Tomer Gill@TOMER-PC>
+Date:   Thu Apr 20 16:27:01 2017 +0300
+
+    Fixed everything, now everything is awesome, evrrything  is cool when your a part of a team!
+
+commit b28e078e9a1851616c988fc084e501be832ede76
+Author: Tomer Gill <Tomer Gill@TOMER-PC>
+Date:   Thu Apr 20 10:44:30 2017 +0300
+
+    Final fixes due to piazza questions.
+
+commit 6fca7818e2925714496925e6878153408cb182e7
+Author: Tomer Gill <Tomer Gill@TOMER-PC>
+Date:   Wed Apr 19 15:23:04 2017 +0300
+
+    Everything should be working.
+
+commit 90049f063a9470db99cdf144f6a0c04eca28eedd
+Author: weisslo <weiss.lotan@gmail.com>
+Date:   Tue Apr 18 14:58:09 2017 +0300
+
+    fixed BFS and DFS algorithms
+
+commit 9162053eca104991e2f4692363f8cb15bd5c7df3
+Author: Tomer Gill <Tomer Gill@TOMER-PC>
+Date:   Tue Apr 18 12:04:24 2017 +0300
+
+    Adding solve command
+
+commit 1d3228bf1e6f4f642dcea9e4febe191c2eea7b4f
+Author: weisslo <weiss.lotan@gmail.com>
+Date:   Mon Apr 17 17:16:26 2017 +0300
+
+    ObjectAdapter sync
+
+commit 7baf83049013067dd90fbfabe00f912a4678a380
+Merge: 3e8385e db369b0
+Author: Tomer Gill <Tomer Gill@TOMER-PC>
+Date:   Mon Apr 17 16:59:31 2017 +0300
+
+    Merge was a success
+
+commit 3e8385ea0147ca8aaa6cf9255cfa583f41530810
+Author: Tomer Gill <Tomer Gill@TOMER-PC>
+Date:   Mon Apr 17 16:56:42 2017 +0300
+
+    Trying merging
+
+commit db369b009be5b0c63965cffa7aa23ef308e4604d
+Author: weisslo <weiss.lotan@gmail.com>
+Date:   Mon Apr 17 16:54:02 2017 +0300
+
+    this is done
+
+commit 7d78fa6736fb16c915f712f31fa388c5eb28a4e9
+Author: weisslo <weiss.lotan@gmail.com>
+Date:   Fri Apr 14 19:36:48 2017 +0300
+
+    documentation done
+
+commit 008c7574d47a1c071173aa8bc5d8c1311b8beb05
+Author: weisslo <weiss.lotan@gmail.com>
+Date:   Thu Apr 13 14:54:00 2017 +0300
+
+    DFS BFS and program is complete, time to close and make class library
+
+commit 0d22873191ea6ca30700c1cdad092e45150947c1
+Author: weisslo <weiss.lotan@gmail.com>
+Date:   Sat Apr 8 23:45:55 2017 +0300
+
+    bfs complete, dfs on its way.
+
+commit 51b4687d98af4f89d6047618cfe59bb97c7d5a32
+Author: weisslo <weiss.lotan@gmail.com>
+Date:   Tue Apr 4 14:23:41 2017 +0300
+
+    first assignment
+
+commit cea03912d6e6dc0ebab21bc3679e13c0b32d7c7c
+Author: Tomer Gill <coolran103@gmail.com>
+Date:   Tue Apr 4 16:03:21 2017 +0300
+
+    Initial commit
