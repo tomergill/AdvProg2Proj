@@ -214,6 +214,10 @@ namespace Client
                         return "";
                     } else if (command.Split()[0] == "play")
                         writer.Write(command);
+                    else
+                    {
+                        Console.WriteLine("ERROR WITH COMMAND");
+                    }
                     command = Console.ReadLine();
                 }
                 return command;
