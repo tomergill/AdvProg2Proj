@@ -233,7 +233,6 @@ namespace Client
         /// </summary>
         public static void Main()
         {
-
             string ip = "127.0.0.1";
             int port = int.Parse(ConfigurationManager.AppSettings["port"]);
 
