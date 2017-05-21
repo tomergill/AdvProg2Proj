@@ -10,6 +10,9 @@
         <TextBox x:Name="t1" HorizontalAlignment="Left" Height="23" Margin="25,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btn1" Content="Hello" HorizontalAlignment="Left" Margin="25,55,0,0" VerticalAlignment="Top" Width="120" Click="btn1_Click"/>
         <Button x:Name="btn2" Content="Bye" HorizontalAlignment="Left" Margin="25,91,0,0" VerticalAlignment="Top" Width="120" Click="Btn2_Click"/>
+        <local:MazeViewer Rows="5" Cols="5"  Maze="1,0,1,0,0,0,1,0,1,1,1,1,1,0,0,1,0,0,0,1,1,0,1,1,0" 
+                          InitialPos="0,1" GoalPos="2,3" PlayerImageFile="player.png" ExitImageFile="exit.png"
+                          HorizontalAlignment="Left" Height="100" Margin="189,159,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

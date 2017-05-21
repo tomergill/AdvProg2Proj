@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:WPF_Client"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Viewbox Margin="3">
+    <Viewbox>
         <Border Background="White" BorderBrush="Black" BorderThickness="3">
             <Canvas x:Name="myCanvas" Width="300" Height="300">
-                
+                <Image x:Name="playerImg" Height="100" Canvas.Left="66" Canvas.Top="59" Width="100" Stretch="Fill"/>
+
             </Canvas>
         </Border>
     </Viewbox>
