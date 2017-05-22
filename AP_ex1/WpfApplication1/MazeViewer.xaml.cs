@@ -31,6 +31,7 @@ namespace WPF_Client
             set
             {
                 SetValue(RowsProperty, value);
+
                 if (Cols != 0)
                     SetTileSize();
             }
