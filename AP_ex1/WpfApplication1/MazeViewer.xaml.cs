@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-//aasasasasasas
+
 namespace WPF_Client
 {
     /// <summary>
@@ -22,7 +22,7 @@ namespace WPF_Client
     public partial class MazeViewer : UserControl
     {
         private double[] tileSizes = new double[2]; //{width, height}
-        private Image[,] tiles = null;
+        private /*Image*/Rectangle[,] tiles = null;
 
         #region Rows
         public int Rows
@@ -31,13 +31,11 @@ namespace WPF_Client
             set
             {
                 SetValue(RowsProperty, value);
-
-                if (Cols != 0)
-                    SetTileSize();
             }
         }
         public static readonly DependencyProperty RowsProperty = DependencyProperty.Register("Rows", typeof(int), typeof(MazeViewer), new PropertyMetadata(0));
         #endregion
+
         #region Cols
         public int Cols
         {
@@ -45,12 +43,11 @@ namespace WPF_Client
             set
             {
                 SetValue(ColsProperty, value);
-                if (Rows != 0)
-                    SetTileSize();
             }
         }
         public static readonly DependencyProperty ColsProperty = DependencyProperty.Register("Cols", typeof(int), typeof(MazeViewer), new PropertyMetadata(0));
         #endregion
+
         #region Maze
         public string Maze
         {
@@ -62,6 +59,7 @@ namespace WPF_Client
         public static readonly DependencyProperty MazeProperty =
             DependencyProperty.Register("Maze", typeof(string), typeof(MazeViewer), new PropertyMetadata(""));
         #endregion
+
         #region PlayerPos
         public string PlayerPos
         {
@@ -70,9 +68,8 @@ namespace WPF_Client
             {
                 SetValue(PlayerPosProperty, value);
                 string[] split = value.Split(',');
-                int x = int.Parse(split[0]), y = int.Parse(split[1]);
-                Canvas.SetLeft(playerImg, x * tileSizes[0]);
-                Canvas.SetTop(playerImg, y * tileSizes[1]);
+                if (int.TryParse(split[0], out int x) && int.TryParse(split[1], out int y))
+                    DrawPlayer(x, y);
             }
         }
 
@@ -100,7 +97,6 @@ namespace WPF_Client
             set
             {
                 SetValue(PlayerImageFileProperty, value);
-                playerImg.Source = new BitmapImage(new Uri("/resources/player.png", UriKind.Relative));
             }
         }
 
@@ -108,6 +104,7 @@ namespace WPF_Client
         public static readonly DependencyProperty PlayerImageFileProperty =
             DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeViewer), new PropertyMetadata(""));
         #endregion
+
         #region ExitImageFile
         public string ExitImageFile
         {
@@ -115,7 +112,6 @@ namespace WPF_Client
             set
             {
                 SetValue(ExitImageFileProperty, value);
-                InitialDraw();
             }
         }
 
@@ -123,6 +119,7 @@ namespace WPF_Client
         public static readonly DependencyProperty ExitImageFileProperty =
             DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeViewer), new PropertyMetadata(""));
         #endregion
+
         #region InitialPos
         public string InitialPos
         {
@@ -130,11 +127,6 @@ namespace WPF_Client
             set
             {
                 SetValue(InitialPosPropertyProperty, value);
-                SetValue(PlayerPosProperty, value);
-                string[] arr = value.Split(',');
-                int x = int.Parse(arr[0]), y = int.Parse(arr[1]);
-                Canvas.SetLeft(playerImg, tileSizes[0] * x);
-                Canvas.SetTop(playerImg, tileSizes[1] * y);
             }
         }
 
@@ -146,14 +138,16 @@ namespace WPF_Client
         public MazeViewer()
         {
             InitializeComponent();
-            InitialDraw();
+            ImageBrush b =  new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/background.jpg", UriKind.Absolute)));
+            b.Stretch = Stretch.None;
+            myCanvas.Background = b;
         }
 
         private void SetTileSize()
         {
-            double tileNum = Rows * Cols;
-            tileSizes[0] = Width / tileNum;
-            tileSizes[1] = Height / tileNum;
+            //double tileNum = Rows * Cols;
+            tileSizes[0] = Width / Cols;//tileNum;
+            tileSizes[1] = Height / Rows;//tileNum;
 
             playerImg.Width = tileSizes[0];
             playerImg.Height = tileSizes[1];
@@ -161,27 +155,29 @@ namespace WPF_Client
 
         private void InitialDraw()
         {
-            if (Rows == 0 || Cols == 0 || Maze == "" || Maze.Length != Rows*Cols*2 - 1)
+            if (Rows == 0 || Cols == 0 || Maze == "" || Maze.Length != Rows * Cols * 2 - 1)
                 return;
             if (tiles == null)
             {
-                tiles = new Image[Rows, Cols];
+                tiles = new /*Image*/Rectangle[Rows, Cols];
                 string[] split = Maze.Split(',');
-                BitmapImage bmi = new BitmapImage(new Uri("/resources/wall.png", UriKind.Relative));
-                for (int r = 0, c = 0; r < Rows; )
+                //BitmapImage bmi = new BitmapImage(new Uri("resources" + "\\" + "wall.png", UriKind.RelativeOrAbsolute));
+                ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/wall.png", UriKind.Absolute)));
+                for (int r = 0, c = 0; r < Rows;)
                 {
                     if (split[r * Cols + c] == "1")
                     {
-                        tiles[r, c] = new Image()
+                        tiles[r, c] = new Rectangle()//Image()
                         {
                             Height = tileSizes[1],
                             Width = tileSizes[0],
-                            Source = bmi,
-                            Stretch = Stretch.Fill
+                            //Source = bmi,
+                            Stretch = Stretch.Fill,
+                            Fill = brush
                         };
-                        myCanvas.Children.Add(tiles[r, c]);
                         Canvas.SetLeft(tiles[r, c], tileSizes[0] * c);
                         Canvas.SetTop(tiles[r, c], tileSizes[1] * r);
+                        myCanvas.Children.Add(tiles[r, c]);
                     }
                     if ((c = ++c % Cols) == 0)
                         r++;
@@ -193,18 +189,42 @@ namespace WPF_Client
                 int x = int.Parse(arr[0]), y = int.Parse(arr[1]);
                 if (tiles[x, y] == null)
                 {
-                    tiles[x, y] = new Image()
+                    tiles[x, y] = new Rectangle()//Image()
                     {
                         Height = tileSizes[1],
                         Width = tileSizes[0],
                         Stretch = Stretch.Fill
                     };
                     myCanvas.Children.Add(tiles[x, y]);
-                    Canvas.SetLeft(tiles[x, y], tileSizes[0] * x);
-                    Canvas.SetTop(tiles[x, y], tileSizes[1] * y);
+                    Canvas.SetLeft(tiles[x, y], tileSizes[0] * y);
+                    Canvas.SetTop(tiles[x, y], tileSizes[1] * x);
                 }
-                tiles[x, y].Source = new BitmapImage(new Uri("/resources/exit.png", UriKind.Relative));
+                BitmapImage img = new BitmapImage();
+                img.BeginInit();
+                img.UriSource = new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/" + ExitImageFile, UriKind.Absolute);
+                img.EndInit();
+                tiles[x, y].Fill = new ImageBrush(img);
+                //tiles[x, y].Source = new BitmapImage(new Uri(ExitImageFile, UriKind.RelativeOrAbsolute));
             }
+        }
+
+        private void DrawPlayer(int x, int y)
+        {
+            Canvas.SetLeft(playerImg, y * tileSizes[0]);
+            Canvas.SetTop(playerImg, x * tileSizes[1]);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetTileSize();
+            //playerImg.Source = new BitmapImage(new Uri("/resources/player.png", UriKind.Relative));
+            InitialDraw();
+            PlayerPos = InitialPos;
+            BitmapImage img = new BitmapImage();
+            img.BeginInit();
+            img.UriSource = new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/" + PlayerImageFile, UriKind.Absolute);
+            img.EndInit();
+            playerImg.Source = img;
         }
 
         //private void DrawMove()
