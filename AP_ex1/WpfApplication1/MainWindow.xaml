@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="335">
+    <Window.Background>
+        <ImageBrush ImageSource="C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\2/d523d82e8b366dcb8031a6999ffb5142.jpg"></ImageBrush>
+    </Window.Background>
+    
+    <Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="62" Margin="30,31,0,0" VerticalAlignment="Top" Width="66" Source="C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\2\portal_mazegen_3d2.jpg"/>
+        <StackPanel HorizontalAlignment="Left" Height="141" Margin="106,136,0,0" VerticalAlignment="Top" Width="100">
+            <Button x:Name="button" Content="Single player" Margin="0 0 0 5" Click="Sp_Click"/>
+            <Button x:Name="button1" Content="Multi player" Margin="0 5 0 5"/>
+            <Button x:Name="button2" Content="Settings" Margin="0 5 0 0" Click="Settings_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

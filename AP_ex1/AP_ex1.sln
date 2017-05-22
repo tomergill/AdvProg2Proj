@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAlgorithmsLib", "Sear
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Client", "WPF_Client\WPF_Client.csproj", "{D7AED698-C95B-4FE1-8B94-1AE5304CE2C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "..\..\..\WpfApplication1\WpfApplication1\WpfApplication1.csproj", "{741E3C68-A729-4DF4-AEBB-DD0ABD74B063}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "WpfApplication1\WpfApplication1.csproj", "{741E3C68-A729-4DF4-AEBB-DD0ABD74B063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

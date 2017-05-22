@@ -1,0 +1,64 @@
+﻿<Window x:Class="WpfApplication1.settingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        Title="settings" Height="300" Width="300" Closing="Window_Closing">
+
+    <Border Padding ="10,10,10,10">
+        <StackPanel>
+            <Grid Height="177">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="txtIP" Grid.Row ="0" Grid.Column="0" Text="server IP: "/>
+                <TextBox x:Name="txt1IP" Grid.Row ="0" Grid.Column="1" Text="{Binding ServerIP}"/>
+                <TextBlock x:Name="txtPort" Grid.Row="1" Grid.Column="0" Text="port Number: "/>
+                <TextBox x:Name="txt1Port" Grid.Row="1" Grid.Column="1" Text="{Binding ServerPort}"/>
+                <TextBlock x:Name="txtRows" Grid.Row="2" Grid.Column="0" Text="row's number: "/>
+                <TextBox x:Name="txt1Rows" Grid.Row="2" Grid.Column="1" Text="{Binding MazeRows}"/>
+                <TextBlock x:Name="txtcols" Grid.Row="3" Grid.Column="0" Text="colomn's number: "/>
+                <TextBox x:Name="txt1cols" Grid.Row="3" Grid.Column="1" Text="{Binding MazeCols}"/>
+                <TextBlock x:Name="txtsearch" Grid.Row="4" Grid.Column="0" Text="search algorithm: "/>
+                <ComboBox x:Name="txt1search" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False" Width="70"/>
+
+            </Grid>
+            <Grid Height="72">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="cancle" Content="Cancle" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="116" Height="52" Click="btnCancel_Click"/>
+                <Button x:Name="ok" Content="OK" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="116" Height="52" Click="btnOK_Click"/>
+            </Grid>
+        </StackPanel>
+    </Border>
+
+
+
+
+</Window>
+
+
+
+
+
+
+
+
+
+    
