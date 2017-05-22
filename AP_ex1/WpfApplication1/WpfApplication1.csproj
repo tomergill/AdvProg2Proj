@@ -78,9 +78,6 @@
     <Compile Include="SinglePlayerProperties.xaml.cs">
       <DependentUpon>SinglePlayerProperties.xaml</DependentUpon>
     </Compile>
-    <Compile Include="testWindow.xaml.cs">
-      <DependentUpon>testWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel.cs" />
     <Page Include="ChooseMaze.xaml">
       <SubType>Designer</SubType>
@@ -115,10 +112,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SinglePlayerProperties.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="testWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
