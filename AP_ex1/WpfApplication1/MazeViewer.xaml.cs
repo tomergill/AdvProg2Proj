@@ -138,7 +138,7 @@ namespace WPF_Client
         public MazeViewer()
         {
             InitializeComponent();
-            ImageBrush b =  new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/background.jpg", UriKind.Absolute)));
+            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/background.jpg", UriKind.Absolute)));
             b.Stretch = Stretch.None;
             myCanvas.Background = b;
         }
@@ -163,22 +163,24 @@ namespace WPF_Client
                 string[] split = Maze.Split(',');
                 //BitmapImage bmi = new BitmapImage(new Uri("resources" + "\\" + "wall.png", UriKind.RelativeOrAbsolute));
                 ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/wall.png", UriKind.Absolute)));
+                ImageBrush bcg = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/background.jpg", UriKind.Absolute)));
                 for (int r = 0, c = 0; r < Rows;)
                 {
-                    if (split[r * Cols + c] == "1")
+                    tiles[r, c] = new Rectangle()//Image()
                     {
-                        tiles[r, c] = new Rectangle()//Image()
-                        {
-                            Height = tileSizes[1],
-                            Width = tileSizes[0],
-                            //Source = bmi,
-                            Stretch = Stretch.Fill,
-                            Fill = brush
-                        };
-                        Canvas.SetLeft(tiles[r, c], tileSizes[0] * c);
-                        Canvas.SetTop(tiles[r, c], tileSizes[1] * r);
-                        myCanvas.Children.Add(tiles[r, c]);
-                    }
+                        Height = tileSizes[1],
+                        Width = tileSizes[0],
+                        //Source = bmi,
+                        Stretch = Stretch.Fill
+                    };
+                    Canvas.SetLeft(tiles[r, c], tileSizes[0] * c);
+                    Canvas.SetTop(tiles[r, c], tileSizes[1] * r);
+                    myCanvas.Children.Add(tiles[r, c]);
+                    if (split[r * Cols + c] == "1")
+                        tiles[r, c].Fill = brush;
+                    else
+                        tiles[r, c].Fill = bcg;
+                    
                     if ((c = ++c % Cols) == 0)
                         r++;
                 }
@@ -225,6 +227,7 @@ namespace WPF_Client
             img.UriSource = new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/" + PlayerImageFile, UriKind.Absolute);
             img.EndInit();
             playerImg.Source = img;
+            Canvas.SetZIndex(playerImg, 100); //bigger than anything else
         }
 
         //private void DrawMove()
