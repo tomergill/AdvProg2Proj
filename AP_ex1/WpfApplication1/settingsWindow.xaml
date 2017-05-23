@@ -42,8 +42,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="cancle" Content="Cancle" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="116" Height="52" Click="btnCancel_Click"/>
-                <Button x:Name="ok" Content="OK" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="116" Height="52" Click="btnOK_Click"/>
+                <Button x:Name="cancle" Content="Cancle" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="116" Height="52" Click="BtnCancel_Click"/>
+                <Button x:Name="ok" Content="OK" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="116" Height="52" Click="BtnOK_Click"/>
             </Grid>
         </StackPanel>
     </Border>

@@ -48,6 +48,7 @@ namespace Server
             //    }
             //    client.Close();
             //}
+            Console.WriteLine(maze);
             return maze.ToJSON();
         }
     }

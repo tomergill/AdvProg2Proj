@@ -68,16 +68,16 @@ namespace WpfApplication1
                 {
                     for (int j = 0; j < maze.Cols; j++)
                     {
-                        if ((i != maze.InitialPos.Row && j != maze.InitialPos.Col) ||
-                            (i != maze.GoalPos.Row && j != maze.GoalPos.Col))
-                        {
+                        //if ((i != maze.InitialPos.Row && j != maze.InitialPos.Col) ||
+                        //    (i != maze.GoalPos.Row && j != maze.GoalPos.Col))
+                        //{
                             if (maze[i, j] == CellType.Wall)
                                 mazeRepo += "1";
                             else
                                 mazeRepo += "0";
                             if (i != maze.Rows - 1 || j != maze.Cols - 1)
                                 mazeRepo += ",";
-                        }
+                        //}
                     }
                 }
                 return mazeRepo;

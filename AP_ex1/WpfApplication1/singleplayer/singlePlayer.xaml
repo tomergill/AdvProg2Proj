@@ -6,23 +6,23 @@
         xmlns:local="clr-namespace:WpfApplication1"
         x:Class="WpfApplication1.singlePlayer"
         mc:Ignorable="d"
-        Title="single Player" Height="300" Width="300" Closing="Window_Closing" KeyDown="Window_KeyDown">
-    <StackPanel>
-        <StackPanel.Resources>
-            
-        </StackPanel.Resources>
-        <Grid Height="24" Margin="10,10,10,0" VerticalAlignment="Top">
+        Title="single Player" Height="550" Width="500" Closing="Window_Closing" KeyDown="Window_KeyDown">
+    <Grid Margin="10,10,10,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <Button Grid.Column="0" Content="Restart Game" Margin="0 0 5 0" Click="Button_Click"/>
-            <Button Grid.Column="1" Content="Solve maze" Margin="5 0 5 0"/>
-            <Button Grid.Column="2" Content="Main menu" Margin="5 0 0 0"/>
-        </Grid>
-        <local:MazeViewer x:Name="mazeViewer" Rows="{Binding VMMazeRows}" 
+            <Button Grid.Row="0" Grid.Column="0" Content="Restart Game" Margin="0 0 5 0" Click="Button_Click"/>
+        <Button Grid.Row="0" Grid.Column="1" Content="Solve maze" Margin="5 0 5 0"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="Main menu" Margin="5 0 0 0"/>
+
+        <local:MazeViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Height="465" Width="465" Margin="5 10 5 5" x:Name="mazeViewer" Rows="{Binding VMMazeRows}" 
                                               Cols="{Binding VMMazeCols}"
                                               PlayerPos="{Binding VMPlayerPos}"
                                               InitialPos="{Binding VMInitPos}"
@@ -30,5 +30,5 @@
                                               Maze="{Binding VMMazeRepr}" 
                                               PlayerImageFile="../../../resources/player.png"
                                               ExitImageFile="../../../resources/exit.png"/>
-    </StackPanel>
+    </Grid>
 </Window>

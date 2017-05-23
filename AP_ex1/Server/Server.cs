@@ -71,7 +71,7 @@ namespace Server
             listener = new TcpListener(ep);
 
             listener.Start();
-            //Console.WriteLine("Starting listening");
+            Console.WriteLine("Starting listening");
             Task receiveConnections = new Task(() =>
             {
                 while(!stop)
@@ -79,7 +79,7 @@ namespace Server
                     try
                     {
                         TcpClient client = listener.AcceptTcpClient();
-                        //Console.WriteLine("Accepted Connection");
+                        Console.WriteLine("Accepted Connection");
                         ch.HandleClient(client, controller);
                     }
                     catch (SocketException e)

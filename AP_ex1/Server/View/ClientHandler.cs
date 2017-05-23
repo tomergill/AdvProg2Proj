@@ -42,11 +42,11 @@ namespace Server
                         {
                             continue;
                         }
-                        //Console.WriteLine("GOT " + commandLine);
+                        Console.WriteLine("GOT " + commandLine);
                         string result = controller.ExecuteCommand(commandLine, out bool shouldCloseConnection, client, writer);
                         if (result != null)
                         {
-                            //Console.WriteLine("SEND " + result);
+                            Console.WriteLine("SEND " + result);
                             if (client.Connected)
                                 writer.Write(result);
                         }
