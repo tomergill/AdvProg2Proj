@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace WPF_Client
+namespace WpfApplication1
 {
     /// <summary>
     /// Interaction logic for MazeViewer.xaml
@@ -68,7 +68,8 @@ namespace WPF_Client
             {
                 SetValue(PlayerPosProperty, value);
                 string[] split = value.Split(',');
-                if (int.TryParse(split[0], out int x) && int.TryParse(split[1], out int y))
+                int x, y;
+                if (int.TryParse(split[0], out x) && int.TryParse(split[1], out y))
                     DrawPlayer(x, y);
             }
         }
