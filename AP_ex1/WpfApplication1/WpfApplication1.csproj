@@ -79,9 +79,10 @@
     <Compile Include="MazeViewer.xaml.cs">
       <DependentUpon>MazeViewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="multiplayer\MultiplayerSettings.xaml.cs">
+    <Compile Include="multiplayer\settingsWindow\MultiplayerSettings.xaml.cs">
       <DependentUpon>MultiplayerSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="multiplayer\settingsWindow\MultiplayerSettingsModel.cs" />
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>
@@ -119,7 +120,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="multiplayer\MultiplayerSettings.xaml">
+    <Page Include="multiplayer\settingsWindow\MultiplayerSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
