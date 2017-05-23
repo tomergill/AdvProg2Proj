@@ -124,22 +124,22 @@ namespace WpfApplication1
         #region InitialPos
         public string InitialPos
         {
-            get { return (string)GetValue(InitialPosPropertyProperty); }
+            get { return (string)GetValue(InitialPosProperty); }
             set
             {
-                SetValue(InitialPosPropertyProperty, value);
+                SetValue(InitialPosProperty, value);
             }
         }
 
         // Using a DependencyProperty as the backing store for InitialPosProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty InitialPosPropertyProperty =
-            DependencyProperty.Register("InitialPosProperty", typeof(string), typeof(MazeViewer), new PropertyMetadata(""));
+        public static readonly DependencyProperty InitialPosProperty =
+            DependencyProperty.Register("InitialPos", typeof(string), typeof(UserControl), new PropertyMetadata(""));
         #endregion
 
         public MazeViewer()
         {
             InitializeComponent();
-            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/background.jpg", UriKind.Absolute)));
+            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/background.jpg", UriKind.Absolute)));
             b.Stretch = Stretch.None;
             myCanvas.Background = b;
         }
@@ -163,8 +163,8 @@ namespace WpfApplication1
                 tiles = new /*Image*/Rectangle[Rows, Cols];
                 string[] split = Maze.Split(',');
                 //BitmapImage bmi = new BitmapImage(new Uri("resources" + "\\" + "wall.png", UriKind.RelativeOrAbsolute));
-                ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/wall.png", UriKind.Absolute)));
-                ImageBrush bcg = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/background.jpg", UriKind.Absolute)));
+                ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/wall.png", UriKind.Absolute)));
+                ImageBrush bcg = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/background.jpg", UriKind.Absolute)));
                 for (int r = 0, c = 0; r < Rows;)
                 {
                     tiles[r, c] = new Rectangle()//Image()

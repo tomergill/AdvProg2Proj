@@ -8,6 +8,9 @@
         mc:Ignorable="d"
         Title="single Player" Height="300" Width="300" Closing="Window_Closing" KeyDown="Window_KeyDown">
     <StackPanel>
+        <StackPanel.Resources>
+            
+        </StackPanel.Resources>
         <Grid Height="24" Margin="10,10,10,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -19,5 +22,13 @@
             <Button Grid.Column="1" Content="Solve maze" Margin="5 0 5 0"/>
             <Button Grid.Column="2" Content="Main menu" Margin="5 0 0 0"/>
         </Grid>
+        <local:MazeViewer x:Name="mazeViewer" Rows="{Binding VMMazeRows}" 
+                                              Cols="{Binding VMMazeCols}"
+                                              PlayerPos="{Binding VMPlayerPos}"
+                                              InitialPos="{Binding VMInitPos}"
+                                              GoalPos="{Binding VMGoalPos}"
+                                              Maze="{Binding VMMazeRepr}" 
+                                              PlayerImageFile="../../../resources/player.png"
+                                              ExitImageFile="../../../resources/exit.png"/>
     </StackPanel>
 </Window>

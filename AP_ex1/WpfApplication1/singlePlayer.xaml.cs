@@ -24,6 +24,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
             SPVM = new singlePlayerViewModel(mazeName, rowsNum, colsNum);
+            this.DataContext = SPVM;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

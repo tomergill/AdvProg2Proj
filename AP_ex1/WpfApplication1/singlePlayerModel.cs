@@ -25,16 +25,69 @@ namespace WpfApplication1
             get{return maze;}
         }
 
-        public Position PlayerPos
+        public String PlayerPos
         {
-            get{return playerPos;}
-            set{playerPos = value;}
+            get{return playerPos.Row + "," + playerPos.Col;}
+            set
+            {
+                String[] splitStr = value.Split(',');
+                if (splitStr.Length!=2)
+                    throw new InvalidOperationException("Format must be \"number,number\"");
+                playerPos.Row = int.Parse(splitStr[0]);
+                playerPos.Col = int.Parse(splitStr[1]);
+            }
+        }
+
+        public int MazeRows
+        {
+            get {return maze.Rows; }
+        }
+
+        public int MazeCols
+        {
+            get { return maze.Cols; }
+        }
+
+        public String GoalPos
+        {
+            get { return maze.GoalPos.Row + "," + maze.GoalPos.Col; }
+        }
+
+        public String InitPos
+        {
+            get { return maze.InitialPos.Row + "," + maze.InitialPos.Col; }
+        }
+
+        public String MazeRepr
+        {
+            get
+            {
+                string mazeRepo = "";
+
+                for (int i = 0; i < maze.Rows; i++)
+                {
+                    for (int j = 0; j < maze.Cols; j++)
+                    {
+                        if ((i != maze.InitialPos.Row && j != maze.InitialPos.Col) ||
+                            (i != maze.GoalPos.Row && j != maze.GoalPos.Col))
+                        {
+                            if (maze[i, j] == CellType.Wall)
+                                mazeRepo += "1";
+                            else
+                                mazeRepo += "0";
+                            if (i != maze.Rows - 1 || j != maze.Cols - 1)
+                                mazeRepo += ",";
+                        }
+                    }
+                }
+                return mazeRepo;
+            }
         }
 
         public singlePlayerModel(string mazeName, int rowsNum, int colsNum)
         {
-            serverIP = ConfigurationManager.AppSettings["ServerIP"];
-            portNum = int.Parse(ConfigurationManager.AppSettings["ServerPort"]);
+            serverIP = Properties.Settings.Default.ServerIP;
+            portNum = Properties.Settings.Default.ServerPort;
             server = new IPEndPoint(IPAddress.Parse(serverIP), portNum);
 
             TcpClient serverSocket = new TcpClient();
@@ -50,14 +103,6 @@ namespace WpfApplication1
                 string mazeInfo = reader.ReadString();
                 maze = Maze.FromJSON(mazeInfo);
                 playerPos = maze.InitialPos;
-                /*
-                this.mazeEndPoint = maze.GoalPos;
-                this.mazeColsNumber = maze.Cols;
-                this.mazeRowsNumber = maze.Rows;
-                this.mazeName = maze.Name;
-                //is this ok?!
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(MazeString));
-                */
             }
         }
     }
