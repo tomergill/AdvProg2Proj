@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,9 +18,12 @@ namespace WpfApplication1
     /// </summary>
     public partial class singlePlayer : Window
     {
-        public singlePlayer()
+        private singlePlayerViewModel SPVM;
+
+        public singlePlayer(string mazeName, int rowsNum, int colsNum)
         {
             InitializeComponent();
+            SPVM = new singlePlayerViewModel(mazeName, rowsNum, colsNum);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,6 +35,15 @@ namespace WpfApplication1
         {
             MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.Show();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Left:
+                    break;
+            }
         }
     }
 }

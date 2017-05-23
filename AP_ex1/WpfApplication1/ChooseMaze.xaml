@@ -6,26 +6,25 @@
              xmlns:local="clr-namespace:WpfApplication1"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-<!--m-->
-    <StackPanel>
-        <Grid Margin="10 10 10 10" Height="167">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="txtMaze" Grid.Row ="0" Grid.Column="0" Text="Maze Name: "/>
-            <TextBox x:Name="Maze" Grid.Row ="0" Grid.Column="1"/>
-            <TextBlock x:Name="txtRows" Grid.Row ="1" Grid.Column="0" Text="Rows number: "/>
-            <TextBox x:Name="Rows" Grid.Row ="1" Grid.Column="1"/>
-            <TextBlock x:Name="txtCols" Grid.Row ="2" Grid.Column="0" Text="Cols number: "/>
-            <TextBox x:Name="Cols" Grid.Row ="2" Grid.Column="1"/>
-        </Grid>
-        <Button Content="Start" Margin="10 10 10 10" Padding="10 10 10 10" HorizontalAlignment="Center" Click="Start_Game"/>
-    </StackPanel>
+
+    <Grid Margin="10 10 10 10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="28*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="txtMaze" Grid.Row ="0" Grid.Column="0" Text="Maze Name: "/>
+        <TextBox x:Name="Maze" Grid.Row ="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="txtRows" Grid.Row ="1" Grid.Column="0" Text="Rows number: "/>
+        <TextBox x:Name="Rows" Grid.Row ="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="txtCols" Grid.Row ="2" Grid.Column="0" Text="Cols number: "/>
+        <TextBox x:Name="Cols" Grid.Row ="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+    </Grid> 
 </UserControl>

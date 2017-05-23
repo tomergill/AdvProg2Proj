@@ -28,13 +28,8 @@ namespace WpfApplication1
         private void Sp_Click(object sender, RoutedEventArgs e)
         {
             SinglePlayerProperties spp = new SinglePlayerProperties();
-            spp.Show();
-            /*
-            singlePlayer singlePlayer = new singlePlayer();
-            singlePlayer.Title = "Single Player";
             this.Hide();
-            singlePlayer.Show();
-            */
+            spp.Show();
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)

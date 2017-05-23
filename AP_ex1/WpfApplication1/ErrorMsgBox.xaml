@@ -11,6 +11,6 @@
         <Viewbox>
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Please fill all textBoxes" HorizontalAlignment="Center" Margin="10 20 10 20" Padding="10 10 10 10" />
         </Viewbox>
-        <Button x:Name="button" Content="Got It" HorizontalAlignment="Center" Margin="83,10,82,10" Padding="10 10 10 10" Height="92" Width="127"/>
+        <Button x:Name="button" Content="Got It" HorizontalAlignment="Center" Margin="83,10,82,10" Padding="10 10 10 10" Height="92" Width="127" Click="CloseMe"/>
     </StackPanel>
 </Window>

@@ -24,24 +24,6 @@ namespace WpfApplication1
         {
             InitializeComponent();
         }
-
-        private void Start_Game(object sender, RoutedEventArgs e)
-        {
-            if (!String.IsNullOrEmpty(Maze.Text) && !String.IsNullOrEmpty(Rows.Text) && !String.IsNullOrEmpty(Cols.Text))
-            {
-                
-                singlePlayer singlePlayer = new singlePlayer();
-                singlePlayer.Title = "Single Player";
-                singlePlayer.Show();
-            }
-            else
-            {
-                Maze.Text = string.Empty;
-                Rows.Text = string.Empty;
-                Cols.Text = string.Empty;
-                ErrorMsgBox error = new ErrorMsgBox();
-                error.ShowDialog();
-            }
-        }
     }
 }
+

@@ -35,7 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MazeLib">
+      <HintPath>C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\תרגיל 1\MazeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SearchAlgorithmsLib">
+      <HintPath>..\..\..\..\..\..\visual studio projects\backUpsAP2\AdvProg2Proj\AP_ex1\SearchAlgorithmsLib\bin\Debug\SearchAlgorithmsLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -75,9 +86,11 @@
     <Compile Include="singlePlayer.xaml.cs">
       <DependentUpon>singlePlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="singlePlayerModel.cs" />
     <Compile Include="SinglePlayerProperties.xaml.cs">
       <DependentUpon>SinglePlayerProperties.xaml</DependentUpon>
     </Compile>
+    <Compile Include="singlePlayerViewModel.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="ChooseMaze.xaml">
       <SubType>Designer</SubType>
@@ -134,6 +147,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,6 +156,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="models\" />
+    <Folder Include="userControls\" />
+    <Folder Include="viewModels\" />
+    <Folder Include="views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

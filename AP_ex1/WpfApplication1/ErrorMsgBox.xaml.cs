@@ -23,5 +23,10 @@ namespace WpfApplication1
         {
             InitializeComponent();
         }
+
+        private void CloseMe(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

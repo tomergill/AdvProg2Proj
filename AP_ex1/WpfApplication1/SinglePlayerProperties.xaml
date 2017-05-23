@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="SinglePlayerProperties" Height="300" Width="300">
-    
-    <local:ChooseMaze/>
+        Title="SinglePlayerProperties" Height="300" Width="300" Closing="Window_Closing">
+    <StackPanel>
+        <local:ChooseMaze x:Name="myMaze" Height="190" Margin="10 10 10 10" Padding="10 10 10 10"/>
+        <Button x:Name="button" Content="Start" HorizontalAlignment="Center" Padding="10 10 10 10" Click ="Start_Game"/>
+
+    </StackPanel>
+
 
 </Window>

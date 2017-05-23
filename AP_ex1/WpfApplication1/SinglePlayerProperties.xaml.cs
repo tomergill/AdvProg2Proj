@@ -23,6 +23,31 @@ namespace WpfApplication1
         {
             InitializeComponent();
         }
-    
+
+        private void Start_Game(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(myMaze.Maze.Text) && !String.IsNullOrEmpty(myMaze.Rows.Text) && !String.IsNullOrEmpty(myMaze.Cols.Text))
+            {
+                singlePlayer singlePlayer = new singlePlayer(myMaze.Maze.Text,int.Parse(myMaze.Rows.Text), int.Parse(myMaze.Cols.Text));
+                singlePlayer.Title = "Single Player";
+                singlePlayer.Show();
+                this.Close();
+            }
+            else
+            {
+                myMaze.Maze.Text = string.Empty;
+                myMaze.Rows.Text = string.Empty;
+                myMaze.Cols.Text = string.Empty;
+                MessageBox.Show("Please fill all textBoxes", "Error occured", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //ErrorMsgBox error = new ErrorMsgBox();
+                //error.ShowDialog();
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.Show();
+        }
     }
 }
