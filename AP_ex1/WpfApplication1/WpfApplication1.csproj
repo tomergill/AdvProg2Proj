@@ -36,14 +36,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MazeLib">
-      <HintPath>C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\תרגיל 1\MazeLib.dll</HintPath>
+      <HintPath>..\Server\MazeLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SearchAlgorithmsLib">
-      <HintPath>..\..\..\..\..\..\visual studio projects\backUpsAP2\AdvProg2Proj\AP_ex1\SearchAlgorithmsLib\bin\Debug\SearchAlgorithmsLib.dll</HintPath>
+      <HintPath>..\SearchAlgorithmsLib\bin\Debug\SearchAlgorithmsLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -78,6 +78,9 @@
     <Compile Include="ISettingsModel.cs" />
     <Compile Include="MazeViewer.xaml.cs">
       <DependentUpon>MazeViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="multiplayer\MultiplayerSettings.xaml.cs">
+      <DependentUpon>MultiplayerSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="settingsWindow.xaml.cs">
@@ -115,6 +118,10 @@
     <Page Include="MazeViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="multiplayer\MultiplayerSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="settingsWindow.xaml">
       <SubType>Designer</SubType>
@@ -157,12 +164,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="models\" />
-    <Folder Include="userControls\" />
-    <Folder Include="viewModels\" />
-    <Folder Include="views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="resources\background - Copy.jpg" />
     <Resource Include="resources\background.jpg" />

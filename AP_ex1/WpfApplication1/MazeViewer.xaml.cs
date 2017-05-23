@@ -25,15 +25,19 @@ namespace WpfApplication1
         private /*Image*/Rectangle[,] tiles = null;
 
         #region Rows
+
+
         public int Rows
         {
             get { return (int)GetValue(RowsProperty); }
-            set
-            {
-                SetValue(RowsProperty, value);
-            }
+            set { SetValue(RowsProperty, value); }
         }
-        public static readonly DependencyProperty RowsProperty = DependencyProperty.Register("Rows", typeof(int), typeof(MazeViewer), new PropertyMetadata(0));
+
+        // Using a DependencyProperty as the backing store for Rows.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty RowsProperty =
+            DependencyProperty.Register("Rows", typeof(int), typeof(MazeViewer), new PropertyMetadata(0));
+
+
         #endregion
 
         #region Cols
