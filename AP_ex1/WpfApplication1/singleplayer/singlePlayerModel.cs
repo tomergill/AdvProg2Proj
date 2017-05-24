@@ -161,6 +161,8 @@ namespace WpfApplication1
                         playerPos.Row -= 1;
                     break;
                 default:
+
+
                     break;
 
             }
