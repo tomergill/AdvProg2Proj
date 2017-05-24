@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AP_ex1", "AP_ex1\AP_ex1.csproj", "{BDB42EE5-45C3-4B42-B9BC-D396E4E00DE7}"
 EndProject
@@ -27,6 +27,7 @@ Global
 		{BDB42EE5-45C3-4B42-B9BC-D396E4E00DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDB42EE5-45C3-4B42-B9BC-D396E4E00DE7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E97258C-174B-433F-9993-F459B4FE7B5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E97258C-174B-433F-9993-F459B4FE7B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E97258C-174B-433F-9993-F459B4FE7B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E97258C-174B-433F-9993-F459B4FE7B5E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09D563F2-6F93-4D4D-9A14-7AFAA105E188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

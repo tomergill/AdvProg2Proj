@@ -12,7 +12,7 @@
     </Window.Background>
     
     <Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="62" Margin="30,31,0,0" VerticalAlignment="Top" Width="66" Source="C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\2\portal_mazegen_3d2.jpg"/>
+        <!--<Image x:Name="image" HorizontalAlignment="Left" Height="62" Margin="30,31,0,0" VerticalAlignment="Top" Width="66" Source="C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\2\portal_mazegen_3d2.jpg"/>-->
         <StackPanel HorizontalAlignment="Left" Height="141" Margin="106,136,0,0" VerticalAlignment="Top" Width="100">
             <Button x:Name="button" Content="Single player" Margin="0 0 0 5" Click="Sp_Click"/>
             <Button x:Name="button1" Content="Multi player" Margin="0 5 0 5"/>

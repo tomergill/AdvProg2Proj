@@ -19,6 +19,8 @@ namespace WpfApplication1
     /// </summary>
     public partial class SinglePlayerProperties : Window
     {
+        private bool exitWithXButton = true;
+
         public SinglePlayerProperties()
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace WpfApplication1
                 singlePlayer singlePlayer = new singlePlayer(myMaze.Maze.Text,int.Parse(myMaze.Rows.Text), int.Parse(myMaze.Cols.Text));
                 singlePlayer.Title = "Single Player";
                 singlePlayer.Show();
+                exitWithXButton = false;
                 this.Close();
             }
             else
@@ -46,8 +49,11 @@ namespace WpfApplication1
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.Show();
+            if (exitWithXButton)
+            {
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.Show();
+            }
         }
     }
 }

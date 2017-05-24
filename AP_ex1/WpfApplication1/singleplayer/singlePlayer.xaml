@@ -1,0 +1,34 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        x:Class="WpfApplication1.singlePlayer"
+        mc:Ignorable="d"
+        Title="single Player" Height="550" Width="500" Closing="Window_Closing" KeyDown="Window_KeyDown">
+    <Grid Margin="10,10,10,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Content="Restart Game" Margin="0 0 5 0" Click="Button_Click"/>
+        <Button Grid.Row="0" Grid.Column="1" Content="Solve maze" Margin="5 0 5 0"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="Main menu" Margin="5 0 0 0"/>
+
+        <local:MazeViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5 10 5 5" x:Name="mazeViewer" Rows="{Binding VMMazeRows}" 
+                                              Cols="{Binding VMMazeCols}"
+                                              PlayerPos="{Binding VMPlayerPos}"
+                                              InitialPos="{Binding VMInitPos}"
+                                              GoalPos="{Binding VMGoalPos}"
+                                              Maze="{Binding VMMazeRepr}" 
+                                              PlayerImageFile="../../../resources/player.png"
+                                              ExitImageFile="../../../resources/exit.png"/>
+    </Grid>
+</Window>

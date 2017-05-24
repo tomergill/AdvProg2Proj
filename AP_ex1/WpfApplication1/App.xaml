@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:WpfApplication1"
              StartupUri="multiplayer/settingsWindow/MultiplayerSettings.xaml" >
     <Application.Resources>
-         
     </Application.Resources>
 </Application>
