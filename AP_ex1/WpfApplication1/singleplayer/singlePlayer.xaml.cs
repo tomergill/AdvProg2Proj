@@ -43,6 +43,18 @@ namespace WpfApplication1
             switch (e.Key)
             {
                 case Key.Left:
+                    SPVM.GoLeft();
+                    break;
+                case Key.Right:
+                    SPVM.GoRight();
+                    break;
+                case Key.Up:
+                    SPVM.GoUp();
+                    break;
+                case Key.Down:
+                    SPVM.GoDown();
+                    break;
+                default:
                     break;
             }
         }

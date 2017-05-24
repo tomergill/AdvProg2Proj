@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="multiplayer\settingsWindow\MultiplayerSettingsModel.cs" />
     <Compile Include="multiplayer\settingsWindow\MultiplayerSettingsViewModel.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>

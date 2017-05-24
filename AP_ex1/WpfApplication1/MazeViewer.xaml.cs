@@ -80,7 +80,7 @@ namespace WpfApplication1
 
         // Using a DependencyProperty as the backing store for Maze.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlayerPosProperty =
-            DependencyProperty.Register("PlayerPos", typeof(string), typeof(MazeViewer), new PropertyMetadata(""));
+            DependencyProperty.Register("PlayerPos", typeof(string), typeof(MazeViewer), new PropertyMetadata("", OnPlayerPosPropertyChanged));
         #endregion
 
         #region GoalPos
@@ -238,20 +238,19 @@ namespace WpfApplication1
             Canvas.SetZIndex(playerImg, 100); //bigger than anything else
         }
 
-        //private void DrawMove()
-        //{
-        //    double oldX = Canvas.GetLeft(playerImg), oldY = Canvas.GetTop(playerImg);
-        //    String[] split = PlayerPos.Split(',');
-        //    double x = double.Parse(split[0]) * tileSizes[0], 
-        //        y = double.Parse(split[1]) * tileSizes[1];
-        //    if (x > oldX)
-        //    {
-        //        for (double i = 0; i < x - oldX; i++)
-        //        {
-        //            Canvas.SetLeft(playerImg, oldX + i);
-        //            sleep(100);
-        //        }
-        //    }
-        //}
+       
+        private static void OnPlayerPosPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MazeViewer mv = (MazeViewer) d;
+            mv.OnPlayerPosPropertyChanged();
+        }
+
+        private void OnPlayerPosPropertyChanged()
+        {
+            string[] split = PlayerPos.Split(',');
+            int x, y;
+            if (int.TryParse(split[0], out x) && int.TryParse(split[1], out y))
+                DrawPlayer(x, y);
+        }
     }
 }

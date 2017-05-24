@@ -20,12 +20,10 @@ namespace WpfApplication1
     public partial class settingsWindow : Window
     {
         private SettingsViewModel vm;
-        private ApplicationSettingsModel model;
         public settingsWindow()
         {
-            model = new ApplicationSettingsModel();
             InitializeComponent();
-            vm = new SettingsViewModel(model);
+            vm = new SettingsViewModel(new ApplicationSettingsModel());
             this.DataContext = vm;
         }
 
