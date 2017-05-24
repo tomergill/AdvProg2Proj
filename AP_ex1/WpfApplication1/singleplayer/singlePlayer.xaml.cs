@@ -19,17 +19,14 @@ namespace WpfApplication1
     public partial class singlePlayer : Window
     {
         private singlePlayerViewModel SPVM;
+        private Boolean canMove;
 
         public singlePlayer(string mazeName, int rowsNum, int colsNum)
         {
             InitializeComponent();
             SPVM = new singlePlayerViewModel(mazeName, rowsNum, colsNum);
+            this.canMove = true;
             this.DataContext = SPVM;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -40,23 +37,44 @@ namespace WpfApplication1
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.Key)
+            if (canMove)
             {
-                case Key.Left:
-                    SPVM.GoLeft();
-                    break;
-                case Key.Right:
-                    SPVM.GoRight();
-                    break;
-                case Key.Up:
-                    SPVM.GoUp();
-                    break;
-                case Key.Down:
-                    SPVM.GoDown();
-                    break;
-                default:
-                    break;
+                switch (e.Key)
+                {
+                    case Key.Left:
+                        SPVM.GoLeft();
+                        break;
+                    case Key.Right:
+                        SPVM.GoRight();
+                        break;
+                    case Key.Up:
+                        SPVM.GoUp();
+                        break;
+                    case Key.Down:
+                        SPVM.GoDown();
+                        break;
+                    default:
+                        break;
+                }
+                if (SPVM.VMgetEndPointReached)
+                {
+                    MessageBox.Show("Great Job! you found the way!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.canMove = false;
+                }
             }
+        }
+
+        private void Restart(object sender, RoutedEventArgs e)
+        {
+            this.canMove = true;
+            SPVM.Restart();
+        }
+
+        private void GetSolution(object sender, RoutedEventArgs e)
+        {
+            this.canMove = false;
+            SPVM.Restart();
+            SPVM.SolveMe();
         }
     }
 }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using MazeLib;
 using System.ComponentModel;
+using static WpfApplication1.DIRECTION;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace WpfApplication1
 {
@@ -30,11 +33,12 @@ namespace WpfApplication1
         public String VMPlayerPos
         {
             get { return SPM.PlayerPos; }
-            set {
+            set
+            {
                 SPM.PlayerPos = value;
-                NotifyPropertyChanged("PlayerPos");
+                NotifyPropertyChanged("VMPlayerPos");
             }
-            
+
         }
 
         public int VMMazeRows
@@ -59,7 +63,53 @@ namespace WpfApplication1
 
         public String VMMazeRepr
         {
-            get {return SPM.MazeRepr; }
+            get { return SPM.MazeRepr; }
+        }
+
+        public Boolean VMgetEndPointReached
+        {
+            get { return SPM.GetEndPointReached; }
+        }
+
+        public void Restart()
+        {
+            SPM.Restart();
+            NotifyPropertyChanged("VMPlayerPos");
+        }
+
+        public void SolveMe()
+        {
+            DIRECTION wayNum;
+            String solveWay = SPM.GetSolveWay;
+            int lengthOfSol = solveWay.Length;
+            for (int i = 0; i < lengthOfSol; i++)
+            {
+
+                Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                {
+
+                    wayNum = (DIRECTION)char.GetNumericValue(solveWay[i]);
+                    switch (wayNum)
+                    {
+                        case DIRECTION.left:
+                            GoLeft();
+                            break;
+                        case DIRECTION.right:
+                            GoRight();
+                            break;
+                        case DIRECTION.up:
+                            GoUp();
+                            break;
+                        case DIRECTION.down:
+                            GoDown();
+                            break;
+                        default:
+                            break;
+                    }
+                    Thread.Sleep(1000);
+                }));
+            }
+
         }
 
         public void GoLeft()

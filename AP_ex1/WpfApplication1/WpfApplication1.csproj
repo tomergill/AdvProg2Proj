@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EnumDirections.cs" />
     <Compile Include="Settings\ApplicationSettingsModel.cs" />
     <Compile Include="Controls\ChooseMaze.xaml.cs">
       <DependentUpon>ChooseMaze.xaml</DependentUpon>

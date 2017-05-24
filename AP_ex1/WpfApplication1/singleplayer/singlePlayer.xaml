@@ -18,11 +18,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="Restart Game" Margin="0 0 5 0" Click="Button_Click"/>
-        <Button Grid.Row="0" Grid.Column="1" Content="Solve maze" Margin="5 0 5 0"/>
+        <Button Grid.Row="0" Grid.Column="0" Content="Restart Game" Margin="0 0 5 0" Click="Restart"/>
+        <Button Grid.Row="0" Grid.Column="1" Content="Solve maze" Margin="5 0 5 0" Click="GetSolution"/>
         <Button Grid.Row="0" Grid.Column="2" Content="Main menu" Margin="5 0 0 0"/>
 
-        <local:MazeViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5 10 5 5" x:Name="mazeViewer" Rows="{Binding VMMazeRows}" 
+        <local:MazeViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5 10 5 5" x:Name="mazeViewer" 
+                                              Rows="{Binding VMMazeRows}" 
                                               Cols="{Binding VMMazeCols}"
                                               PlayerPos="{Binding VMPlayerPos, Mode=TwoWay}"
                                               InitialPos="{Binding VMInitPos}"

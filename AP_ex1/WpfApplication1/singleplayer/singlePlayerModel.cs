@@ -10,6 +10,8 @@ using System.Net;
 using System.Net.Sockets;
 using MazeLib;
 using System.ComponentModel;
+using Newtonsoft.Json.Linq;
+using static WpfApplication1.DIRECTION;
 
 namespace WpfApplication1
 {
@@ -18,30 +20,28 @@ namespace WpfApplication1
         private IPEndPoint server;
         private string serverIP;
         private int portNum;
+        private String mazeName;
+        private int algorithm;
         private Maze maze;
         private Position playerPos;
-
-        enum DIRECTION
-        {
-            left = 0,
-            right,
-            up,
-            down,
-        }
+        private String solveWay;
+        private Boolean endPointReached;
 
 
         public singlePlayerModel(string mazeName, int rowsNum, int colsNum)
         {
             serverIP = Properties.Settings.Default.ServerIP;
             portNum = Properties.Settings.Default.ServerPort;
+            this.mazeName = mazeName;
+            algorithm = Properties.Settings.Default.SearchAlgorithm;
             server = new IPEndPoint(IPAddress.Parse(serverIP), portNum);
+            endPointReached = false;
 
-            TcpClient serverSocket = new TcpClient();
-            serverSocket.Connect(server);
+            TcpClient serverMazeSocket = new TcpClient();
+            serverMazeSocket.Connect(server);
+            while (!serverMazeSocket.Connected) ;
 
-            while (!serverSocket.Connected) ;
-
-            using (NetworkStream stream = serverSocket.GetStream())
+            using (NetworkStream stream = serverMazeSocket.GetStream())
             using (BinaryReader reader = new BinaryReader(stream))
             using (BinaryWriter writer = new BinaryWriter(stream))
             {
@@ -49,11 +49,10 @@ namespace WpfApplication1
                 string mazeInfo = reader.ReadString();
                 maze = Maze.FromJSON(mazeInfo);
                 playerPos = maze.InitialPos;
+                
             }
 
         }
-
-
 
         public Maze Maze
         {
@@ -119,6 +118,45 @@ namespace WpfApplication1
             }
         }
 
+        public String GetSolveWay
+        {
+            get
+            {
+                if (solveWay==default(String))
+                    GetSolutionFromServer();
+                return this.solveWay;
+            }
+        }
+
+        public void Restart()
+        {
+            playerPos.Row = maze.InitialPos.Row;
+            playerPos.Col = maze.InitialPos.Col;
+            NotifyPropertyChanged("PlayerPos");
+        }
+
+        public Boolean GetEndPointReached
+        {
+            get { return endPointReached; }
+        }
+
+        private String GetSolutionFromServer()
+        {
+            TcpClient serverSolSocket = new TcpClient();
+            serverSolSocket.Connect(server);
+            while (!serverSolSocket.Connected) ;
+
+            using (NetworkStream stream = serverSolSocket.GetStream())
+            using (BinaryReader reader = new BinaryReader(stream))
+            using (BinaryWriter writer = new BinaryWriter(stream))
+            {
+                writer.Write("solve " + mazeName + " " + algorithm);
+                String mazeSolution = reader.ReadString();
+                JObject solution = JObject.Parse(mazeSolution);
+                solveWay = (string)solution["Solution"];
+            }
+            return solveWay;
+        }
 
         public void GoLeft()
         {
@@ -161,12 +199,13 @@ namespace WpfApplication1
                         playerPos.Row -= 1;
                     break;
                 default:
-
-
                     break;
 
             }
             NotifyPropertyChanged("PlayerPos");
+            if (playerPos.Row == maze.GoalPos.Row && playerPos.Col == maze.GoalPos.Col)
+                endPointReached = true;
+            NotifyPropertyChanged("getEndPointReached");
         }
     }
 }

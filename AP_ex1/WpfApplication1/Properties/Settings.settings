@@ -5,9 +5,6 @@
     <Setting Name="ServerIP" Type="System.String" Scope="User">
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
-    <Setting Name="ServerPort" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8000</Value>
-    </Setting>
     <Setting Name="MazeRows" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
@@ -16,6 +13,9 @@
     </Setting>
     <Setting Name="SearchAlgorithm" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ServerPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">40000</Value>
     </Setting>
   </Settings>
 </SettingsFile>
