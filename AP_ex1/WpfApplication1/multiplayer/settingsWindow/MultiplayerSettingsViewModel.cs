@@ -46,11 +46,6 @@ namespace WpfApplication1
             }
         }
 
-        public MultiplayerSettingsViewModel()
-        {
-            model = new MultiplayerSettingsModel();
-        }
-
         public Maze JoinGame(int selectedIndex)
         {
             if (selectedIndex >= Games.Count)

@@ -28,24 +28,6 @@ namespace WpfApplication1
             InitializeComponent();
             vm = new MultiplayerSettingsViewModel();
             this.DataContext = vm;
-
-            chooseMaze.Maze.SetBinding(TextBox.TextProperty, new Binding()
-            {
-                //Source = vm,
-                Path = new PropertyPath("Name")
-            });
-
-            chooseMaze.Rows.SetBinding(TextBox.TextProperty, new Binding()
-            {
-                //Source = vm,
-                Path = new PropertyPath("Rows")
-            });
-
-            chooseMaze.Cols.SetBinding(TextBox.TextProperty, new Binding()
-            {
-                //Source = vm,
-                Path = new PropertyPath("Cols")
-            });
         }
 
         private void joinBtn_Click(object sender, RoutedEventArgs e)
@@ -62,40 +44,6 @@ namespace WpfApplication1
             new Multiplayer(m).Show();
             isClosedWithXButton = false;
             this.Close();
-        }
-
-        private void startbtn_Click(object sender, RoutedEventArgs e)
-        {
-            startLbl.Content = "Waiting for other player...";
-            startLbl.Visibility = Visibility.Visible;
-
-            if (chooseMaze.Maze.Text == "" || chooseMaze.Rows.Text == "" || chooseMaze.Cols.Text == "")
-            {
-                startLbl.Content = "Please enter all fields.";
-                return;
-            }
-            if (!int.TryParse(chooseMaze.Rows.Text, out int rows) || !int.TryParse(chooseMaze.Cols.Text, out int cols) || rows <= 0 || cols <= 0)
-            {
-                startLbl.Content = "Wrong rows / columns number.";
-                return;
-            }
-
-            Maze m = vm.StartGame();
-            if (m == null)
-            {
-                startLbl.Content = "Error opening game. Please enter different parameters \n(probably a naming problem)";
-                return;
-            }
-
-            new Multiplayer(m).Show();
-            isClosedWithXButton = false;
-            this.Close();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (isClosedWithXButton)
-                Application.Current.MainWindow.Show();
         }
     }
 }
