@@ -98,6 +98,7 @@ namespace WpfApplication1
                     return null;
                 return Maze.FromJSON(output);
             }
+            
         }
     }
 }

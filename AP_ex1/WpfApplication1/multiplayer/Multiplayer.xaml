@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="Multiplayer" Height="300" Width="300">
+        Title="Multiplayer" Height="500" Width="800" Background="White">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Row 0-->
+        <Button x:Name="ReturnButton" Content="Return To Main Menu" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" Margin="10" FontWeight="Bold" FontStyle="Italic" />
+
+        <!--Col 0 (Rows 1 & 2)-->
+        <Label Grid.Column="0" Grid.Row="1" Content="My Maze Board" Margin="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4EADFA"/>
+        <local:MazeViewer x:Name="playerMazeViewer"  Margin="10" Grid.Column="0" Grid.Row="2" Rows="{Binding VMMazeRows}"           Cols="{Binding VMMazeCols}" PlayerPos="{Binding VMPlayerPos, Mode=TwoWay}"     InitialPos="{Binding VMInitPos}" GoalPos="{Binding VMGoalPos}" Maze="{Binding VMMazeRepr}" PlayerImageFile="../../../resources/player.png" ExitImageFile="../../../resources/exit.png"/>
+
+        <!--Col 1 (Rows 1 & 2)-->
+        <Label Grid.Column="1" Grid.Row="1" Content="Other Player's Maze Board" Margin="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF0AFA41"/>
     </Grid>
 </Window>

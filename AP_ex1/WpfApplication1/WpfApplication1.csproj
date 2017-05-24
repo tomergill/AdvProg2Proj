@@ -68,6 +68,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="multiplayer\MultiplayerModel.cs" />
+    <Compile Include="multiplayer\MultiplayerViewModel.cs" />
     <Compile Include="Settings\ApplicationSettingsModel.cs" />
     <Compile Include="Controls\ChooseMaze.xaml.cs">
       <DependentUpon>ChooseMaze.xaml</DependentUpon>

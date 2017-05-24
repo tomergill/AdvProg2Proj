@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,7 +21,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class Multiplayer : Window
     {
-        public Multiplayer(Maze maze)
+        public Multiplayer(Maze maze, TcpClient serverSocket)
         {
             InitializeComponent();
         }
