@@ -34,7 +34,7 @@ namespace WpfApplication1
         private List<String> GetGameList()
         {
             string ip = Properties.Settings.Default.ServerIP;
-            int port = int.Parse(Properties.Settings.Default.ServerIP);
+            int port = Properties.Settings.Default.ServerPort;
             IPEndPoint server = new IPEndPoint(IPAddress.Parse(ip), port);
             TcpClient serverSocket = new TcpClient();
             serverSocket.Connect(server);
@@ -56,7 +56,7 @@ namespace WpfApplication1
         public Maze JoinGame(string mazeName)
         {
             string ip = Properties.Settings.Default.ServerIP;
-            int port = int.Parse(Properties.Settings.Default.ServerIP);
+            int port = Properties.Settings.Default.ServerPort;
             IPEndPoint server = new IPEndPoint(IPAddress.Parse(ip), port);
             TcpClient serverSocket = new TcpClient();
             serverSocket.Connect(server);
@@ -81,7 +81,7 @@ namespace WpfApplication1
                 return null;
 
             string ip = Properties.Settings.Default.ServerIP;
-            int port = int.Parse(Properties.Settings.Default.ServerIP);
+            int port = Properties.Settings.Default.ServerPort;
             IPEndPoint server = new IPEndPoint(IPAddress.Parse(ip), port);
             TcpClient serverSocket = new TcpClient();
             serverSocket.Connect(server);
