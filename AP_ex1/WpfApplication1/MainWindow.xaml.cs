@@ -38,5 +38,11 @@ namespace WpfApplication1
             this.Hide();
             settings.Show();
         }
+
+        private void MultiBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new MultiplayerSettings().Show();
+            this.Hide();
+        }
     }
 }

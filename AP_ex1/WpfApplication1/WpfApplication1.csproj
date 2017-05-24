@@ -68,15 +68,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ApplicationSettingsModel.cs" />
-    <Compile Include="ChooseMaze.xaml.cs">
+    <Compile Include="Settings\ApplicationSettingsModel.cs" />
+    <Compile Include="Controls\ChooseMaze.xaml.cs">
       <DependentUpon>ChooseMaze.xaml</DependentUpon>
     </Compile>
     <Compile Include="ErrorMsgBox.xaml.cs">
       <DependentUpon>ErrorMsgBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ISettingsModel.cs" />
-    <Compile Include="MazeViewer.xaml.cs">
+    <Compile Include="Settings\ISettingsModel.cs" />
+    <Compile Include="Controls\MazeViewer.xaml.cs">
       <DependentUpon>MazeViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="multiplayer\Multiplayer.xaml.cs">
@@ -88,8 +88,8 @@
     <Compile Include="multiplayer\settingsWindow\MultiplayerSettingsModel.cs" />
     <Compile Include="multiplayer\settingsWindow\MultiplayerSettingsViewModel.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="SettingsViewModel.cs" />
-    <Compile Include="settingsWindow.xaml.cs">
+    <Compile Include="Settings\SettingsViewModel.cs" />
+    <Compile Include="Settings\settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="singleplayer\singlePlayer.xaml.cs">
@@ -101,7 +101,7 @@
     </Compile>
     <Compile Include="singleplayer\singlePlayerViewModel.cs" />
     <Compile Include="ViewModel.cs" />
-    <Page Include="ChooseMaze.xaml">
+    <Page Include="Controls\ChooseMaze.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,7 +121,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MazeViewer.xaml">
+    <Page Include="Controls\MazeViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -133,7 +133,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="settingsWindow.xaml">
+    <Page Include="Settings\settingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
