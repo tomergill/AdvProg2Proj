@@ -79,6 +79,7 @@
     <Compile Include="MazeViewer.xaml.cs">
       <DependentUpon>MazeViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model.cs" />
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>
