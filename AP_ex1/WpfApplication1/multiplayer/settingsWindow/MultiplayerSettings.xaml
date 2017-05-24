@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="Multiplayer Menu" Height="400" Width="300">
+        Title="Multiplayer Menu" Height="400" Width="300" Closing="Window_Closing" ResizeMode="CanMinimize">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,20 +25,20 @@
 
         <!--Row 1-->
         <Label Content="List of Games:" Grid.Column="0" Grid.Row="1" Margin="5" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <ComboBox x:Name="gamesCBox" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Margin="5" HorizontalAlignment="Stretch" FontSize="14" SelectedIndex="0"/>
-        
+        <ComboBox x:Name="gamesCBox" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Margin="5" HorizontalAlignment="Stretch" FontSize="14" SelectedIndex="0" ItemsSource="{Binding Games}"/>
+
         <!--Row 2-->
         <Button x:Name="joinBtn" Content="Join Game" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center" Padding="5" Margin="5" VerticalAlignment="Center" FontSize="14" Click="joinBtn_Click" />
-        
+
         <!--Row 3-->
         <Label x:Name="joinLbl" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Content="Joining Game, please wait..." HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="Red" Visibility="Hidden"/>
 
         <!--Row 4-->
-        <local:ChooseMaze Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4"/>
-        
+        <local:ChooseMaze x:Name="chooseMaze" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" />
+
         <!--Row 5-->
-        <Button x:Name="startbtn" Content="Start Game" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Center" Padding="5" Margin="5" VerticalAlignment="Center" FontSize="14"/>
-        
+        <Button x:Name="startbtn" Content="Start Game" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Center" Padding="5" Margin="5" VerticalAlignment="Center" FontSize="14" Click="startbtn_Click"/>
+
         <!--Row 6-->
         <Label x:Name="startLbl" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Content="Waiting for other player..." HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="Red" Visibility="Hidden"/>
     </Grid>

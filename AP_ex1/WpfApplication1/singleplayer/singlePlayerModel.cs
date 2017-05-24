@@ -101,6 +101,7 @@ namespace WpfApplication1
             {
                 writer.Write("generate " + mazeName + " " + rowsNum + " " + colsNum);
                 string mazeInfo = reader.ReadString();
+                //TODO
                 maze = Maze.FromJSON(mazeInfo);
                 playerPos = maze.InitialPos;
             }

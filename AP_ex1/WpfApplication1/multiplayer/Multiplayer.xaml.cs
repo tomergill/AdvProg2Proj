@@ -23,6 +23,7 @@ namespace WpfApplication1
         public Multiplayer(Maze maze)
         {
             InitializeComponent();
+            lbl.Content = maze.ToString();
         }
     }
 }

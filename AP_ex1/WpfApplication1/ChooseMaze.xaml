@@ -21,10 +21,10 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock x:Name="txtMaze" Grid.Row ="0" Grid.Column="0" Text="Maze Name: "/>
-        <TextBox x:Name="Maze" Grid.Row ="0" Grid.Column="1" Grid.ColumnSpan="2" Text="a"/>
+        <TextBox x:Name="Maze" Grid.Row ="0" Grid.Column="1" Grid.ColumnSpan="2"/>
         <TextBlock x:Name="txtRows" Grid.Row ="1" Grid.Column="0" Text="Rows number: "/>
-        <TextBox x:Name="Rows" Grid.Row ="1" Grid.Column="1" Grid.ColumnSpan="2" Text="5"/>
+        <TextBox x:Name="Rows" Grid.Row ="1" Grid.Column="1" Grid.ColumnSpan="2"/>
         <TextBlock x:Name="txtCols" Grid.Row ="2" Grid.Column="0" Text="Cols number: "/>
-        <TextBox x:Name="Cols" Grid.Row ="2" Grid.Column="1" Grid.ColumnSpan="2" Text="5"/>
+        <TextBox x:Name="Cols" Grid.Row ="2" Grid.Column="1" Grid.ColumnSpan="2"/>
     </Grid> 
 </UserControl>
