@@ -12,7 +12,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="SearchAlgorithm" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="ServerPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">40000</Value>

@@ -25,12 +25,26 @@ namespace WpfApplication1
         {
             InitializeComponent();
             SPVM = new singlePlayerViewModel(mazeName, rowsNum, colsNum);
-            this.canMove = true;
-            this.DataContext = SPVM;
+            if (SPVM.VMMazeOk)
+            {
+                this.canMove = true;
+                this.DataContext = SPVM;
+            }
+            else
+            {
+                MessageBox.Show("Must choose a different name for the maze", "ERROR!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
+        public Boolean SPMazeOK
+        {
+            get { return SPVM.VMMazeOk; }
+        }
+
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            SPVM.GetKeepSolving = false;
             MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.Show();
         }
@@ -68,6 +82,11 @@ namespace WpfApplication1
         {
             this.canMove = true;
             SPVM.Restart();
+            if (SPVM.VMgetEndPointReached)
+            {
+                MessageBox.Show("Great Job! you found the way!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.canMove = false;
+            }
         }
 
         private void GetSolution(object sender, RoutedEventArgs e)
@@ -75,6 +94,23 @@ namespace WpfApplication1
             this.canMove = false;
             SPVM.Restart();
             SPVM.SolveMe();
+        }
+
+        private void MainMenu(object sender, RoutedEventArgs e)
+        {
+            SPVM.GetKeepSolving = false;
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.Show();
+            this.Close();
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            if (SPVM.VMgetEndPointReached)
+            {
+                MessageBox.Show("Great Job! you found the way!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.canMove = false;
+            }
         }
     }
 }

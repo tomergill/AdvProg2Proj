@@ -47,6 +47,19 @@
             }
         }
 
+        public int SearchAlgorithm
+        {
+            get { return model.SearchAlgorithm; }
+            set
+            {
+                if (value>=0 && value<2)
+                {
+                    model.SearchAlgorithm = value;
+                    NotifyPropertyChanged("SearchAlgorithm");
+
+                }
+            }
+        }
 
         public void SaveSettings()
         {

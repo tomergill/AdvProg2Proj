@@ -20,9 +20,12 @@ namespace WpfApplication1
     /// </summary>
     public partial class ChooseMaze : UserControl
     {
+        private ChooseMazeViewModel CMVM;
         public ChooseMaze()
         {
             InitializeComponent();
+            CMVM = new ChooseMazeViewModel(new ChooseMazeModel());
+            this.DataContext = CMVM;
         }
     }
 }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using MazeLib;
 using System.ComponentModel;
-using static WpfApplication1.DIRECTION;
 using System.Threading;
 using System.Windows.Threading;
 
@@ -15,14 +14,18 @@ namespace WpfApplication1
     class singlePlayerViewModel : ViewModel
     {
         private singlePlayerModel SPM;
+        private Boolean keepSolving = true;
 
         public singlePlayerViewModel(String mazeName, int rows, int cols)
         {
             SPM = new singlePlayerModel(mazeName, rows, cols);
-            SPM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            if (SPM.GetMazeOK)
             {
-                NotifyPropertyChanged("VM" + e.PropertyName);
-            };
+                SPM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    NotifyPropertyChanged("VM" + e.PropertyName);
+                };
+            }
         }
 
         public Maze VMMaze
@@ -71,6 +74,17 @@ namespace WpfApplication1
             get { return SPM.GetEndPointReached; }
         }
 
+        public Boolean VMMazeOk
+        {
+            get { return SPM.GetMazeOK; }
+        }
+
+        public Boolean GetKeepSolving
+        {
+            get { return this.keepSolving; }
+            set { this.keepSolving = value; }
+        }
+
         public void Restart()
         {
             SPM.Restart();
@@ -79,34 +93,34 @@ namespace WpfApplication1
 
         public void SolveMe()
         {
-            DIRECTION wayNum;
+            Direction wayNum;
             String solveWay = SPM.GetSolveWay;
             int lengthOfSol = solveWay.Length;
-            for (int i = 0; i < lengthOfSol; i++)
+            for (int i = 0; i < lengthOfSol && this.GetKeepSolving; i++)
             {
 
                 Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
                 {
 
-                    wayNum = (DIRECTION)char.GetNumericValue(solveWay[i]);
+                    wayNum = (Direction)char.GetNumericValue(solveWay[i]);
                     switch (wayNum)
                     {
-                        case DIRECTION.left:
+                        case Direction.Left:
                             GoLeft();
                             break;
-                        case DIRECTION.right:
+                        case Direction.Right:
                             GoRight();
                             break;
-                        case DIRECTION.up:
+                        case Direction.Up:
                             GoUp();
                             break;
-                        case DIRECTION.down:
+                        case Direction.Down:
                             GoDown();
                             break;
                         default:
                             break;
                     }
-                    Thread.Sleep(1000);
+                    Thread.Sleep(750);
                 }));
             }
 

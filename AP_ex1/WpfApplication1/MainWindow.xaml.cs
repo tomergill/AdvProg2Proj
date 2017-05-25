@@ -23,6 +23,11 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/background1.jpg", UriKind.Absolute)));
+            b.Stretch = Stretch.Fill;
+            this.Background = b;
+
+            this.logo.Source = new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/Portal_Logo.png", UriKind.Absolute));
         }
 
         private void Sp_Click(object sender, RoutedEventArgs e)

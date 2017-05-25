@@ -11,7 +11,6 @@ using System.Net.Sockets;
 using MazeLib;
 using System.ComponentModel;
 using Newtonsoft.Json.Linq;
-using static WpfApplication1.DIRECTION;
 
 namespace WpfApplication1
 {
@@ -21,6 +20,7 @@ namespace WpfApplication1
         private string serverIP;
         private int portNum;
         private String mazeName;
+        private Boolean mazeOK;
         private int algorithm;
         private Maze maze;
         private Position playerPos;
@@ -47,9 +47,16 @@ namespace WpfApplication1
             {
                 writer.Write("generate " + mazeName + " " + rowsNum + " " + colsNum);
                 string mazeInfo = reader.ReadString();
-                maze = Maze.FromJSON(mazeInfo);
-                playerPos = maze.InitialPos;
-                
+                if (mazeInfo.Contains("ERROR"))
+                    this.mazeOK = false;
+                else
+                {
+                    this.mazeOK = true;
+                    maze = Maze.FromJSON(mazeInfo);
+                    playerPos = maze.InitialPos;
+                    if (playerPos.Row == maze.GoalPos.Row && playerPos.Col == maze.GoalPos.Col)
+                        endPointReached = true;
+                }
             }
 
         }
@@ -102,16 +109,12 @@ namespace WpfApplication1
                 {
                     for (int j = 0; j < maze.Cols; j++)
                     {
-                        //if ((i != maze.InitialPos.Row && j != maze.InitialPos.Col) ||
-                        //    (i != maze.GoalPos.Row && j != maze.GoalPos.Col))
-                        //{
                         if (maze[i, j] == CellType.Wall)
                             mazeRepo += "1";
                         else
                             mazeRepo += "0";
                         if (i != maze.Rows - 1 || j != maze.Cols - 1)
                             mazeRepo += ",";
-                        //}
                     }
                 }
                 return mazeRepo;
@@ -122,16 +125,26 @@ namespace WpfApplication1
         {
             get
             {
-                if (solveWay==default(String))
+                if (solveWay == default(String))
                     GetSolutionFromServer();
                 return this.solveWay;
             }
+        }
+
+        public Boolean GetMazeOK
+        {
+            get { return this.mazeOK; }
         }
 
         public void Restart()
         {
             playerPos.Row = maze.InitialPos.Row;
             playerPos.Col = maze.InitialPos.Col;
+            if (playerPos.Row != maze.GoalPos.Row || playerPos.Col != maze.GoalPos.Col)
+            {
+                this.endPointReached = false;
+                NotifyPropertyChanged("GetEndPointReached");
+            }
             NotifyPropertyChanged("PlayerPos");
         }
 
@@ -160,41 +173,41 @@ namespace WpfApplication1
 
         public void GoLeft()
         {
-            CheckIfMovePossible(DIRECTION.left);
+            CheckIfMovePossible(Direction.Left);
         }
 
         public void GoRight()
         {
-            CheckIfMovePossible(DIRECTION.right);
+            CheckIfMovePossible(Direction.Right);
         }
 
         public void GoUp()
         {
-            CheckIfMovePossible(DIRECTION.up);
+            CheckIfMovePossible(Direction.Up);
         }
 
         public void GoDown()
         {
-            CheckIfMovePossible(DIRECTION.down);
+            CheckIfMovePossible(Direction.Down);
         }
 
-        private void CheckIfMovePossible(DIRECTION direction)
+        private void CheckIfMovePossible(Direction direction)
         {
             switch (direction)
             {
-                case DIRECTION.right:
+                case Direction.Right:
                     if (playerPos.Col + 1 < maze.Cols && maze[playerPos.Row, playerPos.Col + 1] == CellType.Free)
                         playerPos.Col += 1;
                     break;
-                case DIRECTION.left:
+                case Direction.Left:
                     if (playerPos.Col - 1 >= 0 && maze[playerPos.Row, playerPos.Col - 1] == CellType.Free)
                         playerPos.Col -= 1;
                     break;
-                case DIRECTION.down:
+                case Direction.Down:
                     if (playerPos.Row + 1 < maze.Rows && maze[playerPos.Row + 1, playerPos.Col] == CellType.Free)
                         playerPos.Row += 1;
                     break;
-                case DIRECTION.up:
+                case Direction.Up:
                     if (playerPos.Row - 1 >= 0 && maze[playerPos.Row - 1, playerPos.Col] == CellType.Free)
                         playerPos.Row -= 1;
                     break;
