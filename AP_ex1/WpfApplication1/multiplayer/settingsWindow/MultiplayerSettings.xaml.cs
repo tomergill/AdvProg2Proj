@@ -31,23 +31,25 @@ namespace WpfApplication1
             vm = new MultiplayerSettingsViewModel();
             this.DataContext = vm;
             InitializeComponent();
-            chooseMaze.Maze.SetBinding(TextBox.TextProperty, new Binding()
-            {
-                //Source = vm,
-                Path = new PropertyPath("Name")
-            });
+            //chooseMaze.Maze.SetBinding(TextBox.TextProperty, new Binding()
+            //{
+            //    //Source = vm,
+            //    Path = new PropertyPath("Name")
+            //});
 
-            chooseMaze.Rows.SetBinding(TextBox.TextProperty, new Binding()
-            {
-                //Source = vm,
-                Path = new PropertyPath("Rows")
-            });
+            //chooseMaze.Rows.SetBinding(TextBox.TextProperty, new Binding()
+            //{
+            //    //Source = vm,
+            //    Path = new PropertyPath("Rows")
+            //});
 
-            chooseMaze.Cols.SetBinding(TextBox.TextProperty, new Binding()
-            {
-                //Source = vm,
-                Path = new PropertyPath("Cols")
-            });
+            //chooseMaze.Cols.SetBinding(TextBox.TextProperty, new Binding()
+            //{
+            //    //Source = vm,
+            //    Path = new PropertyPath("Cols")
+            //});
+
+
         }
 
         private void joinBtn_Click(object sender, RoutedEventArgs e)
@@ -84,7 +86,8 @@ namespace WpfApplication1
                 return;
             }
 
-            Maze m = vm.StartGame(out TcpClient serverSocket);
+            
+            Maze m = vm.StartGame(out TcpClient serverSocket, chooseMaze.Maze.Text, rows, cols);
             if (m == null)
             {
                 startLbl.Content = "Error opening game. Please enter different parameters (probably a naming problem)";

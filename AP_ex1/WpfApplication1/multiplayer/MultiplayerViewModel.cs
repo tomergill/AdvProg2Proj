@@ -63,6 +63,7 @@ namespace WpfApplication1
         public bool VMStop
         {
             get { return model.Stop; }
+            set { model.Stop = value; NotifyPropertyChanged("VMStop"); }
         }
 
         public MultiplayerViewModel(Maze m, TcpClient serverSocket, MultiplayerModel.losingDelegate l)

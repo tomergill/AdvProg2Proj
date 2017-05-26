@@ -92,10 +92,10 @@ namespace WpfApplication1
             }
         }
 
-        public Maze StartGame(out TcpClient serverSocket)
+        public Maze StartGame(out TcpClient serverSocket, string mName, int mRows, int mCols)
         {
             serverSocket = null;
-            if (name == "" || Rows < 1 || Cols < 1)
+            if (mName == "" || mRows < 1 || mCols < 1)
                 return null;
 
             string ip = Properties.Settings.Default.ServerIP;
@@ -112,7 +112,7 @@ namespace WpfApplication1
 
             try
             {
-                writer.Write($"start {name} {rows} {cols}");
+                writer.Write($"start {mName} {mRows} {mCols}");
                 string output = reader.ReadString();
                 if (output == null || output == "")
                     return null;

@@ -65,9 +65,9 @@ namespace WpfApplication1
             return model.JoinGame(Games[selectedIndex], out serverSocket);
         }
 
-        public Maze StartGame(out TcpClient serverSocket)
+        public Maze StartGame(out TcpClient serverSocket, string mName, int mRows, int mCols)
         {
-            return model.StartGame(out serverSocket);
+            return model.StartGame(out serverSocket, mName, mRows, mCols);
         }
     }
 }

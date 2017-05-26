@@ -92,7 +92,11 @@ namespace WpfApplication1
             }
         }
 
-        public bool Stop { get => stop; set => stop = value; }
+        public bool Stop
+        {
+            get => stop;
+            set { stop = value; NotifyPropertyChanged("Stop"); }
+        }
 
         public delegate void losingDelegate();
 

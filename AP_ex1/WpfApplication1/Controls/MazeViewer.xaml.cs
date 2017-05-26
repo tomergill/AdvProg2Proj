@@ -186,8 +186,8 @@ namespace WpfApplication1
                     else
                         tiles[r, c].Fill = bcg;
 
-                    tiles[r, c].Height = tileSizes[0];
-                    tiles[r, c].Width = tileSizes[1];
+                    //tiles[r, c].Height = tileSizes[0];
+                    //tiles[r, c].Width = tileSizes[1];
 
                     if ((c = ++c % Cols) == 0)
                         r++;
