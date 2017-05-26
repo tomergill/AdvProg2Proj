@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,6 +32,12 @@ namespace WpfApplication1
         /// Represents wether the window is closed with x button.
         /// </summary>
         private bool isClosedWithXButton = true;
+
+        private bool hasGameOpened = false;
+
+        private Task startGame = null;
+
+        private CancellationTokenSource token = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiplayerSettings"/> class.
@@ -106,17 +113,35 @@ namespace WpfApplication1
                 return;
             }
 
-            
-            Maze m = vm.StartGame(out TcpClient serverSocket, chooseMaze.Maze.Text, rows, cols);
-            if (m == null)
-            {
-                startLbl.Content = "Error opening game. Please enter different parameters (probably a naming problem)";
-                return;
-            }
+            string name = chooseMaze.Maze.Text;
 
-            new Multiplayer(m, serverSocket).Show();
-            isClosedWithXButton = false;
-            this.Close();
+            token = new CancellationTokenSource();
+            startGame = new Task(() =>
+            {
+                Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    chooseMaze.IsEnabled = false;
+                    startbtn.IsEnabled = false;
+                }));
+                    hasGameOpened = true;
+                Maze m = vm.StartGame(out TcpClient serverSocket, name, rows, cols);
+                if (m == null)
+                {
+                    hasGameOpened = false;
+                    Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        startLbl.Content = "Error opening game. Please enter different parameters (probably a naming problem)";
+                        chooseMaze.IsEnabled = true;
+                        startbtn.IsEnabled = true;
+                    }));
+                    return;
+                }
+
+                new Multiplayer(m, serverSocket).Show();
+                isClosedWithXButton = false;
+                this.Close();
+            }, token.Token);
+            startGame.Start();
         }
 
         /// <summary>
@@ -127,7 +152,27 @@ namespace WpfApplication1
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (isClosedWithXButton)
+            {
+                if (hasGameOpened && startGame != null)
+                {
+                    
+                    //try
+                    //{
+                    //    token.Cancel();
+                    //    startGame.Wait();
+                    //}
+                    //catch (Exception ex)
+                    //{
+
+                    //}
+                    //finally
+                    //{
+                    //    token.Dispose();
+                    //}
+                    vm.CloseGame(chooseMaze.Maze.Text);
+                }
                 Application.Current.MainWindow.Show();
+            }
         }
     }
 }

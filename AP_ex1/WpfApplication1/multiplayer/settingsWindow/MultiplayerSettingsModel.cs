@@ -37,6 +37,8 @@ namespace WpfApplication1
         /// </summary>
         private string name;
 
+        private TcpClient serverSocketRef = null;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiplayerSettingsModel"/> class.
         /// </summary>
@@ -173,6 +175,8 @@ namespace WpfApplication1
 
             while (!serverSocket.Connected) ;
 
+            serverSocketRef = serverSocket;
+
             NetworkStream stream = serverSocket.GetStream();
             BinaryReader reader = new BinaryReader(stream);
             BinaryWriter writer = new BinaryWriter(stream);
@@ -190,6 +194,24 @@ namespace WpfApplication1
                 return null;
             }
             
+        }
+
+        public void CloseGame(string name)
+        {
+            if (name == null || serverSocketRef == null)
+                return;
+            try
+            {
+                BinaryWriter writer = new BinaryWriter(serverSocketRef.GetStream());
+                writer.Write($"close {name}");
+                writer.Flush();
+                serverSocketRef.GetStream().Dispose();
+                serverSocketRef.Close();
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
     }
 }

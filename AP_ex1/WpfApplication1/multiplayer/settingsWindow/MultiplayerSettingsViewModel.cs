@@ -117,5 +117,10 @@ namespace WpfApplication1
         {
             return model.StartGame(out serverSocket, mName, mRows, mCols);
         }
+
+        public void CloseGame(string name)
+        {
+            model.CloseGame(name);
+        }
     }
 }
