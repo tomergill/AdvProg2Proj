@@ -22,15 +22,8 @@ namespace WpfApplication1
 
         public int SearchAlgorithm
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return Properties.Settings.Default.SearchAlgorithm; }
+            set { Properties.Settings.Default.SearchAlgorithm = value; }
         }
 
         public string ServerIP

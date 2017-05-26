@@ -31,7 +31,10 @@
                 <TextBlock x:Name="txtcols" Grid.Row="3" Grid.Column="0" Text="colomn's number: "/>
                 <TextBox x:Name="txt1cols" Grid.Row="3" Grid.Column="1" Text="{Binding MazeCols}"/>
                 <TextBlock x:Name="txtsearch" Grid.Row="4" Grid.Column="0" Text="search algorithm: "/>
-                <ComboBox x:Name="txt1search" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False" Width="70"/>
+                <ComboBox x:Name="txt1search" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False" Width="70" >
+                    <ComboBoxItem Content="BFS" />
+                    <ComboBoxItem Content="DFS" />
+                </ComboBox>
 
             </Grid>
             <Grid Height="72">

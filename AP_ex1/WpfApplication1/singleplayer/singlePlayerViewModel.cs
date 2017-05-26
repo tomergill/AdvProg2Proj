@@ -6,20 +6,26 @@ using System.Threading.Tasks;
 using System.Windows;
 using MazeLib;
 using System.ComponentModel;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace WpfApplication1
 {
     class singlePlayerViewModel : ViewModel
     {
         private singlePlayerModel SPM;
+        private Boolean keepSolving = true;
 
         public singlePlayerViewModel(String mazeName, int rows, int cols)
         {
             SPM = new singlePlayerModel(mazeName, rows, cols);
-            SPM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            if (SPM.GetMazeOK)
             {
-                NotifyPropertyChanged("VM" + e.PropertyName);
-            };
+                SPM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    NotifyPropertyChanged("VM" + e.PropertyName);
+                };
+            }
         }
 
         public Maze VMMaze
@@ -30,11 +36,12 @@ namespace WpfApplication1
         public String VMPlayerPos
         {
             get { return SPM.PlayerPos; }
-            set {
+            set
+            {
                 SPM.PlayerPos = value;
-                NotifyPropertyChanged("PlayerPos");
+                NotifyPropertyChanged("VMPlayerPos");
             }
-            
+
         }
 
         public int VMMazeRows
@@ -59,7 +66,64 @@ namespace WpfApplication1
 
         public String VMMazeRepr
         {
-            get {return SPM.MazeRepr; }
+            get { return SPM.MazeRepr; }
+        }
+
+        public Boolean VMgetEndPointReached
+        {
+            get { return SPM.GetEndPointReached; }
+        }
+
+        public Boolean VMMazeOk
+        {
+            get { return SPM.GetMazeOK; }
+        }
+
+        public Boolean GetKeepSolving
+        {
+            get { return this.keepSolving; }
+            set { this.keepSolving = value; }
+        }
+
+        public void Restart()
+        {
+            SPM.Restart();
+            NotifyPropertyChanged("VMPlayerPos");
+        }
+
+        public void SolveMe()
+        {
+            Direction wayNum;
+            String solveWay = SPM.GetSolveWay;
+            int lengthOfSol = solveWay.Length;
+            for (int i = 0; i < lengthOfSol && this.GetKeepSolving; i++)
+            {
+
+                Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                {
+
+                    wayNum = (Direction)char.GetNumericValue(solveWay[i]);
+                    switch (wayNum)
+                    {
+                        case Direction.Left:
+                            GoLeft();
+                            break;
+                        case Direction.Right:
+                            GoRight();
+                            break;
+                        case Direction.Up:
+                            GoUp();
+                            break;
+                        case Direction.Down:
+                            GoDown();
+                            break;
+                        default:
+                            break;
+                    }
+                    Thread.Sleep(750);
+                }));
+            }
+
         }
 
         public void GoLeft()

@@ -5,19 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="335">
-    <Window.Background>
-        <!--<ImageBrush ImageSource="C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\2/d523d82e8b366dcb8031a6999ffb5142.jpg"></ImageBrush>-->
-        <SolidColorBrush Color="AliceBlue" />
-    </Window.Background>
-    
+        Title="MainWindow" Height="600" Width="800">
+
     <Grid>
-        <!--<Image x:Name="image" HorizontalAlignment="Left" Height="62" Margin="30,31,0,0" VerticalAlignment="Top" Width="66" Source="C:\Users\לוטן וייס\Google Drive\מקצועות שנה ב\תכנות מתקדם 2\שיעורי בית\2\portal_mazegen_3d2.jpg"/>-->
-        <StackPanel HorizontalAlignment="Left" Height="141" Margin="106,136,0,0" VerticalAlignment="Top" Width="100">
-            <Button x:Name="button" Content="Single player" Margin="0 0 0 5" Click="Sp_Click"/>
-            <Button x:Name="MultiBtn" Content="Multi player" Margin="0 5 0 5" Click="MultiBtn_Click"/>
-            <Button x:Name="button2" Content="Settings" Margin="0 5 0 0" Click="Settings_Click"/>
-        </StackPanel>
+        <Grid HorizontalAlignment="Left" Height="200" Margin="80,190,0,0" VerticalAlignment="Top" Width="160">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="button" Grid.Row ="0" Content="Single player" Margin="0 0 0 5" Click="Sp_Click"/>
+            <Button x:Name="MultiBtn" Grid.Row ="1" Content="Multi player" Margin="0 5 0 5" Click="MultiBtn_Click"/>
+            <Button x:Name="button2" Grid.Row ="2" Content="Settings" Margin="0 5 0 0" Click="Settings_Click"/>
+        </Grid>
+        <Image x:Name="logo" HorizontalAlignment="Left" Height="100" Margin="552,250,0,0" VerticalAlignment="Top" Width="200"/>
 
     </Grid>
 </Window>
