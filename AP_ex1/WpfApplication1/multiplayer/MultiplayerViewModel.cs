@@ -1,10 +1,13 @@
-﻿using System;
+﻿using MazeLib;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApplication1.multiplayer
+namespace WpfApplication1
 {
     class MultiplayerViewModel : ViewModel
     {
@@ -55,6 +58,20 @@ namespace WpfApplication1.multiplayer
         public String VMMazeRepr
         {
             get { return model.MazeRepr; }
+        }
+
+        public bool VMStop
+        {
+            get { return model.Stop; }
+        }
+
+        public MultiplayerViewModel(Maze m, TcpClient serverSocket, MultiplayerModel.losingDelegate l)
+        {
+            model = new MultiplayerModel(m, serverSocket, l);
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                NotifyPropertyChanged("VM" + e.PropertyName);
+            };
         }
     }
 }
