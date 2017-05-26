@@ -53,12 +53,12 @@ namespace WpfApplication1
             }
         }
 
-        public Maze JoinGame(string mazeName)
+        public Maze JoinGame(string mazeName, out TcpClient serverSocket)
         {
             string ip = Properties.Settings.Default.ServerIP;
             int port = Properties.Settings.Default.ServerPort;
             IPEndPoint server = new IPEndPoint(IPAddress.Parse(ip), port);
-            TcpClient serverSocket = new TcpClient();
+            serverSocket = new TcpClient();
             serverSocket.Connect(server);
 
             while (!serverSocket.Connected) ;
@@ -75,15 +75,16 @@ namespace WpfApplication1
             }
         }
 
-        public Maze StartGame()
+        public Maze StartGame(out TcpClient serverSocket)
         {
+            serverSocket = null;
             if (name == "" || Rows < 1 || Cols < 1)
                 return null;
 
             string ip = Properties.Settings.Default.ServerIP;
             int port = Properties.Settings.Default.ServerPort;
             IPEndPoint server = new IPEndPoint(IPAddress.Parse(ip), port);
-            TcpClient serverSocket = new TcpClient();
+            serverSocket = new TcpClient();
             serverSocket.Connect(server);
 
             while (!serverSocket.Connected) ;

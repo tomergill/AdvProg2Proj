@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfApplication1
 {
@@ -52,20 +54,22 @@ namespace WpfApplication1
         {
             joinLbl.Content = "Joining Game, please wait...";
             joinLbl.Visibility = Visibility.Visible;
-            Maze m = vm.JoinGame(gamesCBox.SelectedIndex);
+
+            Maze m = vm.JoinGame(gamesCBox.SelectedIndex, out TcpClient serverSocket);
             if (m == null)
             {
                 joinLbl.Content = "Error joining game. Please try another game.";
                 return;
             }
 
-            new Multiplayer(m).Show();
+            new Multiplayer(m, serverSocket).Show();
             isClosedWithXButton = false;
             this.Close();
         }
 
         private void startbtn_Click(object sender, RoutedEventArgs e)
         {
+            
             startLbl.Content = "Waiting for other player...";
             startLbl.Visibility = Visibility.Visible;
 
@@ -80,14 +84,14 @@ namespace WpfApplication1
                 return;
             }
 
-            Maze m = vm.StartGame();
+            Maze m = vm.StartGame(out TcpClient serverSocket);
             if (m == null)
             {
-                startLbl.Content = "Error opening game. Please enter different parameters \n(probably a naming problem)";
+                startLbl.Content = "Error opening game. Please enter different parameters (probably a naming problem)";
                 return;
             }
 
-            new Multiplayer(m).Show();
+            new Multiplayer(m, serverSocket).Show();
             isClosedWithXButton = false;
             this.Close();
         }

@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="Multiplayer" Height="500" Width="800" Background="White">
+        Title="Multiplayer" Height="500" Width="800" Background="White" KeyDown="Window_KeyDown" Closing="Window_Closing">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVis" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -18,14 +22,17 @@
         </Grid.ColumnDefinitions>
 
         <!--Row 0-->
-        <Button x:Name="ReturnButton" Content="Return To Main Menu" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" Margin="0 10 0 0" FontWeight="Bold" FontStyle="Italic" />
+        <Button x:Name="ReturnButton" Content="Return To Main Menu" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" Margin="0 10 0 0" FontWeight="Bold" FontStyle="Italic" Click="ReturnButton_Click" />
 
-        <!--Col 0 (Rows 1 & 2)-->
-        <Label Grid.Column="0" Grid.Row="1" Content="My Maze Board" Margin="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4EADFA"/>
-        <local:MazeViewer x:Name="playerMazeViewer"  Margin="10 0 5 0" Grid.Column="0" Grid.Row="2" Rows="{Binding VMMazeRows}"           Cols="{Binding VMMazeCols}" PlayerPos="{Binding VMPlayerPos, Mode=TwoWay}"     InitialPos="{Binding VMInitPos}" GoalPos="{Binding VMGoalPos}" Maze="{Binding VMMazeRepr}" PlayerImageFile="../../../resources/player.png" ExitImageFile="../../../resources/exit.png"/>
+        <!--Row 1-->
+        <Label x:Name="disconnectedLabel" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Content="Game have disconnected. We hope you enjoyed the game." HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontWeight="DemiBold" Visibility="{Binding VMStop, Converter={StaticResource boolToVis}}"/>
 
-        <!--Col 1 (Rows 1 & 2)-->
-        <Label Grid.Column="1" Grid.Row="1" Content="Other Player's Maze Board" Margin="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF0AFA41"/>
-        <local:MazeViewer x:Name="otherMazeViewer"  Margin="10 0 5 0" Grid.Column="1" Grid.Row="2" Rows="{Binding VMMazeRows}"           Cols="{Binding VMMazeCols}" PlayerPos="{Binding VMOtherPos, Mode=TwoWay}"     InitialPos="{Binding VMInitPos}" GoalPos="{Binding VMGoalPos}" Maze="{Binding VMMazeRepr}" PlayerImageFile="../../../resources/player.png" ExitImageFile="../../../resources/exit.png"/>
+        <!--Col 0 (Rows 2 & 3)-->
+        <Label Grid.Column="0" Grid.Row="2" Content="My Maze Board" Margin="10 0 5 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4EADFA"/>
+        <local:MazeViewer x:Name="playerMazeViewer"  Margin="10 0 5 10" Grid.Column="0" Grid.Row="3" Rows="{Binding VMMazeRows}"           Cols="{Binding VMMazeCols}" PlayerPos="{Binding VMPlayerPos, Mode=TwoWay}"     InitialPos="{Binding VMInitPos}" GoalPos="{Binding VMGoalPos}" Maze="{Binding VMMazeRepr}" PlayerImageFile="../../../resources/player.png" ExitImageFile="../../../resources/exit.png"/>
+
+        <!--Col 1 (Rows 2 & 3)-->
+        <Label Grid.Column="1" Grid.Row="2" Content="Other Player's Maze Board" Margin="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF0AFA41"/>
+        <local:MazeViewer x:Name="otherMazeViewer"  Margin="5 0 10 10" Grid.Column="1" Grid.Row="3" Rows="{Binding VMMazeRows}"           Cols="{Binding VMMazeCols}" PlayerPos="{Binding VMOtherPos, Mode=TwoWay}"     InitialPos="{Binding VMInitPos}" GoalPos="{Binding VMGoalPos}" Maze="{Binding VMMazeRepr}" PlayerImageFile="../../../resources/player.png" ExitImageFile="../../../resources/exit.png"/>
     </Grid>
 </Window>

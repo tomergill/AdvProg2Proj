@@ -73,5 +73,12 @@ namespace WpfApplication1
                 NotifyPropertyChanged("VM" + e.PropertyName);
             };
         }
+
+        public bool MakeAMove(Direction direction)
+        {
+            return model.MakeAMove(true, direction);
+        }
+
+        public void CloseGame() { model.CloseGame(); }
     }
 }

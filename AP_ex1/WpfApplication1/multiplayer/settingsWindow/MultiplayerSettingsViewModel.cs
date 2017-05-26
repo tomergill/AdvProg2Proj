@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,16 +52,17 @@ namespace WpfApplication1
             model = new MultiplayerSettingsModel();
         }
 
-        public Maze JoinGame(int selectedIndex)
+        public Maze JoinGame(int selectedIndex, out TcpClient serverSocket)
         {
-            if (selectedIndex >= Games.Count)
+            serverSocket = null;
+            if (selectedIndex >= Games.Count || selectedIndex < 0)
                 return null;
-            return model.JoinGame(Games[selectedIndex]);
+            return model.JoinGame(Games[selectedIndex], out serverSocket);
         }
 
-        public Maze StartGame()
+        public Maze StartGame(out TcpClient serverSocket)
         {
-            return model.StartGame();
+            return model.StartGame(out serverSocket);
         }
     }
 }
