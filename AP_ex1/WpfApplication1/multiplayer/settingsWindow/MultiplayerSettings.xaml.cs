@@ -22,9 +22,19 @@ namespace WpfApplication1
     /// </summary>
     public partial class MultiplayerSettings : Window
     {
+        /// <summary>
+        /// The ViewModel.
+        /// </summary>
         private MultiplayerSettingsViewModel vm;
+
+        /// <summary>
+        /// Represents wether the window is closed with x button.
+        /// </summary>
         private bool isClosedWithXButton = true;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiplayerSettings"/> class.
+        /// </summary>
         public MultiplayerSettings()
         {
             
@@ -52,6 +62,11 @@ namespace WpfApplication1
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the joinBtn control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void joinBtn_Click(object sender, RoutedEventArgs e)
         {
             joinLbl.Content = "Joining Game, please wait...";
@@ -69,6 +84,11 @@ namespace WpfApplication1
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the startbtn control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void startbtn_Click(object sender, RoutedEventArgs e)
         {
             
@@ -99,6 +119,11 @@ namespace WpfApplication1
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Closing event of the Window control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.ComponentModel.CancelEventArgs"/> instance containing the event data.</param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (isClosedWithXButton)

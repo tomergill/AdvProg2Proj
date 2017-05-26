@@ -10,14 +10,44 @@ using System.Threading.Tasks;
 
 namespace WpfApplication1
 {
+    /// <summary>
+    /// The model for the Multiplayer window.
+    /// </summary>
+    /// <seealso cref="WpfApplication1.Model" />
     class MultiplayerModel : Model
     {
+        /// <summary>
+        /// The maze.
+        /// </summary>
         private Maze maze;
+
+        /// <summary>
+        /// The player's and other player's positions.
+        /// </summary>
         private Position playerPos, otherPos;
+
+        /// <summary>
+        /// The server socket.
+        /// </summary>
         private TcpClient serverSocket;
+
+        /// <summary>
+        /// Represents wether the game have stopped.
+        /// </summary>
         private bool stop;
+
+        /// <summary>
+        /// The task reading from teh socket.
+        /// </summary>
         private Task read;
 
+        /// <summary>
+        /// Gets or sets the player position.
+        /// </summary>
+        /// <value>
+        /// The player position.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException">Format must be \"number,number\"</exception>
         public String PlayerPos
         {
             get { return playerPos.Row + "," + playerPos.Col; }
@@ -32,6 +62,13 @@ namespace WpfApplication1
             }
         }
 
+        /// <summary>
+        /// Gets or sets the other position.
+        /// </summary>
+        /// <value>
+        /// The other position.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException">Format must be \"number,number\"</exception>
         public String OtherPos
         {
             get { return otherPos.Row + "," + otherPos.Col; }
@@ -46,26 +83,56 @@ namespace WpfApplication1
             }
         }
 
+        /// <summary>
+        /// Gets the maze rows.
+        /// </summary>
+        /// <value>
+        /// The maze rows.
+        /// </value>
         public int MazeRows
         {
             get { return maze.Rows; }
         }
 
+        /// <summary>
+        /// Gets the maze cols.
+        /// </summary>
+        /// <value>
+        /// The maze cols.
+        /// </value>
         public int MazeCols
         {
             get { return maze.Cols; }
         }
 
+        /// <summary>
+        /// Gets the goal position.
+        /// </summary>
+        /// <value>
+        /// The goal position.
+        /// </value>
         public String GoalPos
         {
             get { return maze.GoalPos.Row + "," + maze.GoalPos.Col; }
         }
 
+        /// <summary>
+        /// Gets the initialize position.
+        /// </summary>
+        /// <value>
+        /// The initialize position.
+        /// </value>
         public String InitPos
         {
             get { return maze.InitialPos.Row + "," + maze.InitialPos.Col; }
         }
 
+        /// <summary>
+        /// Gets the maze repr.
+        /// </summary>
+        /// <value>
+        /// The maze repr.
+        /// </value>
         public String MazeRepr
         {
             get
@@ -92,16 +159,34 @@ namespace WpfApplication1
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="MultiplayerModel"/> is stop.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if game stopped; otherwise, <c>false</c>.
+        /// </value>
         public bool Stop
         {
             get => stop;
             set { stop = value; NotifyPropertyChanged("Stop"); }
         }
 
+        /// <summary>
+        /// Function that meant to be activated when player loses.
+        /// </summary>
         public delegate void losingDelegate();
 
+        /// <summary>
+        /// Occurs when player lost.
+        /// </summary>
         private event losingDelegate LosingEvent;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiplayerModel" /> class.
+        /// </summary>
+        /// <param name="m">The maze.</param>
+        /// <param name="serverSocket">The server socket.</param>
+        /// <param name="l">The losing function to bew activated when (and if ;)) player lost.</param>
         public MultiplayerModel(Maze m, TcpClient serverSocket, losingDelegate l)
         {
             stop = false;
@@ -161,6 +246,13 @@ namespace WpfApplication1
             LosingEvent += l;
         }
 
+        /// <summary>
+        /// Makes a move and Notifies that the property has changed.
+        /// If <paramref name="thisPlayer"/> is true (meaning this is the player that moves) the function also sends an update to the server.
+        /// </summary>
+        /// <param name="thisPlayer">if set to <c>true</c> [this player].</param>
+        /// <param name="direction">The direction.</param>
+        /// <returns>True if said player won, false otherwise.</returns>
         public bool MakeAMove(bool thisPlayer, Direction direction)
         {
             string dir = "";
@@ -261,6 +353,12 @@ namespace WpfApplication1
             return (otherPos.Row == maze.GoalPos.Row && otherPos.Col == maze.GoalPos.Col);
         }
 
+        /// <summary>
+        /// Gets a Direction Enum from a string.
+        /// </summary>
+        /// <param name="s">The s.</param>
+        /// <returns>"left" returns Left, "right" returns Right, "up" returns Up and "down" returns Down. Other wise returns Unknown</returns>
+        /// <seealso cref="Direction"/>
         private Direction DirectionFromString(string s)
         {
             switch (s)
@@ -278,6 +376,9 @@ namespace WpfApplication1
             }
         }
 
+        /// <summary>
+        /// Closes the game: notifies the server and closes the socket and it's stream.
+        /// </summary>
         public void CloseGame()
         {
             if (!Stop)
