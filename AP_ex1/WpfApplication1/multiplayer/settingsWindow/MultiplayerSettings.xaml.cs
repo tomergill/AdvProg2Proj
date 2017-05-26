@@ -27,10 +27,10 @@ namespace WpfApplication1
 
         public MultiplayerSettings()
         {
-            InitializeComponent();
+            
             vm = new MultiplayerSettingsViewModel();
             this.DataContext = vm;
-
+            InitializeComponent();
             chooseMaze.Maze.SetBinding(TextBox.TextProperty, new Binding()
             {
                 //Source = vm,

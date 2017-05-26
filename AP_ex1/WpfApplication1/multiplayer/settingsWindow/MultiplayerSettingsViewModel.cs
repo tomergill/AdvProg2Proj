@@ -1,6 +1,7 @@
 ﻿using MazeLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -50,6 +51,10 @@ namespace WpfApplication1
         public MultiplayerSettingsViewModel()
         {
             model = new MultiplayerSettingsModel();
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                NotifyPropertyChanged(e.PropertyName);
+            };
         }
 
         public Maze JoinGame(int selectedIndex, out TcpClient serverSocket)

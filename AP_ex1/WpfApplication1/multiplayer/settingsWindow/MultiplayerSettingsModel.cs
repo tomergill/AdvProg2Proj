@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace WpfApplication1
 {
-    class MultiplayerSettingsModel
+    class MultiplayerSettingsModel : Model
     {
         private List<String> games;
         private int rows;
@@ -27,9 +27,21 @@ namespace WpfApplication1
         }
 
         public List<string> Games { get => games; set => games = value; }
-        public int Rows { get => rows; set => rows = value; }
-        public int Cols { get => cols; set => cols = value; }
-        public string Name { get => name; set => name = value; }
+        public int Rows
+        {
+            get => rows;
+            set { rows = value; NotifyPropertyChanged("Rows"); }
+        }
+        public int Cols
+        {
+            get => cols;
+            set { cols = value; NotifyPropertyChanged("Cols"); }
+        }
+        public string Name
+        {
+            get => name;
+            set { name = value; NotifyPropertyChanged("Name"); }
+        }
 
         private List<String> GetGameList()
         {
@@ -63,15 +75,20 @@ namespace WpfApplication1
 
             while (!serverSocket.Connected) ;
 
-            using (NetworkStream stream = serverSocket.GetStream())
-            using (BinaryReader reader = new BinaryReader(stream))
-            using (BinaryWriter writer = new BinaryWriter(stream))
+            NetworkStream stream = serverSocket.GetStream();
+            BinaryReader reader = new BinaryReader(stream);
+            BinaryWriter writer = new BinaryWriter(stream);
+            try
             {
                 writer.Write("join " + mazeName);
                 string output = reader.ReadString();
                 if (output == null || output == "")
                     return null;
                 return Maze.FromJSON(output);
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
 
@@ -89,15 +106,21 @@ namespace WpfApplication1
 
             while (!serverSocket.Connected) ;
 
-            using (NetworkStream stream = serverSocket.GetStream())
-            using (BinaryReader reader = new BinaryReader(stream))
-            using (BinaryWriter writer = new BinaryWriter(stream))
+            NetworkStream stream = serverSocket.GetStream();
+            BinaryReader reader = new BinaryReader(stream);
+            BinaryWriter writer = new BinaryWriter(stream);
+
+            try
             {
                 writer.Write($"start {name} {rows} {cols}");
                 string output = reader.ReadString();
                 if (output == null || output == "")
                     return null;
                 return Maze.FromJSON(output);
+            }
+            catch (Exception)
+            {
+                return null;
             }
             
         }
