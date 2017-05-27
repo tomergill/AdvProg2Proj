@@ -37,8 +37,6 @@ namespace WpfApplication1
 
         private Task startGame = null;
 
-        private CancellationTokenSource token = null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiplayerSettings"/> class.
         /// </summary>
@@ -115,13 +113,13 @@ namespace WpfApplication1
 
             string name = chooseMaze.Maze.Text;
 
-            token = new CancellationTokenSource();
             startGame = new Task(() =>
             {
                 Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
                 {
                     chooseMaze.IsEnabled = false;
                     startbtn.IsEnabled = false;
+                    joinBtn.IsEnabled = false;
                 }));
                     hasGameOpened = true;
                 Maze m = vm.StartGame(out TcpClient serverSocket, name, rows, cols);
@@ -133,14 +131,18 @@ namespace WpfApplication1
                         startLbl.Content = "Error opening game. Please enter different parameters (probably a naming problem)";
                         chooseMaze.IsEnabled = true;
                         startbtn.IsEnabled = true;
+                        joinBtn.IsEnabled = true;
                     }));
                     return;
                 }
 
-                new Multiplayer(m, serverSocket).Show();
-                isClosedWithXButton = false;
-                this.Close();
-            }, token.Token);
+                Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    new Multiplayer(m, serverSocket).Show();
+                    isClosedWithXButton = false;
+                    this.Close();
+                }));
+            });
             startGame.Start();
         }
 
@@ -153,7 +155,7 @@ namespace WpfApplication1
         {
             if (isClosedWithXButton)
             {
-                if (hasGameOpened && startGame != null)
+                if (hasGameOpened)
                 {
                     
                     //try

@@ -255,9 +255,10 @@ namespace WpfApplication1
         /// <returns>True if said player won, false otherwise.</returns>
         public bool MakeAMove(bool thisPlayer, Direction direction)
         {
-            string dir = "";
+            
             if (thisPlayer)
             {
+                string dir = "";
                 switch (direction)
                 {
                     case Direction.Right:
@@ -295,7 +296,10 @@ namespace WpfApplication1
                 BinaryWriter writer = new BinaryWriter(serverSocket.GetStream());
                 try
                 {
-                    writer.Write("play " + dir);
+                    if (dir != "")
+                    {
+                        writer.Write("play " + dir); 
+                    }
                 }
                 catch (Exception)
                 {
@@ -317,28 +321,24 @@ namespace WpfApplication1
                     if (otherPos.Col + 1 < maze.Cols && maze[otherPos.Row, otherPos.Col + 1] == CellType.Free)
                     {
                         otherPos.Col += 1;
-                        dir = "right";
                     }
                     break;
                 case Direction.Left:
                     if (otherPos.Col - 1 >= 0 && maze[otherPos.Row, otherPos.Col - 1] == CellType.Free)
                     {
                         otherPos.Col -= 1;
-                        dir = "left";
                     }
                     break;
                 case Direction.Down:
                     if (otherPos.Row + 1 < maze.Rows && maze[otherPos.Row + 1, otherPos.Col] == CellType.Free)
                     {
                         otherPos.Row += 1;
-                        dir = "down";
                     }
                     break;
                 case Direction.Up:
                     if (otherPos.Row - 1 >= 0 && maze[otherPos.Row - 1, otherPos.Col] == CellType.Free)
                     {
                         otherPos.Row -= 1;
-                        dir = "up";
                     }
                     break;
                 default:
@@ -389,6 +389,8 @@ namespace WpfApplication1
                 {
                     BinaryWriter writer = new BinaryWriter(serverSocket.GetStream());
                     writer.Write("close " + maze.Name);
+                    serverSocket.GetStream().Dispose();
+                    serverSocket.Close();
                 }
                 catch (Exception)
                 {
