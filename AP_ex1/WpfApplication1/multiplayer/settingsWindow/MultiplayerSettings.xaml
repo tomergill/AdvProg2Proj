@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="Multiplayer Menu" Height="400" Width="300" Closing="Window_Closing" ResizeMode="CanMinimize">
+        Title="Multiplayer Menu" Height="450" Width="300" Closing="Window_Closing" ResizeMode="CanMinimize">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -40,6 +40,6 @@
         <Button x:Name="startbtn" Content="Start Game" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Center" Padding="5" Margin="5" VerticalAlignment="Center" FontSize="14" Click="startbtn_Click"/>
 
         <!--Row 6-->
-        <Label x:Name="startLbl" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Content="Waiting for other player..." HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="Red" Visibility="Hidden"/>
+        <Label x:Name="startLbl" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Content="Waiting for other player..." HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="Red" Visibility="Hidden" MaxWidth="290"/>
     </Grid>
 </Window>

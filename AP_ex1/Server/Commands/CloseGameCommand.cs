@@ -41,7 +41,14 @@ namespace Server
             BinaryWriter writer2 = game.GetPlayersWriter(other);
             if (writer2 == null)
                 return null;
-            writer2.Write("CLOSED " + game.GetMazeName());
+            try
+            {
+                writer2.Write("CLOSED " + game.GetMazeName());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return "";
         }
     }

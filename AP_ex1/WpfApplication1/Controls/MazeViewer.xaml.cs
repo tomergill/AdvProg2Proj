@@ -21,12 +21,25 @@ namespace WpfApplication1
     /// </summary>
     public partial class MazeViewer : UserControl
     {
+        /// <summary>
+        /// The tile sizes
+        /// </summary>
         private double[] tileSizes = new double[2]; //{width, height}
-        private /*Image*/Rectangle[,] tiles = null;
+
+        /// <summary>
+        /// The tiles
+        /// </summary>
+        private Rectangle[,] tiles = null;
 
         #region Rows
 
 
+        /// <summary>
+        /// Gets or sets the rows.
+        /// </summary>
+        /// <value>
+        /// The rows.
+        /// </value>
         public int Rows
         {
             get { return (int)GetValue(RowsProperty); }
@@ -41,6 +54,12 @@ namespace WpfApplication1
         #endregion
 
         #region Cols
+        /// <summary>
+        /// Gets or sets the columns.
+        /// </summary>
+        /// <value>
+        /// The columns.
+        /// </value>
         public int Cols
         {
             get { return (int)GetValue(ColsProperty); }
@@ -53,6 +72,12 @@ namespace WpfApplication1
         #endregion
 
         #region Maze
+        /// <summary>
+        /// Gets or sets the maze string representation.
+        /// </summary>
+        /// <value>
+        /// The maze string representation.
+        /// </value>
         public string Maze
         {
             get { return (string)GetValue(MazeProperty); }
@@ -65,6 +90,12 @@ namespace WpfApplication1
         #endregion
 
         #region PlayerPos
+        /// <summary>
+        /// Gets or sets the player position.
+        /// </summary>
+        /// <value>
+        /// The player position.
+        /// </value>
         public string PlayerPos
         {
             private get { return (string)GetValue(PlayerPosProperty); }
@@ -72,8 +103,7 @@ namespace WpfApplication1
             {
                 SetValue(PlayerPosProperty, value);
                 string[] split = value.Split(',');
-                int x, y;
-                if (int.TryParse(split[0], out x) && int.TryParse(split[1], out y))
+                if (int.TryParse(split[0], out int x) && int.TryParse(split[1], out int y))
                     DrawPlayer(x, y);
             }
         }
@@ -84,6 +114,12 @@ namespace WpfApplication1
         #endregion
 
         #region GoalPos
+        /// <summary>
+        /// Gets or sets the goal position.
+        /// </summary>
+        /// <value>
+        /// The goal position.
+        /// </value>
         public string GoalPos
         {
             get { return (string)GetValue(GoalPosProperty); }
@@ -96,6 +132,12 @@ namespace WpfApplication1
         #endregion
 
         #region PlayerImageFile
+        /// <summary>
+        /// Gets or sets the player image file.
+        /// </summary>
+        /// <value>
+        /// The player image file.
+        /// </value>
         public string PlayerImageFile
         {
             get { return (string)GetValue(PlayerImageFileProperty); }
@@ -111,6 +153,12 @@ namespace WpfApplication1
         #endregion
 
         #region ExitImageFile
+        /// <summary>
+        /// Gets or sets the exit image file.
+        /// </summary>
+        /// <value>
+        /// The exit image file.
+        /// </value>
         public string ExitImageFile
         {
             get { return (string)GetValue(ExitImageFileProperty); }
@@ -126,6 +174,12 @@ namespace WpfApplication1
         #endregion
 
         #region InitialPos
+        /// <summary>
+        /// Gets or sets the initial position.
+        /// </summary>
+        /// <value>
+        /// The initial position.
+        /// </value>
         public string InitialPos
         {
             get { return (string)GetValue(InitialPosProperty); }
@@ -140,14 +194,22 @@ namespace WpfApplication1
             DependencyProperty.Register("InitialPos", typeof(string), typeof(UserControl), new PropertyMetadata(""));
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MazeViewer"/> class.
+        /// </summary>
         public MazeViewer()
         {
             InitializeComponent();
-            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/background.jpg", UriKind.Absolute)));
-            b.Stretch = Stretch.None;
+            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/background.jpg", UriKind.Absolute)))
+            {
+                Stretch = Stretch.None
+            };
             myCanvas.Background = b;
         }
 
+        /// <summary>
+        /// Sets the size of the tile.
+        /// </summary>
         private void SetTileSize()
         {
             //double tileNum = Rows * Cols;
@@ -158,6 +220,9 @@ namespace WpfApplication1
             playerImg.Height = tileSizes[1];
         }
 
+        /// <summary>
+        /// Draws the maze, including all the tiles and the exit tile.
+        /// </summary>
         private void InitialDraw()
         {
             if (Rows == 0 || Cols == 0 || Maze == "" || Maze.Length != Rows * Cols * 2 - 1)
@@ -186,8 +251,8 @@ namespace WpfApplication1
                     else
                         tiles[r, c].Fill = bcg;
 
-                    tiles[r, c].Height = tileSizes[0];
-                    tiles[r, c].Width = tileSizes[1];
+                    //tiles[r, c].Height = tileSizes[0];
+                    //tiles[r, c].Width = tileSizes[1];
 
                     if ((c = ++c % Cols) == 0)
                         r++;
@@ -218,12 +283,22 @@ namespace WpfApplication1
             }
         }
 
+        /// <summary>
+        /// Draws the player.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
         private void DrawPlayer(int x, int y)
         {
             Canvas.SetLeft(playerImg, y * tileSizes[0]);
             Canvas.SetTop(playerImg, x * tileSizes[1]);
         }
 
+        /// <summary>
+        /// Handles the Loaded event of the UserControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             SetTileSize();
@@ -238,18 +313,24 @@ namespace WpfApplication1
             Canvas.SetZIndex(playerImg, 100); //bigger than anything else
         }
 
-       
+        /// <summary>
+        /// Called when [player position property changed].
+        /// </summary>
+        /// <param name="d">The d.</param>
+        /// <param name="e">The <see cref="DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
         private static void OnPlayerPosPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             MazeViewer mv = (MazeViewer) d;
             mv.OnPlayerPosPropertyChanged();
         }
 
+        /// <summary>
+        /// Called when [player position property changed].
+        /// </summary>
         private void OnPlayerPosPropertyChanged()
         {
             string[] split = PlayerPos.Split(',');
-            int x, y;
-            if (int.TryParse(split[0], out x) && int.TryParse(split[1], out y))
+            if (int.TryParse(split[0], out int x) && int.TryParse(split[1], out int y))
                 DrawPlayer(x, y);
         }
     }

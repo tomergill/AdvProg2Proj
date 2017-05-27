@@ -38,27 +38,31 @@ namespace Server
                         try
                         {
                             commandLine = reader.ReadString();
-                        } catch (IOException)
+
+                            Console.WriteLine("GOT " + commandLine);
+                            string result = controller.ExecuteCommand(commandLine, out bool shouldCloseConnection, client, writer);
+                            if (result != null)
+                            {
+                                Console.WriteLine("SEND " + result);
+                                if (client.Connected)
+                                    writer.Write(result);
+                            }
+                            else
+                            {
+                                if (client.Connected)
+                                    writer.Write("ERROR");
+                            }
+                            if (shouldCloseConnection)
+                            {
+                                client.Close();
+                                break;
+                            }
+                        }
+                        catch (Exception e)
                         {
+                            Console.WriteLine(e);
+                            Console.WriteLine(e.Message);
                             continue;
-                        }
-                        Console.WriteLine("GOT " + commandLine);
-                        string result = controller.ExecuteCommand(commandLine, out bool shouldCloseConnection, client, writer);
-                        if (result != null)
-                        {
-                            Console.WriteLine("SEND " + result);
-                            if (client.Connected)
-                                writer.Write(result);
-                        }
-                        else
-                        {
-                            if (client.Connected)
-                                writer.Write("ERROR");
-                        }
-                        if (shouldCloseConnection)
-                        {
-                            client.Close();
-                            break;
                         }
                     }
                     client.Close();

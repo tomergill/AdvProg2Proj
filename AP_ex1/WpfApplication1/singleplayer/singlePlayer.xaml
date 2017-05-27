@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApplication1"
         x:Class="WpfApplication1.singlePlayer"
         mc:Ignorable="d"
-        Title="single Player" Height="550" Width="500" Closing="Window_Closing" KeyDown="Window_KeyDown" ContentRendered="Window_ContentRendered">
+        Title="single Player" Height="750" Width="800" Closing="Window_Closing" KeyDown="Window_KeyDown" ContentRendered="Window_ContentRendered">
     <Grid Margin="10,10,10,0" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
