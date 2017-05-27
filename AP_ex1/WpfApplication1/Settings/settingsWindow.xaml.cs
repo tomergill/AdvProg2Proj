@@ -19,15 +19,25 @@ namespace WpfApplication1
     /// </summary>
     public partial class settingsWindow : Window
     {
+        //having a view model
         private SettingsViewModel vm;
+
+        /// <summary>
+        /// constructor
+        /// </summary>
         public settingsWindow()
         {
+            //initializing
             InitializeComponent();
             vm = new SettingsViewModel(new ApplicationSettingsModel());
             this.DataContext = vm;
         }
 
-
+        /// <summary>
+        /// OK button was pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
             vm.SaveSettings();
@@ -35,6 +45,12 @@ namespace WpfApplication1
             win.Show();
             this.Close();
         }
+
+        /// <summary>
+        /// cancel button was pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow win = (MainWindow)Application.Current.MainWindow;
@@ -42,6 +58,11 @@ namespace WpfApplication1
             this.Close();
         }
 
+        /// <summary>
+        /// user exited with x button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MainWindow win = (MainWindow)Application.Current.MainWindow;

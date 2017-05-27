@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WpfApplication1
 {
+    /// <summary>
+    /// abstruct class for models to inherit
+    /// </summary>
     abstract class Model : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

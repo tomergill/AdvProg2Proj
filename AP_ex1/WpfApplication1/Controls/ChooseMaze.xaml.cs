@@ -17,9 +17,11 @@ namespace WpfApplication1
 {
     /// <summary>
     /// Interaction logic for ChooseMaze.xaml
+    /// this is a user control for single player and multy player properties
     /// </summary>
     public partial class ChooseMaze : UserControl
     {
+        //having a view model
         private ChooseMazeViewModel CMVM;
         public ChooseMaze()
         {

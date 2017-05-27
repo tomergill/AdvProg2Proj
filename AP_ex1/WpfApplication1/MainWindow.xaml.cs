@@ -19,17 +19,28 @@ namespace WpfApplication1
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {   
+        /// <summary>
+        /// constructor
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
+            
+            //adding backGround picture
             ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/background1.jpg", UriKind.Absolute)));
             b.Stretch = Stretch.Fill;
             this.Background = b;
 
+            //adding logo picture
             this.logo.Source = new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/Portal_Logo.png", UriKind.Absolute));
         }
 
+        /// <summary>
+        /// single player button was clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Sp_Click(object sender, RoutedEventArgs e)
         {
             SinglePlayerProperties spp = new SinglePlayerProperties();
@@ -37,6 +48,11 @@ namespace WpfApplication1
             spp.Show();
         }
 
+        /// <summary>
+        /// setting button was clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             settingsWindow settings = new settingsWindow();
@@ -44,6 +60,11 @@ namespace WpfApplication1
             settings.Show();
         }
 
+        /// <summary>
+        /// multiplayer button was clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MultiBtn_Click(object sender, RoutedEventArgs e)
         {
             new MultiplayerSettings().Show();
