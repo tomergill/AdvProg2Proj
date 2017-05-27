@@ -28,12 +28,12 @@ namespace WpfApplication1
             InitializeComponent();
             
             //adding backGround picture
-            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/background1.jpg", UriKind.Absolute)));
+            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/background1.jpg", UriKind.Absolute)));
             b.Stretch = Stretch.Fill;
             this.Background = b;
 
             //adding logo picture
-            this.logo.Source = new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/Portal_Logo.png", UriKind.Absolute));
+            this.logo.Source = new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/Portal_Logo.png", UriKind.Absolute));
         }
 
         /// <summary>

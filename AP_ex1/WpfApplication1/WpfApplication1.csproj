@@ -176,16 +176,15 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="resources\background - Copy.jpg" />
     <Resource Include="resources\background.jpg" />
-    <Resource Include="resources\exit - Copy.png" />
     <Resource Include="resources\exit.png" />
     <Resource Include="resources\player.png" />
-    <Resource Include="resources\wall.jpg" />
     <Resource Include="resources\wall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

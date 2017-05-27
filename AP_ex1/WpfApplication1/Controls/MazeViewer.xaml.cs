@@ -200,7 +200,7 @@ namespace WpfApplication1
         public MazeViewer()
         {
             InitializeComponent();
-            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/background.jpg", UriKind.Absolute)))
+            ImageBrush b = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/background.jpg", UriKind.Absolute)))
             {
                 Stretch = Stretch.None
             };
@@ -232,8 +232,8 @@ namespace WpfApplication1
                 tiles = new /*Image*/Rectangle[Rows, Cols];
                 string[] split = Maze.Split(',');
                 //BitmapImage bmi = new BitmapImage(new Uri("resources" + "\\" + "wall.png", UriKind.RelativeOrAbsolute));
-                ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/wall.png", UriKind.Absolute)));
-                ImageBrush bcg = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/../../../resources/background.jpg", UriKind.Absolute)));
+                ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/wall.png", UriKind.Absolute)));
+                ImageBrush bcg = new ImageBrush(new BitmapImage(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + @"/resources/background.jpg", UriKind.Absolute)));
                 for (int r = 0, c = 0; r < Rows;)
                 {
                     tiles[r, c] = new Rectangle()//Image()

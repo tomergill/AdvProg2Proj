@@ -29,7 +29,7 @@
                                               InitialPos="{Binding VMInitPos}"
                                               GoalPos="{Binding VMGoalPos}"
                                               Maze="{Binding VMMazeRepr}" 
-                                              PlayerImageFile="../../../resources/player.png"
-                                              ExitImageFile="../../../resources/exit.png"/>
+                                              PlayerImageFile="resources/player.png"
+                                              ExitImageFile="resources/exit.png"/>
     </Grid>
 </Window>

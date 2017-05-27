@@ -116,6 +116,8 @@ namespace WpfApplication1
         /// <param name="e"></param>
         private void Restart(object sender, RoutedEventArgs e)
         {
+            // stopping soliution thread
+            SPVM.GetKeepSolving = false;
             //allowing user to move
             this.canMove = true;
             //restarting in view model
@@ -135,6 +137,8 @@ namespace WpfApplication1
         /// <param name="e"></param>
         private void GetSolution(object sender, RoutedEventArgs e)
         {
+            // starting soliution thread
+            SPVM.GetKeepSolving = true;
             //preventing from user to move
             this.canMove = false;
             //returning to initial point
