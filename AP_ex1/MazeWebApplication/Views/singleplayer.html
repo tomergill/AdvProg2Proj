@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Singleplayer</title>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/maze-menu.css" rel="stylesheet"/>
+</head>
+<body>
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/form-checker.js"> </script>
+    <div class="container body-content">
+        <h2>Single Player Game</h2><hr />
+        <div class="col-sm-4 form-horizontal">
+            <div class="form-group">
+                <label id="l1" for="mazeName" class="col-sm-3 control-label myLabel">Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="mazeName" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mazeRows" class="col-sm-3 control-label">Rows</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" id="mazeRows" min="1" max="100" value="5" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mazeCols" class="col-sm-3 control-label">Columns</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" id="mazeCols" min="1" max="100" value="5" />
+                </div>
+            </div>
+            <button id="strtBtn" class="btn btn-default" onclick="checkGameDetails(mazeName, mazeRows, mazeCols, err)">Start Game</button>
+            <br/>
+            <br />
+            <div id="err" class="alert alert-danger" style="visibility: hidden">
+                <strong>
+                    error! sknaska knsdknc slac sancsklc sknv sm vsn vsmc kn,sac mlckns clm
+                </strong>
+            </div>
+
+            <div class="form-group" >
+                <label for="selectAlgo" class="col-sm-5 control-label">Solve Algorithm</label>
+                <select class="form-control col-sm-7" id="selectAlgo" style="width: auto">
+                    <option>BFS</option>
+                    <option>DFS</option>
+                </select>
+            </div>
+            <button id="slvBtn" class="btn btn-default">Solve Game</button>
+        </div>
+        <div class="col-sm-8 text-center">
+            <canvas id="mazeCanvas" tabindex="1" class="maze-board" width="500"
+                    height="500"></canvas>
+        </div>
+    </div>
+</body>
+</html>

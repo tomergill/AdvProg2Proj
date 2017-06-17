@@ -1,90 +1,387 @@
-commit b85870475de99e0b5be8c12d6a73de5c57a766c5
-Author: Tomer Gill <Tomer Gill@TOMER-PC>
-Date:   Thu Apr 20 16:40:16 2017 +0300
-
-    NOW everything is awesome.
-
-commit 92c800aea3d6dfb0452d0c062cbb1a2b54a67a83
-Author: Tomer Gill <Tomer Gill@TOMER-PC>
-Date:   Thu Apr 20 16:27:01 2017 +0300
-
-    Fixed everything, now everything is awesome, evrrything  is cool when your a part of a team!
-
-commit b28e078e9a1851616c988fc084e501be832ede76
-Author: Tomer Gill <Tomer Gill@TOMER-PC>
-Date:   Thu Apr 20 10:44:30 2017 +0300
-
-    Final fixes due to piazza questions.
-
-commit 6fca7818e2925714496925e6878153408cb182e7
-Author: Tomer Gill <Tomer Gill@TOMER-PC>
-Date:   Wed Apr 19 15:23:04 2017 +0300
-
-    Everything should be working.
-
-commit 90049f063a9470db99cdf144f6a0c04eca28eedd
-Author: weisslo <weiss.lotan@gmail.com>
-Date:   Tue Apr 18 14:58:09 2017 +0300
-
-    fixed BFS and DFS algorithms
-
-commit 9162053eca104991e2f4692363f8cb15bd5c7df3
-Author: Tomer Gill <Tomer Gill@TOMER-PC>
-Date:   Tue Apr 18 12:04:24 2017 +0300
-
-    Adding solve command
-
-commit 1d3228bf1e6f4f642dcea9e4febe191c2eea7b4f
-Author: weisslo <weiss.lotan@gmail.com>
-Date:   Mon Apr 17 17:16:26 2017 +0300
-
-    ObjectAdapter sync
-
-commit 7baf83049013067dd90fbfabe00f912a4678a380
-Merge: 3e8385e db369b0
-Author: Tomer Gill <Tomer Gill@TOMER-PC>
-Date:   Mon Apr 17 16:59:31 2017 +0300
-
-    Merge was a success
-
-commit 3e8385ea0147ca8aaa6cf9255cfa583f41530810
-Author: Tomer Gill <Tomer Gill@TOMER-PC>
-Date:   Mon Apr 17 16:56:42 2017 +0300
-
-    Trying merging
-
-commit db369b009be5b0c63965cffa7aa23ef308e4604d
-Author: weisslo <weiss.lotan@gmail.com>
-Date:   Mon Apr 17 16:54:02 2017 +0300
-
-    this is done
-
-commit 7d78fa6736fb16c915f712f31fa388c5eb28a4e9
-Author: weisslo <weiss.lotan@gmail.com>
-Date:   Fri Apr 14 19:36:48 2017 +0300
-
-    documentation done
-
-commit 008c7574d47a1c071173aa8bc5d8c1311b8beb05
-Author: weisslo <weiss.lotan@gmail.com>
-Date:   Thu Apr 13 14:54:00 2017 +0300
-
-    DFS BFS and program is complete, time to close and make class library
-
-commit 0d22873191ea6ca30700c1cdad092e45150947c1
-Author: weisslo <weiss.lotan@gmail.com>
-Date:   Sat Apr 8 23:45:55 2017 +0300
-
-    bfs complete, dfs on its way.
-
-commit 51b4687d98af4f89d6047618cfe59bb97c7d5a32
-Author: weisslo <weiss.lotan@gmail.com>
-Date:   Tue Apr 4 14:23:41 2017 +0300
-
-    first assignment
-
-commit cea03912d6e6dc0ebab21bc3679e13c0b32d7c7c
-Author: Tomer Gill <coolran103@gmail.com>
-Date:   Tue Apr 4 16:03:21 2017 +0300
-
-    Initial commit
+* commit 4beec4667b05272a314ffaa560a7bbdc6680aa9a
+| Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| Date:   Sat May 27 19:34:17 2017 +0300
+| 
+|     K-300 treatment to bugs
+| 
+* commit c9010c79b7cc6b45b88d40b57120bb345b514611
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Sat May 27 16:29:21 2017 +0300
+| 
+|     fixed freeze when user asks for restart after solve maze
+|   
+*   commit 8df05985bfeb86051155eb8445d7165bc5a5e6a1
+|\  Merge: 3cb47f5 e282378
+| | Author: weisslo <weiss.lotan@gmail.com>
+| | Date:   Sat May 27 15:46:56 2017 +0300
+| | 
+| |     comments written
+| | 
+| * commit e2823780a015b972aa6261f2879f414dd144a534
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Sat May 27 00:05:07 2017 +0300
+| | 
+| |     UI doesn't freeze anymore after start in multiplayer, but game is still in server after exit
+| | 
+| * commit 7c13ace5b12f03e2544773b984988b4f2f060e89
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Fri May 26 22:41:10 2017 +0300
+| | 
+| |     Added comments
+| | 
+| * commit b1f2b212ac14bf62829c5fc2607245a853203e11
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Fri May 26 19:06:00 2017 +0300
+| | 
+| |     Updated multiplayer and maze viewer (also multiplayer settings)
+| | 
+| * commit ce2577d4b6fa70e8ba275916f250a0fda58a0888
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Fri May 26 04:44:18 2017 +0300
+| | 
+| |     Changing MultiplayerSettings after merge, not finished yet
+| |   
+| *   commit e52c6b986e8fccd5e6636dd201d0f723a8ae48ea
+| |\  Merge: c16d68d 998aa4f
+| | | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | | Date:   Fri May 26 04:25:20 2017 +0300
+| | | 
+| | |     merged not final
+| | | 
+| * | commit c16d68d0e00f6442768350a5bfc3c0e6f78bed55
+| | | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | | Date:   Fri May 26 03:57:39 2017 +0300
+| | | 
+| | |     Keptrestoring damage
+| | | 
+| * | commit f50d0f473163871066aa2c8fea5c7a1d227d7552
+| | | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | | Date:   Fri May 26 03:28:02 2017 +0300
+| | | 
+| | |     Restored part of model and vm
+| | | 
+| * | commit 1d998dd4b571e487d0707d237bd39126f90b107f
+| | | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | | Date:   Thu May 25 10:34:54 2017 +0300
+| | | 
+| | |     some cosmetic changes
+| | | 
+| * | commit 098afa1dc571ccbe793f2f1b09102576e8578e45
+| | | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | | Date:   Wed May 24 23:55:42 2017 +0300
+| | | 
+| | |     The daily commit. G'night folks
+| | | 
+* | | commit 3cb47f53f23c9bcfc61ed06b283ccf90a2e64e86
+| |/  Author: weisslo <weiss.lotan@gmail.com>
+|/|   Date:   Sat May 27 15:44:53 2017 +0300
+| |   
+| |       finished writing comments
+| | 
+* | commit 998aa4f5869445d7c072c82a9dd6f9321f26722a
+| | Author: weisslo <weiss.lotan@gmail.com>
+| | Date:   Thu May 25 18:16:27 2017 +0300
+| | 
+| |     single player seems to work great
+| | 
+* | commit bed0ab5b0ebc7b9d9fded25e7303bac20373c7f8
+|/  Author: weisslo <weiss.lotan@gmail.com>
+|   Date:   Wed May 24 23:53:33 2017 +0300
+|   
+|       reset and solve maze in single player works, main window button and setting combo box remains
+| 
+* commit 4029871be89d8a83e15a4b37e0a0af373ea43a0e
+| Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| Date:   Wed May 24 21:17:29 2017 +0300
+| 
+|     Finished multiplater settings fo' shizzle and made some folders
+| 
+* commit 377da0da89829acf95f2db604fc6502da7dff71a
+| Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| Date:   Wed May 24 21:09:13 2017 +0300
+| 
+|     intermidate commit
+| 
+* commit 5e9556919325ab411f9233305f031ac2033b7713
+| Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| Date:   Wed May 24 20:49:16 2017 +0300
+| 
+|     actually finished MultiplayerSettings window. frack git
+| 
+* commit 36c263a3ecbee489662753f1772f78c2da542cca
+| Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| Date:   Wed May 24 19:28:04 2017 +0300
+| 
+|     fixing minor stuff
+|   
+*   commit 08b09444c19a94c81bf5b914938244253b3ce0ae
+|\  Merge: 338e82d c683eab
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Wed May 24 19:25:18 2017 +0300
+| | 
+| |     Merge branch 'master' into MultiplayerSettings
+| | 
+| * commit c683eabf1610c10fedfa830007c18e12e41f4648
+| | Author: weisslo <weiss.lotan@gmail.com>
+| | Date:   Wed May 24 19:22:12 2017 +0300
+| | 
+| |     for merging purposes
+| | 
+* | commit 338e82d662f165f4de643ad6f706e747bb52cc0a
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Wed May 24 19:20:36 2017 +0300
+| | 
+| |     reverting
+| |   
+* |   commit 553210567146d1efd77e67f1508829e1d00c0f13
+|\ \  Merge: c7d2c0f b23eb4f
+| |/  Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| |   Date:   Wed May 24 19:14:27 2017 +0300
+| |   
+| |       After merge from master
+| | 
+| * commit b23eb4f1a6d5fed288c915c8b6e3be941acd2fc8
+| | Author: weisslo <weiss.lotan@gmail.com>
+| | Date:   Wed May 24 19:06:26 2017 +0300
+| | 
+| |     single player binding seems to work, continueing to wining messege and button pressing
+| | 
+* | commit c7d2c0f31bf3fdf7f6af87e7ce096f8c5ade0eaf
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Wed May 24 19:07:02 2017 +0300
+| | 
+| |     Finished Multiplayer Settings
+| | 
+* | commit 7d5a696a503ffd230acc596a44c286e2a713bb82
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Wed May 24 15:23:22 2017 +0300
+| | 
+| |     Changing branches
+| |   
+* |   commit 61dd1b75f1873f165408382793842f5ceb931001
+|\ \  Merge: 87b1bb5 ddda464
+| |/  Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| |   Date:   Wed May 24 12:01:37 2017 +0300
+| |   
+| |       Merge branch 'master' into MultiplayerSettings
+| | 
+| * commit ddda464f553d8846ff15ac73cb6aa323c4af4c5e
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Wed May 24 12:00:39 2017 +0300
+| | 
+| |     Finished showing singleplayer
+| | 
+| * commit 4eb3a535bce1bc78a1fb06802f7f10fc596313dc
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Wed May 24 00:15:55 2017 +0300
+| | 
+| |     kinda works
+| | 
+| * commit be5c568ce82da4f7fbd4d2a40f411597d05b2c74
+| | Author: weisslo <weiss.lotan@gmail.com>
+| | Date:   Tue May 23 22:01:31 2017 +0300
+| | 
+| |     binding suppose to work, change variables
+| | 
+* | commit 87b1bb5ae4490db42225a1e1936c9cf63b57cbae
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Tue May 23 22:03:08 2017 +0300
+| | 
+| |     in the middle
+| | 
+* | commit 3994ae43cc3488409ce10e3479880484afa18330
+|/  Author: Tomer Gill <Tomer Gill@TOMER-PC>
+|   Date:   Tue May 23 19:36:14 2017 +0300
+|   
+|       Added window with GUI
+| 
+* commit cbe0845d69d320732ca04d4bcf89eee6711e0a6f
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Tue May 23 08:28:21 2017 +0300
+| 
+|     mazeViewer updated
+|   
+*   commit b85e05b7273dc114ca180e95568ab2b7b86fb861
+|\  Merge: 0abb27b 4dc3a2b
+| | Author: weisslo <weiss.lotan@gmail.com>
+| | Date:   Tue May 23 08:16:37 2017 +0300
+| | 
+| |     merging
+| | 
+| * commit 4dc3a2b5d72144e56efe8ab4e5ae1ac17025a0d8
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Mon May 22 23:59:22 2017 +0300
+| | 
+| |     deleted testWindow
+| | 
+| * commit 77b62568c38c253a2002e534dafe018bcafc757d
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Mon May 22 23:57:52 2017 +0300
+| | 
+| |     Finished MazeViewer
+| | 
+| * commit 6e1302b0b35ff0e1ba2e3b675bd17effb47decf9
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Mon May 22 23:37:32 2017 +0300
+| | 
+| |     finished mazeViewer.
+| |     Should delete testWindow
+| | 
+| * commit 87c24c2f09bba7d190946fa2d9e97ff2da76273b
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Mon May 22 12:25:34 2017 +0300
+| | 
+| |     trying to branch
+| | 
+* | commit 0abb27b69e1c1609e85c5181c062103511fc29ff
+|/  Author: weisslo <weiss.lotan@gmail.com>
+|   Date:   Tue May 23 08:13:38 2017 +0300
+|   
+|       comitting changes
+| 
+* commit eb353da120968f676769aaddb9a5f2902b6838cf
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Mon May 22 11:48:49 2017 +0300
+| 
+|     added main window and settings correctly
+| 
+* commit 54b477460a1d64bc3ed2adf1e769a70658fe004f
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Sun May 21 18:11:04 2017 +0300
+| 
+|     added main window and settings
+| 
+* commit fe9ed6025cd61399b56180ebfcdb9e80fc58991a
+| Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| Date:   Sun May 21 17:07:27 2017 +0300
+| 
+|     trying to fix
+| 
+* commit 6ad0c1ccb5354c968ec6533103cd8362efa3737c
+| Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| Date:   Sun May 21 16:31:02 2017 +0300
+| 
+|     changes
+| 
+* commit f9d9f6b78e52632e150afd836b6ba8f73f779022
+| Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| Date:   Tue May 2 22:19:51 2017 +0300
+| 
+|     Starting the maze viewer user control
+|   
+*   commit 0d1ccbe83272c28e8900672d9e9d13b2afad7986
+|\  Merge: 98d9e17 b5508fc
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Thu Apr 20 18:31:05 2017 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/tomergill/AdvProg2Proj
+| |   
+| *   commit b5508fc55e597ad5e331eb71230f04c4f3031d24
+| |\  Merge: 1b6fc54 b858704
+| | | Author: weisslo <weiss.lotan@gmail.com>
+| | | Date:   Thu Apr 20 18:24:39 2017 +0300
+| | | 
+| | |     Merge branch 'master' of https://github.com/tomergill/AdvProg2Proj.git
+| | | 
+| * | commit 1b6fc54d5ea575312413251408450ea6228ac02d
+| | | Author: weisslo <weiss.lotan@gmail.com>
+| | | Date:   Thu Apr 20 18:23:51 2017 +0300
+| | | 
+| | |     added console.readkey() in main
+| | | 
+* | | commit 98d9e17401d3024891567ac409e6e35c03f87d03
+| |/  Author: Tomer Gill <Tomer Gill@TOMER-PC>
+|/|   Date:   Thu Apr 20 18:30:38 2017 +0300
+| |   
+| |       Finished for submiting!!
+| | 
+* | commit b85870475de99e0b5be8c12d6a73de5c57a766c5
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Thu Apr 20 16:40:16 2017 +0300
+| | 
+| |     NOW everything is awesome.
+| | 
+* | commit 92c800aea3d6dfb0452d0c062cbb1a2b54a67a83
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Thu Apr 20 16:27:01 2017 +0300
+| | 
+| |     Fixed everything, now everything is awesome, evrrything  is cool when your a part of a team!
+| | 
+* | commit b28e078e9a1851616c988fc084e501be832ede76
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Thu Apr 20 10:44:30 2017 +0300
+| | 
+| |     Final fixes due to piazza questions.
+| | 
+* | commit 6fca7818e2925714496925e6878153408cb182e7
+|/  Author: Tomer Gill <Tomer Gill@TOMER-PC>
+|   Date:   Wed Apr 19 15:23:04 2017 +0300
+|   
+|       Everything should be working.
+| 
+* commit 90049f063a9470db99cdf144f6a0c04eca28eedd
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Tue Apr 18 14:58:09 2017 +0300
+| 
+|     fixed BFS and DFS algorithms
+| 
+* commit 9162053eca104991e2f4692363f8cb15bd5c7df3
+| Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| Date:   Tue Apr 18 12:04:24 2017 +0300
+| 
+|     Adding solve command
+| 
+* commit 1d3228bf1e6f4f642dcea9e4febe191c2eea7b4f
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Mon Apr 17 17:16:26 2017 +0300
+| 
+|     ObjectAdapter sync
+|   
+*   commit 7baf83049013067dd90fbfabe00f912a4678a380
+|\  Merge: 3e8385e db369b0
+| | Author: Tomer Gill <Tomer Gill@TOMER-PC>
+| | Date:   Mon Apr 17 16:59:31 2017 +0300
+| | 
+| |     Merge was a success
+| | 
+| * commit db369b009be5b0c63965cffa7aa23ef308e4604d
+| | Author: weisslo <weiss.lotan@gmail.com>
+| | Date:   Mon Apr 17 16:54:02 2017 +0300
+| | 
+| |     this is done
+| | 
+* | commit 3e8385ea0147ca8aaa6cf9255cfa583f41530810
+|/  Author: Tomer Gill <Tomer Gill@TOMER-PC>
+|   Date:   Mon Apr 17 16:56:42 2017 +0300
+|   
+|       Trying merging
+| 
+* commit 7d78fa6736fb16c915f712f31fa388c5eb28a4e9
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Fri Apr 14 19:36:48 2017 +0300
+| 
+|     documentation done
+| 
+* commit 008c7574d47a1c071173aa8bc5d8c1311b8beb05
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Thu Apr 13 14:54:00 2017 +0300
+| 
+|     DFS BFS and program is complete, time to close and make class library
+| 
+* commit 0d22873191ea6ca30700c1cdad092e45150947c1
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Sat Apr 8 23:45:55 2017 +0300
+| 
+|     bfs complete, dfs on its way.
+| 
+* commit 51b4687d98af4f89d6047618cfe59bb97c7d5a32
+| Author: weisslo <weiss.lotan@gmail.com>
+| Date:   Tue Apr 4 14:23:41 2017 +0300
+| 
+|     first assignment
+| 
+* commit cea03912d6e6dc0ebab21bc3679e13c0b32d7c7c
+  Author: Tomer Gill <coolran103@gmail.com>
+  Date:   Tue Apr 4 16:03:21 2017 +0300
+  
+      Initial commit
