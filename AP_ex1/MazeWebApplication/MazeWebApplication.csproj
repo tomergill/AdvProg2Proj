@@ -92,6 +92,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\maze-menu.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Resources\background.jpg" />
+    <Content Include="Resources\exit.png" />
+    <Content Include="Resources\player.png" />
+    <Content Include="Resources\wall.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\mazeBoard.js" />

@@ -29,13 +29,13 @@ namespace MazeWebApplication.Controllers
 
         // GET: api/Maze/5  
         [HttpGet]
-        public Maze GetMaze(string name)
+        public JObject GetMaze(string name)
         {
-            return manager.GetMaze(name);
+            return JObject.Parse(manager.GetMaze(name).ToJSON());
         }
 
         // GET: api/Maze/mymaze?rows=5&cols=6
-        //[HttpGet]
+        [HttpGet]
         public JObject GenerateMaze(string name, int rows, int cols)
         {
             try
