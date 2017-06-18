@@ -1,6 +1,6 @@
 ﻿function checkGameDetails(nameEle, rowsEle, colsEle, err) {
 
-    if (nameEle == null || rowsEle == null || colsEle == null || err == null)
+    if (nameEle === null || rowsEle === null || colsEle === null || err === null)
         return null;
 
     err.style.setProperty("visibility", "hidden");
@@ -13,25 +13,25 @@
         err.innerHTML = "<strong>Error! rows number was empty. rows must be between " + parseInt(rowsEle.getAttribute("min")).toString() + " to " + parseInt(rowsEle.getAttribute("max")).toString() + ".</strong>";
         err.style.setProperty("visibility", "visible");
         rowsEle.setAttribute("value", (rowsEle.getAttribute("min")).toString());
-        return null;
+        return false;
     }
     if (isNaN(cols)) {
         err.innerHTML = "<strong>Error! cols number was empty. cols must be between " + parseInt(colsEle.getAttribute("min")).toString() + " to " + parseInt(colsEle.getAttribute("max")).toString() + ".</strong>";
         err.style.setProperty("visibility", "visible");
         colsEle.setAttribute("value", (colsEle.getAttribute("min")).toString());
-        return null;
+        return false;
     }
     if (name == "")
     {
         err.innerHTML = "<strong>Error! maze must have a name.</strong>"
         err.style.setProperty("visibility", "visible");
-        return null;
+        return false;
     }
 
     if (!checkIfInputNumberValid(rowsEle, err, "rows", rows) || !checkIfInputNumberValid(colsEle, err, "cols", cols))
-        return null;
+        return false;
 
-    alert("debug: was gonna get a maze with " + rows + "rows and " + cols + " cols named " + name);
+    return true;
 }
 
 function checkIfInputNumberValid(inputEle, errEle, name, value) {
