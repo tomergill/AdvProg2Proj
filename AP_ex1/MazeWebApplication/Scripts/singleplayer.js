@@ -1,4 +1,9 @@
-﻿function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
+﻿var leftKey = 37;
+var upKey = 38;
+var rightKey = 39;
+var downKey = 40;
+
+function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
     if (!checkGameDetails(nameEle, rowsEle, colsEle, err))
         return;
 
@@ -16,4 +21,19 @@
     $.getJSON(url, function (data) {
         maze = new MazeViewer(data, canvas);
     });
+    $("body").keydown(function (e) {
+        switch (e.keyCode) {
+            case leftKey:
+
+                break;
+            case upKey:
+                break;
+            case rightKey:
+                break;
+            case downKey:
+                break;
+            default:
+                break;
+        }
+    });
 }

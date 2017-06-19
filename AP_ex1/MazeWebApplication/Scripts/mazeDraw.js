@@ -59,5 +59,15 @@
         }
 
         this._cellImage = bcgImg;
+        this._playerPos = maze.Start;
+    }
+
+    play(drow, dcol) {
+        var newRow =  this._playerPos.Row + drow;
+        var newCol = this._playerPos.Col + dcol;
+
+        if (newRow < 0 || newRow >= this._maze.Rows || newCol < 0 || newCol >= this._maze.Cols)
+            return false;
+
     }
 }
