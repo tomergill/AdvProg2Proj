@@ -19,21 +19,22 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
     var maze;
 
     $.getJSON(url, function (data) {
-        maze = new MazeViewer(data, canvas);
-    });
-    $("body").keydown(function (e) {
-        switch (e.keyCode) {
-            case leftKey:
-
-                break;
-            case upKey:
-                break;
-            case rightKey:
-                break;
-            case downKey:
-                break;
-            default:
-                break;
-        }
+        //maze = new MazeViewer(data, canvas);
+        $("canvas").mazeBoard("generate", data);
     });
+    //$("body").keydown(function (e) {
+    //    switch (e.keyCode) {
+    //        case leftKey:
+
+    //            break;
+    //        case upKey:
+    //            break;
+    //        case rightKey:
+    //            break;
+    //        case downKey:
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //});
 }

@@ -77,26 +77,78 @@
                 Col: newCol
             };
             this.playerPos = newPos;
-            return true;
+            return (this._maze.End.Row == this._playerPos.Row && this._maze.End.Col == this._playerPos.Col);
         }
         return false;
     }
 
     set playerPos(newPos) {
-        var context = new CanvasRenderingContext2D();//this._canvas.getContext("2d");
+        var context = this._canvas.getContext("2d");
         context.clearRect(this._playerPos.Col * this._cellWidth, this._playerPos.Row * this._cellHeight, this._cellWidth, this._cellHeight);
         context.drawImage(this._cellImage, this._playerPos.Col * this._cellWidth, this._playerPos.Row * this._cellHeight, this._cellWidth, this._cellHeight);
         this._playerPos = newPos;
         context.drawImage(this._playerImage, this._playerPos.Col * this._cellWidth, this._playerPos.Row * this._cellHeight, this._cellWidth, this._cellHeight);
     }
+
+    get playerPos() {
+        return { Row: this._playerPos.Row, Col: this._playerPos.Col };
+    }
+
+    get cellImg() {
+        return this._cellImage;
+    }
+
+    get playerImg() {
+        return this._playerImage;
+    }
+
+    get cellWidth() {
+        return this._cellWidth;
+    }
+
+    get cellHeight() {
+        return this._cellHeight;
+    }
 }
 
 (function ($) {
-    $.fn.mazeBoard =
-        function (mazeData, startRow, startCol, exitRow, exitCol, playerImage, exitImage, isEnabled, moveFunc) {
-            var context = $(this).getContext("2d");
+    var mazeObj;
 
+    
+
+    $.fn.mazeBoard =
+        function (option, mazeOrSol) {
+            switch (option) {
+                default:
+                    break;
+                case "generate":
+                    var keyDownFunc = function (e) {
+                        var won = false;
+                        switch (e.which) {
+                            case 37: //left
+                                won = mazeObj.play(0, -1);
+                                break;
+                            case 38: //up
+                                won = mazeObj.play(-1, 0);
+                                break;
+                            case 39: //right
+                                won = mazeObj.play(0, 1);
+                                break;
+                            case 40: //down
+                                won = mazeObj.play(1, 0);
+                                break;
+                            default:
+                                break;
+                        }
+                        if (won) {
+                            alert("You have WON!");
+                            $(this).off("keydown");
+                        }
+                    };
+                    mazeObj = new MazeViewer(mazeOrSol, this[0]);
+                    this.keydown(keyDownFunc);
+                    break;
+            }
             return this;
         };
-    }
-})(jQuery);
+    })(jQuery);
