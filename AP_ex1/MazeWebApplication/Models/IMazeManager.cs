@@ -11,7 +11,8 @@ namespace MazeWebApplication.Models
     public interface IMazeManager
     {
         Maze GenerateMaze(String name, int rows, int cols);
-        Maze GetMaze(string name);
+        //Maze GetMaze(string name);
         IEnumerable<Maze> GetAllMazes();
+        IEnumerable<Position> GetSolution(string name, int algoId);
     }
 }

@@ -7,6 +7,7 @@ using System.Web.Http;
 using MazeWebApplication.Models;
 using MazeLib;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace MazeWebApplication.Controllers
 {
@@ -27,12 +28,21 @@ namespace MazeWebApplication.Controllers
             return list;
         }
 
-        // GET: api/Maze/5  
+        //// GET: api/Maze/5  
+        //[HttpGet]
+        //public JObject GetMaze(string name)
+        //{
+        //    return JObject.Parse(manager.GetMaze(name).ToJSON());
+        //}
+
         [HttpGet]
-        public JObject GetMaze(string name)
+        public string GetSolution(string name, int algoId)
         {
-            return JObject.Parse(manager.GetMaze(name).ToJSON());
-        }
+            IEnumerable<Position> ie = manager.GetSolution(name, algoId);
+            if (ie == null)
+                return "";
+            return JsonConvert.SerializeObject(ie);
+        } 
 
         // GET: api/Maze/mymaze?rows=5&cols=6
         [HttpGet]

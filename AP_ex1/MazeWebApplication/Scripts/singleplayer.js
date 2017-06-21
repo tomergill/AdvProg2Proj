@@ -3,6 +3,8 @@ var upKey = 38;
 var rightKey = 39;
 var downKey = 40;
 
+var nameOfMaze = null;
+
 function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
     if (!checkGameDetails(nameEle, rowsEle, colsEle, err))
         return;
@@ -20,7 +22,13 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
 
     $.getJSON(url, function (data) {
         //maze = new MazeViewer(data, canvas);
-        $("canvas").mazeBoard("generate", data);
+        if (data == null) {
+            $("#err").html("<strong>Sorry, the name of this maze was already taken. Please try another name.</strong>").css("visibility", "visible");
+            return;
+        }
+        nameOfMaze = data.Name;
+        $("title").html(data.Name);
+        $("canvas").mazeBoard("generate", data).focus();
     });
     //$("body").keydown(function (e) {
     //    switch (e.keyCode) {

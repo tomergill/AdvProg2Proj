@@ -112,41 +112,43 @@
 }
 
 (function ($) {
-    var mazeObj;
-
-    
-
+    var mazeObj = null;
+    var keyDownFunc = function (e) {
+        var won = false;
+        switch (e.which) {
+            case 37: //left
+                won = mazeObj.play(0, -1);
+                break;
+            case 38: //up
+                won = mazeObj.play(-1, 0);
+                break;
+            case 39: //right
+                won = mazeObj.play(0, 1);
+                break;
+            case 40: //down
+                won = mazeObj.play(1, 0);
+                break;
+            default:
+                break;
+        }
+        if (won) {
+            alert("You have WON!");
+            $(this).off("keydown");
+        }
+    };
     $.fn.mazeBoard =
         function (option, mazeOrSol) {
             switch (option) {
                 default:
                     break;
                 case "generate":
-                    var keyDownFunc = function (e) {
-                        var won = false;
-                        switch (e.which) {
-                            case 37: //left
-                                won = mazeObj.play(0, -1);
-                                break;
-                            case 38: //up
-                                won = mazeObj.play(-1, 0);
-                                break;
-                            case 39: //right
-                                won = mazeObj.play(0, 1);
-                                break;
-                            case 40: //down
-                                won = mazeObj.play(1, 0);
-                                break;
-                            default:
-                                break;
-                        }
-                        if (won) {
-                            alert("You have WON!");
-                            $(this).off("keydown");
-                        }
-                    };
+                    mazeObj = null;
+                    $(this).off("keydown");
                     mazeObj = new MazeViewer(mazeOrSol, this[0]);
                     this.keydown(keyDownFunc);
+                    break;
+                case "solve":
+
                     break;
             }
             return this;

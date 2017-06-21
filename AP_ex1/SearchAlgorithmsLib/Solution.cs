@@ -14,6 +14,8 @@ namespace SearchAlgorithmsLib
         /// </summary>
         private Stack<State<T>> path;
 
+        public int Count { get { return path != null ? path.Count : 0; } }
+
         /// <summary>
         /// solution constructor
         /// </summary>
