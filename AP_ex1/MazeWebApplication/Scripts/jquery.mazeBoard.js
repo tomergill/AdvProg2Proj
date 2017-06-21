@@ -15,12 +15,11 @@
         var finishedBcg = false;
 
         /* Drawing the maze's background */
-        var bcgImg = new Image(canvas.width, canvas.height);
-        bcgImg.src = "../Resources/background.jpg";
-        bcgImg.onload = function () {
+        var bcgImg = $("#bcgImg")[0];
+        //bcgImg.onload = function () {
             /*this._*/context.drawImage(bcgImg, 0, 0, canvas.width, canvas.height);
             finishedBcg = true;
-        }
+        //}
 
         var cellWidth = this._cellWidth;
         var cellHeight = this._cellHeight;
@@ -28,9 +27,9 @@
         var finishedTiles = false;
 
         /* Drawing the maze walls */
-        var wallImg = new Image(this._cellWidth, this._cellHeight);
-        wallImg.src = "../Resources/wall.png";
-        wallImg.onload = function () {
+        var wallImg = $("#wallImg")[0];
+        //wallImg.src = "../Resources/wall.png";
+        //wallImg.onload = function () {
             while (!finishedBcg);
             for (var i = 0; i < maze.Rows; i++) {
                 for (var j = 0; j < maze.Cols; j++) {
@@ -41,22 +40,20 @@
                 }
             }
             finishedTiles = true;
-        }
+        //}
 
         /* Drawing the exit */
-        var exitImg = new Image(this._cellWidth, this._cellHeight);
-        exitImg.src = "../Resources/exit.png";
-        exitImg.onload = function () {
+        var exitImg = $("#exitImg")[0];
+        //exitImg.onload = function () {
             while (!finishedBcg || !finishedTiles);
             /*this._*/context.drawImage(exitImg, maze.End.Col * cellWidth, maze.End.Row * cellHeight, cellWidth, cellHeight);
-        }
+        //}
 
-        var playerImg = new Image(cellWidth, cellHeight);
-        playerImg.src = "../Resources/player.png";
-        playerImg.onload = function () {
+        var playerImg = $("#playerImg")[0];
+        //playerImg.onload = function () {
             while (!finishedBcg || !finishedTiles);
             context.drawImage(playerImg, maze.Start.Col * cellWidth, maze.Start.Row * cellHeight, cellWidth, cellHeight);
-        }
+        //}
 
         this._playerImage = playerImg;
         this._cellImage = bcgImg;
@@ -136,6 +133,19 @@
             $(this).off("keydown");
         }
     };
+
+    var solution = null;
+    var indexOfMoveToMake = 0;
+    var timer = null;
+
+    function doAStepInSolution() {
+        if (indexOfMoveToMake >= solution.length && timer != null) {
+            clearInterval(timer);
+            return;
+        }
+        mazeObj.playerPos = solution[indexOfMoveToMake++];
+    }
+
     $.fn.mazeBoard =
         function (option, mazeOrSol) {
             switch (option) {
@@ -147,8 +157,11 @@
                     mazeObj = new MazeViewer(mazeOrSol, this[0]);
                     this.keydown(keyDownFunc);
                     break;
-                case "solve":
 
+                case "solve":
+                    solution = data;
+                    indexOfMoveToMake = 0;
+                    timer = setInterval(doAStepInSolution(), 1000);
                     break;
             }
             return this;

@@ -35,9 +35,11 @@ namespace MazeWebApplication.Controllers
         //    return JObject.Parse(manager.GetMaze(name).ToJSON());
         //}
 
+        // GET : api/Maze/mymaze?algoId=0
         [HttpGet]
         public string GetSolution(string name, int algoId)
         {
+            algoId = (algoId >= 0 && algoId <= 1) ? algoId : algoId % 2;
             IEnumerable<Position> ie = manager.GetSolution(name, algoId);
             if (ie == null)
                 return "";

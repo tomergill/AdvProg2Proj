@@ -46,3 +46,24 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
     //    }
     //});
 }
+
+function solveButtonClicked(selectEle) {
+    if (nameOfMaze == null)
+    {
+        $("#err").html("<strong>Generate maze before trying to solve, dummy!</strong>").css("visibility", "visible");
+        return;
+    }
+
+    $("#err").css("visibility", "hidden");
+    var algoId = $("#selectAlgo")[0].selectedIndex;
+    var url = "../api/Maze";
+    url += "/" + nameOfMaze + "?algoId=" + algoId;
+    $.getJSON(url, function (data) {
+        if (data == null || data == "")
+            return;
+        console.log(typeof (data));
+        console.log(data);
+        console.log(data.length);
+        $("canvas").mazeBoard("solve", data);
+    });
+}
