@@ -37,13 +37,13 @@ namespace MazeWebApplication.Controllers
 
         // GET : api/Maze/mymaze?algoId=0
         [HttpGet]
-        public string GetSolution(string name, int algoId)
+        public JArray GetSolution(string name, int algoId)
         {
             algoId = (algoId >= 0 && algoId <= 1) ? algoId : algoId % 2;
             IEnumerable<Position> ie = manager.GetSolution(name, algoId);
             if (ie == null)
-                return "";
-            return JsonConvert.SerializeObject(ie);
+                return null;
+            return JArray.FromObject(ie);
         } 
 
         // GET: api/Maze/mymaze?rows=5&cols=6

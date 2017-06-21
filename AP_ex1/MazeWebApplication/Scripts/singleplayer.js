@@ -26,6 +26,9 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
             $("#err").html("<strong>Sorry, the name of this maze was already taken. Please try another name.</strong>").css("visibility", "visible");
             return;
         }
+        if (timer) {
+            clearInterval(timer);
+        }
         nameOfMaze = data.Name;
         $("title").html(data.Name);
         $("canvas").mazeBoard("generate", data).focus();

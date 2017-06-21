@@ -58,6 +58,7 @@
         this._playerImage = playerImg;
         this._cellImage = bcgImg;
         this._playerPos = maze.Start;
+        this._exitImage = exitImg;
     }
 
     play(dRow, dCol) {
@@ -82,7 +83,12 @@
     set playerPos(newPos) {
         var context = this._canvas.getContext("2d");
         context.clearRect(this._playerPos.Col * this._cellWidth, this._playerPos.Row * this._cellHeight, this._cellWidth, this._cellHeight);
+
         context.drawImage(this._cellImage, this._playerPos.Col * this._cellWidth, this._playerPos.Row * this._cellHeight, this._cellWidth, this._cellHeight);
+
+        if (this._playerPos.Row == this._maze.End.Row && this._playerPos.Col == this._maze.End.Col)
+            context.drawImage(this._exitImage, this._maze.End.Col * this._cellWidth, this._maze.End.Row * this._cellHeight, this._cellWidth, this._cellHeight);
+
         this._playerPos = newPos;
         context.drawImage(this._playerImage, this._playerPos.Col * this._cellWidth, this._playerPos.Row * this._cellHeight, this._cellWidth, this._cellHeight);
     }
@@ -107,7 +113,7 @@
         return this._cellHeight;
     }
 }
-
+var timer = null;
 (function ($) {
     var mazeObj = null;
     var keyDownFunc = function (e) {
@@ -136,11 +142,13 @@
 
     var solution = null;
     var indexOfMoveToMake = 0;
-    var timer = null;
+    
 
     function doAStepInSolution() {
-        if (indexOfMoveToMake >= solution.length && timer != null) {
-            clearInterval(timer);
+        //alert("index is " + indexOfMoveToMake);
+        if (indexOfMoveToMake >= solution.length && !(timer === null)) {
+            window.clearInterval(timer);
+            timer = null;
             return;
         }
         mazeObj.playerPos = solution[indexOfMoveToMake++];
@@ -159,9 +167,10 @@
                     break;
 
                 case "solve":
-                    solution = data;
+                    solution = mazeOrSol;
                     indexOfMoveToMake = 0;
-                    timer = setInterval(doAStepInSolution(), 1000);
+                    $(this).off("keydown");
+                    timer = window.setInterval(doAStepInSolution, 750);
                     break;
             }
             return this;
