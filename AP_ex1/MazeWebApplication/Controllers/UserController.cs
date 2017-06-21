@@ -27,6 +27,7 @@ namespace MazeWebApplication.Controllers
         }
 
         // GET: api/User/5
+        [Route("api/User/{id}/{passWord}")]
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> GetUser(string id,string passWord)
         {

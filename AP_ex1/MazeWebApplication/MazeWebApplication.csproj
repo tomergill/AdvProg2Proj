@@ -126,8 +126,11 @@
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\mazeDraw.js" />
+    <Content Include="Scripts\NavigationBarScript.js" />
     <Content Include="Scripts\singleplayer.js" />
+    <Content Include="Views\LoaderSymbol.css" />
     <Content Include="Views\Login.html" />
+    <Content Include="Views\NavigationBar.html" />
     <Content Include="Views\singleplayer.html" />
     <Content Include="Views\Clients.html" />
     <Content Include="Web.config" />

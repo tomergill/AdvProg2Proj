@@ -118,6 +118,7 @@ function RegisterCompleted(event) {
         $.post("../api/User", data)
             .done(function (user) {
                 alert("success");
+                window.location.replace("singleplayer.html");
             })
             .fail(function (jqXHR, status, error) {
                 console.error("post failed, status: " + status + ", error: " + error);

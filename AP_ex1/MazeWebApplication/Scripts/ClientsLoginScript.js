@@ -57,21 +57,25 @@ $(document).ready(function () {
 
 
 function LoginCompleted(event) {
+    $("#loader").show();
     event.preventDefault();
     if (InputCheck()) {
         var data = {
             UserName: $("#userName").val(),
-            Password: $("#password").val(),
+            Password: $("#password").val()
         };
 
-        var url = "../api/User" + "/" + data.userName;
-        $.get(url, data)
+        var url = "../api/User/" + data.UserName + "/" + data.Password;
+        $.get(url, data.UserName, data.Password)
             .done(function (user) {
                 alert("success");
+                window.location.replace("singleplayer.html");
+                $("#loader").hide();
             })
             .fail(function (jqXHR, status, error) {
                 console.error("post failed, status: " + status + ", error: " + error);
                 alert("post failed, status: " + status + ", error: " + error);
+                $("#loader").hide();
             });
     }
 }
