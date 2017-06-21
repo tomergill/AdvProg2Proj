@@ -11,13 +11,14 @@ namespace MazeWebApplication.Migrations
                 "dbo.Users",
                 c => new
                     {
-                        userName = c.String(nullable: false, maxLength: 128),
-                        password = c.String(nullable: false),
-                        wins = c.Int(nullable: false),
-                        losses = c.Int(nullable: false),
-                        firstSignedIn = c.DateTime(nullable: false),
+                        UserName = c.String(nullable: false, maxLength: 128),
+                        Password = c.String(nullable: false),
+                        Wins = c.Int(nullable: false),
+                        Losses = c.Int(nullable: false),
+                        EmailAdress = c.String(nullable: false),
+                        FirstSignedIn = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.userName);
+                .PrimaryKey(t => t.UserName);
             
         }
         

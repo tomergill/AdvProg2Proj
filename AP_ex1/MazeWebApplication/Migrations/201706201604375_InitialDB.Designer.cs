@@ -13,7 +13,7 @@ namespace MazeWebApplication.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706191659279_InitialDB"; }
+            get { return "201706201604375_InitialDB"; }
         }
         
         string IMigrationMetadata.Source

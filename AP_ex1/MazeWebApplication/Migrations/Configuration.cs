@@ -4,7 +4,6 @@ namespace MazeWebApplication.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MazeWebApplication.Models.MazeWebApplicationContext>
     {
@@ -27,9 +26,8 @@ namespace MazeWebApplication.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
             context.Users.AddOrUpdate(
-                new Users { userName = "UNBEATABLE", password = "123", wins = 1000000, losses = 0, firstSignedIn = DateTime.Today }
+                
                 );
         }
     }

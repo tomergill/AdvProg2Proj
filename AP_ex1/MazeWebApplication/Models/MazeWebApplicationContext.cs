@@ -19,6 +19,6 @@ namespace MazeWebApplication.Models
         {
         }
 
-        public System.Data.Entity.DbSet<MazeWebApplication.Models.Users> Users { get; set; }
+        public System.Data.Entity.DbSet<MazeWebApplication.Models.User> Users { get; set; }
     }
 }

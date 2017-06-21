@@ -105,7 +105,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\ClientsScript.js" />
+    <Content Include="Scripts\ClientsLoginScript.js" />
+    <Content Include="Scripts\ClientsRegistrationScript.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\mazeBoard.js" />
@@ -126,6 +127,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\mazeDraw.js" />
     <Content Include="Scripts\singleplayer.js" />
+    <Content Include="Views\Login.html" />
     <Content Include="Views\singleplayer.html" />
     <Content Include="Views\Clients.html" />
     <Content Include="Web.config" />
@@ -133,19 +135,19 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MazeController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706191659279_InitialDB.cs" />
-    <Compile Include="Migrations\201706191659279_InitialDB.Designer.cs">
-      <DependentUpon>201706191659279_InitialDB.cs</DependentUpon>
+    <Compile Include="Migrations\201706201604375_InitialDB.cs" />
+    <Compile Include="Migrations\201706201604375_InitialDB.Designer.cs">
+      <DependentUpon>201706201604375_InitialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\MazeWebApplicationContext.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\IMazeManager.cs" />
     <Compile Include="Models\MazeManager.cs" />
-    <Compile Include="Models\MazeWebApplicationContext.cs" />
-    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,8 +165,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706191659279_InitialDB.resx">
-      <DependentUpon>201706191659279_InitialDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706201604375_InitialDB.resx">
+      <DependentUpon>201706201604375_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
