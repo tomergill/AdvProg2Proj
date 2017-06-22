@@ -128,6 +128,7 @@
     <Content Include="Scripts\mazeDraw.js" />
     <Content Include="Scripts\NavigationBarScript.js" />
     <Content Include="Scripts\singleplayer.js" />
+    <Content Include="Views\HomePage.html" />
     <Content Include="Views\LoaderSymbol.css" />
     <Content Include="Views\Login.html" />
     <Content Include="Views\NavigationBar.html" />
