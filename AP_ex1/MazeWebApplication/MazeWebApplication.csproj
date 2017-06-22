@@ -128,10 +128,12 @@
     <Content Include="Scripts\mazeDraw.js" />
     <Content Include="Scripts\NavigationBarScript.js" />
     <Content Include="Scripts\singleplayer.js" />
+    <Content Include="Scripts\UserRankingScript.js" />
     <Content Include="Views\HomePage.html" />
     <Content Include="Views\LoaderSymbol.css" />
     <Content Include="Views\Login.html" />
     <Content Include="Views\NavigationBar.html" />
+    <Content Include="Views\Ranking.html" />
     <Content Include="Views\singleplayer.html" />
     <Content Include="Views\Clients.html" />
     <Content Include="Web.config" />
