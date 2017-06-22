@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> User Login </title>
+
+    <script src="../Scripts/jquery-3.1.1.min.js"></script>
+    <!--<script src="../Scripts/bootstrap.min.js"></script>-->
+    <script src="../Scripts/jquery.validate.min.js"></script>
+    <script src="../Scripts/ClientsLoginScript.js"></script>
+
+    <link href="LoaderSymbol.css" rel="stylesheet" />
+
+    <script src="../Scripts/NavigationBarScript.js"></script>
+    <link rel="stylesheet" href="../Scripts/bootstrap.min.js" /><!--https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">‏-->
+
+</head>
+<body>
+    <h1> User Login </h1>
+
+    <div id="navbar">
+        <script src="NavigationBarScript.js"></script>
+    </div>
+    
+    <form class="form-group" id="UserLogin">
+        <div class="form-group">
+            User Name: <input id="userName" name="userName" required />
+        </div>
+        <div class="form-group">
+            Password: <input id="password" name="password" required />
+        </div>
+        <div>
+            <input type="button" value="Sign Up" onclick="LoginCompleted(event)"/>
+        </div>
+        <div>
+            <a href="Clients.html"> Do not have a user? register now! </a>
+        </div>
+        <div id="loader" class="loader"></div>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $("#loader").hide();
+        });
+    </script>
+</body>
+</html>

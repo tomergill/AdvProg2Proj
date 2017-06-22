@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> User Registration </title>
+    <script src="../Scripts/jquery-3.1.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
+    <script src="../Scripts/ClientsRegistrationScript.js"></script>
+</head>
+<body>
+    <form class="form-group" id="UserRegistration">
+        <div class="form-group">
+            User Name: <input id="userName" name="userName" required/>
+        </div>
+        <div class="form-group">
+            Password: <input id="password" name="password" required/>
+        </div>
+        <div class="form-group">
+            Password Validation: <input id="validateUserName" name="validateUserName" required/>
+        </div>
+        <div class="form-group">
+            Email Adress: <input id="emailAdress" type="email" name="emailAdress" required/>
+        </div>
+        <div>
+            <input type="button" value="Sign Up" onclick="RegisterCompleted(event)"/>
+        </div>
+        <!--
+        <button class="btn" value="Sign Up"/>
+            -->
+</form>
+</body>
+</html>
+
