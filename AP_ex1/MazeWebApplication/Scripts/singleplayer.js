@@ -29,25 +29,14 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
         if (timer) {
             clearInterval(timer);
         }
+
+        //$("canvas")[0].setAttribute("width", $("canvas")[0].getAttribute("height") * data.Cols / data.Rows);
+        //alert($("canvas")[0].getAttribute("width"));
+
         nameOfMaze = data.Name;
         $("title").html(data.Name);
         $("canvas").mazeBoard("generate", data).focus();
     });
-    //$("body").keydown(function (e) {
-    //    switch (e.keyCode) {
-    //        case leftKey:
-
-    //            break;
-    //        case upKey:
-    //            break;
-    //        case rightKey:
-    //            break;
-    //        case downKey:
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //});
 }
 
 function solveButtonClicked(selectEle) {
