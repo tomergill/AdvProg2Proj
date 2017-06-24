@@ -9,6 +9,9 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
     if (!checkGameDetails(nameEle, rowsEle, colsEle, err))
         return;
 
+    $("#loader").show();
+    event.preventDefault();
+
     var name = nameEle.value;
     var rows = parseInt(rowsEle.value);
     var cols = parseInt(colsEle.value);
@@ -29,7 +32,7 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
         if (timer) {
             clearInterval(timer);
         }
-
+        $("#loader").hide();
         //$("canvas")[0].setAttribute("width", $("canvas")[0].getAttribute("height") * data.Cols / data.Rows);
         //alert($("canvas")[0].getAttribute("width"));
 

@@ -13,14 +13,19 @@
     <!--<script src="../Scripts/mazeDraw.js"></script>-->
     <script src="../Scripts/jquery.mazeBoard.js"></script>
     <script src="../Scripts/singleplayer.js"> </script>
+    <link href="LoaderSymbol.css" rel="stylesheet" />
+
+    <script src="../Scripts/NavigationBarScript.js"></script>
 </head>
 <body>
-    
+    <div id="navbar">
+        <script src="../Scripts/NavigationBarScript.js"></script>
+    </div>
     <div class="container body-content">
         <h2>Single Player Game</h2><hr />
         <div class="col-sm-4 form-horizontal">
             <div class="form-group">
-                <label id="l1" for="mazeName" class="col-sm-3 control-label myLabel">Name</label>
+                <label id="l1" for="mazeName" class="col-sm-3 control-label">Name</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="mazeName" />
                 </div>
@@ -48,7 +53,7 @@
 
             <div class="form-group" >
                 <label for="selectAlgo" class="col-sm-5 control-label">Solve Algorithm</label>
-                <select class="form-control col-sm-7" id="selectAlgo" style="width: auto">
+                <select class="form-control col-sm-7" id="selectAlgo">
                     <option>BFS</option>
                     <option>DFS</option>
                 </select>
@@ -56,6 +61,7 @@
             <button id="slvBtn" class="btn btn-default" onclick="solveButtonClicked()">Solve Game</button>
         </div>
         <div class="col-sm-8 text-center">
+            <div id="loader" class="loader" style="visibility: visible"></div>
             <canvas id="mazeCanvas" tabindex="1" class="maze-board" width="600"
                     height="600"></canvas>
         </div>

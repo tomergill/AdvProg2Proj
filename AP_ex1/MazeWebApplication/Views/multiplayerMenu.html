@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Multiplayer</title>
+
+    <link href="../Content/maze-menu.css" rel="stylesheet" />
+
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+
+
+    <script src="../Scripts/form-checker.js"> </script>
+    <script src="../Scripts/knockout-3.4.2.js"></script>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <script src="../Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container body-content">
+        <h2>Multi Player Game</h2><hr />
+
+        <div class="col-sm-4 form-horizontal">
+            <h3>Join an exisiting game</h3><br />
+
+            <div class="form-group">
+                <label for="rfrshBtn" class="col-sm-5 control-label" style="padding-right: 5px"> Select Game: </label>
+                <button id="rfrshBtn" class="btn btn-sm btn-default col-sm-7" style="width: auto" onclick="vm.getGames()"><span class="glyphicon glyphicon-refresh"></span></button>
+            </div>
+            <div class="form-group">
+                <label for="selectGame" class="col-sm-1 control-label" style="padding-right: 5px; visibility: hidden"> Select Game: </label>
+                <select class="form-control col-sm-11" id="selectGame" data-bind="options: games">
+                    <!--<option data-bind="text: toString()"></option>-->
+                </select>
+            </div>
+            <button id="joinBtn" class="btn btn-default" onclick="joinButtonClicked()">Join Game</button>
+            <hr />
+
+        <h3>Start a new game</h3><br />
+            <div class="form-group">
+                <label id="l1" for="mazeName" class="col-sm-3 control-label">Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="mazeName" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mazeRows" class="col-sm-3 control-label">Rows</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" id="mazeRows" min="1" max="100" value="5" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mazeCols" class="col-sm-3 control-label">Columns</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" id="mazeCols" min="1" max="100" value="5" />
+                </div>
+            </div>
+            <button id="startBtn" class="btn btn-default" onclick="startButtonClicked(mazeName, mazeRows, mazeCols, err)">Start Maze</button>
+            <br />
+            <br />
+            <div id="err" class="alert alert-danger" style="visibility: hidden">
+                <strong>
+                    error! sknaska knsdknc slac sancsklc sknv sm vsn vsmc kn,sac mlckns clm
+                </strong>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Scripts/multiplayerMenu.js"></script>
+</body>
+</html>

@@ -17,15 +17,10 @@ namespace MazeWebApplication.Controllers
 
         // GET: api/Maze
         [HttpGet]
-        public IEnumerable<JObject> GetAllMazes()
+        public IEnumerable<string> GetAllMazes()
         {
-            IEnumerable<Maze> mazes = manager.GetAllMazes();
-            List<JObject> list = new List<JObject>();
-            foreach (Maze maze in mazes)
-            {
-                list.Add(JObject.Parse(maze.ToJSON()));
-            }
-            return list;
+            return manager.ListGames().Select(x => x.MazePlayed.Name);
+                //(game, res) => game.MazePlayed.Name).ToList();
         }
 
         //// GET: api/Maze/5  

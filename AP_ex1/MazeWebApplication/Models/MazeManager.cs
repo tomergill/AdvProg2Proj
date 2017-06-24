@@ -10,7 +10,7 @@ namespace MazeWebApplication.Models
 {
     public class MazeManager : IMazeManager
     {
-        private static Dictionary<String, Maze> mazes = new Dictionary<string, Maze>();
+        private static IDictionary<String, Maze> mazes = new Dictionary<string, Maze>();
         private IMazeGenerator generator = new DFSMazeGenerator();
         private static Dictionary<String, List<Position>> solutions = new Dictionary<string, List<Position>>();
 

@@ -10,9 +10,10 @@ namespace MazeWebApplication.Models
 {
     public interface IMazeManager
     {
+        //singleplayer
         Maze GenerateMaze(String name, int rows, int cols);
         //Maze GetMaze(string name);
         IEnumerable<Maze> GetAllMazes();
-        IEnumerable<Position> GetSolution(string name, int algoId);
+        IEnumerable<Position> GetSolution(string name, int algoId);        
     }
 }
