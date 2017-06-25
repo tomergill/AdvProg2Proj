@@ -75,10 +75,12 @@
                 Col: newCol
             };
             this.playerPos = newPos;
-            return (this._maze.End.Row == this._playerPos.Row && this._maze.End.Col == this._playerPos.Col);
+            return true;
         }
         return false;
     }
+
+    won() { return (this._maze.End.Row == this._playerPos.Row && this._maze.End.Col == this._playerPos.Col);}
 
     set playerPos(newPos) {
         var context = this._canvas.getContext("2d");
@@ -112,33 +114,44 @@
     get cellHeight() {
         return this._cellHeight;
     }
+
+    get mazeName() {
+        return this._maze.Name;
+    }
 }
 var timer = null;
 (function ($) {
     var mazeObj = null;
+    var hubObj = null;
     var keyDownFunc = function (e) {
-        var won = false;
+        var isLegalMove = false;
         switch (e.which) {
             case 37: //left
-                won = mazeObj.play(0, -1);
+                isLegalMove = mazeObj.play(0, -1);
                 break;
             case 38: //up
-                won = mazeObj.play(-1, 0);
+                isLegalMove = mazeObj.play(-1, 0);
                 break;
             case 39: //right
-                won = mazeObj.play(0, 1);
+                isLegalMove = mazeObj.play(0, 1);
                 break;
             case 40: //down
-                won = mazeObj.play(1, 0);
+                isLegalMove = mazeObj.play(1, 0);
                 break;
             default:
                 break;
         }
-        if (won) {
+        if (mazeObj.won()) {
             alert("You have WON!");
             $(this).off("keydown");
         }
+        return isLegalMove;
     };
+
+    var keyDownFuncForMultiplayer = function (e) {
+        if (keyDownFunc(e))
+            hub.server.playMove(mazeObj.mazeName, e.which);
+    }
 
     var solution = null;
     var indexOfMoveToMake = 0;
@@ -155,22 +168,66 @@ var timer = null;
     }
 
     $.fn.mazeBoard =
-        function (option, mazeOrSol) {
+        function (option, mazeOrSolOrDir, hub) {
+            if (option == undefined || mazeOrSolOrDir == undefined)
+                return;
             switch (option) {
                 default:
                     break;
+
+                /* singleplayer */
                 case "generate":
                     mazeObj = null;
                     $(this).off("keydown");
-                    mazeObj = new MazeViewer(mazeOrSol, this[0]);
+                    mazeObj = new MazeViewer(mazeOrSolOrDir, this[0]);
                     this.keydown(keyDownFunc);
                     break;
-
                 case "solve":
-                    solution = mazeOrSol;
+                    solution = mazeOrSolOrDir;
                     indexOfMoveToMake = 0;
                     $(this).off("keydown");
                     timer = window.setInterval(doAStepInSolution, 750);
+                    break;
+
+                /* multiplayer */
+                case "start": //your maze board
+                    if (hub == undefined)
+                        return;
+                    hubObj = hub;
+                    mazeObj = null;
+                    $(this).off("keydown");
+                    mazeObj = new MazeViewer(mazeOrSolOrDir, this[0]);
+                    this.keydown(keyDownFuncForMultiplayer);
+                    break;
+                case "other": //start other maze board
+                    mazeObj = null;
+                    $(this).off("keydown");
+                    mazeObj = new MazeViewer(mazeOrSolOrDir, this[0]);
+                    break;
+                case "play": //other plays
+                    if (mazeObj === null)
+                        return;
+                    switch (mazeOrSolOrDir) {
+                        case 37: //left
+                            mazeObj.play(0, -1);
+                            break;
+                        case 38: //up
+                            mazeObj.play(-1, 0);
+                            break;
+                        case 39: //right
+                            mazeObj.play(0, 1);
+                            break;
+                        case 40: //down
+                            mazeObj.play(1, 0);
+                            break;
+                        default:
+                            break;
+                    }
+                    if (mazeObj.won())
+                    {
+                        alert("You have lost :(");
+                        $("canvas").off("keydown");
+                    }
                     break;
             }
             return this;

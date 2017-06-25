@@ -1,4 +1,13 @@
-﻿var ViewModel = function () {
+﻿var hub = $.connection.gamesHub;
+
+hub.client.startGame = function (maze) {
+    $("#mycanvas").mazeBoard("start", maze, hub);
+    $("#othercanvas").mazeBoard("other", maze);
+
+};
+
+
+var ViewModel = function () {
     var self = this; // make 'this' available to subfunctions or closures
     this.games = ko.observableArray(); // enables data binding
     var url = "../api/Maze";

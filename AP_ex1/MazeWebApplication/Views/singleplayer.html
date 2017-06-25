@@ -15,10 +15,10 @@
     <script src="../Scripts/singleplayer.js"> </script>
     <link href="LoaderSymbol.css" rel="stylesheet" />
 
-    <script src="../Scripts/NavigationBarScript.js"></script>
+    <!--<script src="../Scripts/NavigationBarScript.js"></script>-->
 </head>
 <body>
-    <div id="navbar">
+    <div id="navbar" class="page-header">
         <script src="../Scripts/NavigationBarScript.js"></script>
     </div>
     <div class="container body-content">
@@ -46,9 +46,9 @@
             <br/>
             <br />
             <div id="err" class="alert alert-danger" style="visibility: hidden">
-                <strong>
+                <!--<strong>
                     error! sknaska knsdknc slac sancsklc sknv sm vsn vsmc kn,sac mlckns clm
-                </strong>
+                </strong>-->
             </div>
 
             <div class="form-group" >
@@ -61,7 +61,7 @@
             <button id="slvBtn" class="btn btn-default" onclick="solveButtonClicked()">Solve Game</button>
         </div>
         <div class="col-sm-8 text-center">
-            <div id="loader" class="loader" style="visibility: visible"></div>
+            <div id="loader" class="loader col-sm-4" hidden="hidden"></div>
             <canvas id="mazeCanvas" tabindex="1" class="maze-board" width="600"
                     height="600"></canvas>
         </div>

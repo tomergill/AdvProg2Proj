@@ -153,13 +153,13 @@
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\mazeDraw.js" />
-    <Content Include="Scripts\multiplayerMenu.js" />
+    <Content Include="Scripts\multiplayer.js" />
     <Content Include="Scripts\NavigationBarScript.js" />
     <Content Include="Scripts\singleplayer.js" />
     <Content Include="Views\HomePage.html" />
     <Content Include="Views\LoaderSymbol.css" />
     <Content Include="Views\Login.html" />
-    <Content Include="Views\multiplayerMenu.html" />
+    <Content Include="Views\multiplayer.html" />
     <Content Include="Views\NavigationBar.html" />
     <Content Include="Views\singleplayer.html" />
     <Content Include="Views\Clients.html" />

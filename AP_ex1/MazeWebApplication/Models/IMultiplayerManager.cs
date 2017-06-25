@@ -14,7 +14,7 @@ namespace MazeWebApplication.Models
         bool StartGame(string name, int rows, int cols, string id);
         MazeGame JoinGame(string name, string id);
         //void Play(string name, Direction dir, int id);
-        string GetOtherPlayerId(string id); //for play
+        string GetOtherPlayerId(string id, string name); //for play
         string CloseGame(string name, string id);
     }
 }

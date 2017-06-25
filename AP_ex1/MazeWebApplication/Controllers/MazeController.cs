@@ -16,12 +16,12 @@ namespace MazeWebApplication.Controllers
         private static IMazeManager manager = new MazeManager();
 
         // GET: api/Maze
-        [HttpGet]
-        public IEnumerable<string> GetAllMazes()
-        {
-            return manager.ListGames().Select(x => x.MazePlayed.Name);
-                //(game, res) => game.MazePlayed.Name).ToList();
-        }
+        //[HttpGet]
+        //public IEnumerable<string> GetAllMazes()
+        //{
+        //    return manager.ListGames().Select(x => x.MazePlayed.Name);
+        //        //(game, res) => game.MazePlayed.Name).ToList();
+        //}
 
         //// GET: api/Maze/5  
         //[HttpGet]

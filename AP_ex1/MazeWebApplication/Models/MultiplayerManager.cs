@@ -11,17 +11,15 @@ namespace MazeWebApplication.Models
     {
         private static IDictionary<string, MazeGame> games = new Dictionary<string, MazeGame>();
 
-        public string GetOtherPlayerId(String id)
+        public string GetOtherPlayerId(string name, String id)
         {
-            if (id == null)
+            if (id == null || !games.ContainsKey(name))
                 return null;
-            MazeGame mg = games.Values.Where((game, x) => game.Player1Id == id || game.Player2Id == id).FirstOrDefault();
-            if (mg == null)
-                return null;
-            return mg.GetOtherPlayerId(id);
+            //MazeGame mg = games.Values.Where((game, x) => game.Player1Id == id || game.Player2Id == id).FirstOrDefault();
+            return games[name].GetOtherPlayerId(id);
         }
 
-        public MazeGame JoinGame(string name, string id)
+        public MazeGame JoinGame(string id, string name)
         {
             if (!games.ContainsKey(name) || games[name].Player2Id != null)
                 return null; //game is full

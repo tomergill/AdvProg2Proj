@@ -7,8 +7,6 @@
     <link href="../Content/maze-menu.css" rel="stylesheet" />
 
     <script src="../Scripts/jquery-3.1.1.js"></script>
-
-
     <script src="../Scripts/form-checker.js"> </script>
     <script src="../Scripts/knockout-3.4.2.js"></script>
     <link href="../Content/bootstrap.css" rel="stylesheet" />
@@ -62,8 +60,20 @@
                 </strong>
             </div>
         </div>
+        <div class="col-sm-8 text-center">
+            <div class="col-sm-4">
+                <label class="control-label col-sm-3">Your Board:</label>
+                <canvas id="mycanvas" tabindex="1" class="maze-board" width="400"
+                        height="400"></canvas>
+            </div>
+            <div class="col-sm-4">
+                <label class="control-label col-sm-3">Other player's Board:</label>
+                <canvas id="othercanvas" tabindex="1" class="maze-board" width="400"
+                        height="400"></canvas>
+            </div>
+        </div>
     </div>
 
-    <script src="../Scripts/multiplayerMenu.js"></script>
+    <script src="../Scripts/multiplayer.js"></script>
 </body>
 </html>

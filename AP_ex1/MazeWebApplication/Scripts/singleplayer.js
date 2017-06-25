@@ -25,19 +25,22 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
 
     $.getJSON(url, function (data) {
         //maze = new MazeViewer(data, canvas);
+        $("#loader").hide();
         if (data == null) {
             $("#err").html("<strong>Sorry, the name of this maze was already taken. Please try another name.</strong>").css("visibility", "visible");
             return;
         }
+        $("#err").html("").css("visibility", "hidden");
         if (timer) {
             clearInterval(timer);
         }
-        $("#loader").hide();
+        //$("#loader").hide();
         //$("canvas")[0].setAttribute("width", $("canvas")[0].getAttribute("height") * data.Cols / data.Rows);
         //alert($("canvas")[0].getAttribute("width"));
 
         nameOfMaze = data.Name;
         $("title").html(data.Name);
+
         $("canvas").mazeBoard("generate", data).focus();
     });
 }
@@ -48,17 +51,22 @@ function solveButtonClicked(selectEle) {
         $("#err").html("<strong>Generate maze before trying to solve, dummy!</strong>").css("visibility", "visible");
         return;
     }
-
+    $("#loader").show();
     $("#err").css("visibility", "hidden");
     var algoId = $("#selectAlgo")[0].selectedIndex;
     var url = "../api/Maze";
     url += "/" + nameOfMaze + "?algoId=" + algoId;
     $.getJSON(url, function (data) {
-        if (data == null || data == "")
+        $("#loader").hide();
+        if (data == null || data == "") {
+            $("#err").html("<strong>Connection error.</strong>").css("visibility", "visible");
             return;
-        console.log(typeof (data));
-        console.log(data);
-        console.log(data.length);
+        }
+        //console.log(typeof (data));
+        //console.log(data);
+        //console.log(data.length);
+        $("#loader").hide();
+        $("#err").html("").css("visibility", "hidden");
         $("canvas").mazeBoard("solve", data);
     });
 }
