@@ -17,7 +17,7 @@
     };
 
     hub.client.play = function (direction) {
-        $("#othercanvas")[0].mazeBoard("play", direction);
+        $("#othercanvas").mazeBoard("play", direction);
     }
 
     hub.client.closeGame = function (name) {

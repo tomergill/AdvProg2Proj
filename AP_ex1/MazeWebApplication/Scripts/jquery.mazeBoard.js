@@ -145,7 +145,7 @@ var timer = null;
         }
         if (mazeObj.won()) {
             alert("You have WON!");
-            $(this).off("keydown");
+            $("canvas").off("keydown");
         }
         return isLegalMove;
     };
@@ -153,8 +153,11 @@ var timer = null;
     var keyDownFuncForMultiplayer = function (e) {
         if (keyDownFunc(e)) { //if this move was legal
             hubObj.server.playMove(mazeObj.mazeName, e.which); //notify server about move
-            if (mazeObj.won())
+            if (mazeObj.won()) {
+
                 hubObj.server.closeGame(mazeObj.mazeName);
+                hubObject = otherMaze = mazeObj = null;
+            }
         }
     }
 
@@ -236,6 +239,7 @@ var timer = null;
                     if (otherMaze.won()) {
                         alert("You have lost :(");
                         $("canvas").off("keydown");
+                        hubObject = otherMaze = mazeObj = null;
                     }
                     break;
             }
