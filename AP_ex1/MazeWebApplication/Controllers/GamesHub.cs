@@ -5,6 +5,7 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using MazeWebApplication.Models;
 using MazeLib;
+using Newtonsoft.Json.Linq;
 
 namespace MazeWebApplication
 {
@@ -17,13 +18,13 @@ namespace MazeWebApplication
             return manager.StartGame(name, rows, cols, Context.ConnectionId);
         }
 
-        public Maze JoinGame(string name)
+        public JObject JoinGame(string name)
         {
             MazeGame m = manager.JoinGame(name, Context.ConnectionId);
             if (m == null)
                 return null;
-            Clients.Client(m.GetOtherPlayerId(Context.ConnectionId)).startGame(m.MazePlayed);
-            return m.MazePlayed;
+            Clients.Client(m.GetOtherPlayerId(Context.ConnectionId)).startGame(JObject.Parse(m.MazePlayed.ToJSON()));
+            return JObject.Parse(m.MazePlayed.ToJSON());
         }
 
         public IEnumerable<string> GetGames()
@@ -38,7 +39,7 @@ namespace MazeWebApplication
                 Clients.Client(otherId).play(direction);
         }
 
-        public void Close(string name)
+        public void CloseGame(string name)
         {
             manager.CloseGame(name, Context.ConnectionId);
         }

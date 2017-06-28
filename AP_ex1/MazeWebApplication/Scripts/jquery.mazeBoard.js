@@ -18,7 +18,7 @@
         var bcgImg = $("#bcgImg")[0];
         //bcgImg.onload = function () {
             /*this._*/context.drawImage(bcgImg, 0, 0, canvas.width, canvas.height);
-            finishedBcg = true;
+        finishedBcg = true;
         //}
 
         var cellWidth = this._cellWidth;
@@ -30,29 +30,29 @@
         var wallImg = $("#wallImg")[0];
         //wallImg.src = "../Resources/wall.png";
         //wallImg.onload = function () {
-            while (!finishedBcg);
-            for (var i = 0; i < maze.Rows; i++) {
-                for (var j = 0; j < maze.Cols; j++) {
-                    if (repr[i * maze.Cols + j] == 1)
+        while (!finishedBcg);
+        for (var i = 0; i < maze.Rows; i++) {
+            for (var j = 0; j < maze.Cols; j++) {
+                if (repr[i * maze.Cols + j] == 1)
                     /*this._*/context.drawImage(wallImg, j * cellWidth, i * cellHeight, cellWidth, cellHeight);
-                    else
-                        context.drawImage(bcgImg, j * cellWidth, i * cellHeight, cellWidth, cellHeight);
-                }
+                else
+                    context.drawImage(bcgImg, j * cellWidth, i * cellHeight, cellWidth, cellHeight);
             }
-            finishedTiles = true;
+        }
+        finishedTiles = true;
         //}
 
         /* Drawing the exit */
         var exitImg = $("#exitImg")[0];
         //exitImg.onload = function () {
-            while (!finishedBcg || !finishedTiles);
+        while (!finishedBcg || !finishedTiles);
             /*this._*/context.drawImage(exitImg, maze.End.Col * cellWidth, maze.End.Row * cellHeight, cellWidth, cellHeight);
         //}
 
         var playerImg = $("#playerImg")[0];
         //playerImg.onload = function () {
-            while (!finishedBcg || !finishedTiles);
-            context.drawImage(playerImg, maze.Start.Col * cellWidth, maze.Start.Row * cellHeight, cellWidth, cellHeight);
+        while (!finishedBcg || !finishedTiles);
+        context.drawImage(playerImg, maze.Start.Col * cellWidth, maze.Start.Row * cellHeight, cellWidth, cellHeight);
         //}
 
         this._playerImage = playerImg;
@@ -65,11 +65,11 @@
         var newRow = this._playerPos.Row + dRow;
         var newCol = this._playerPos.Col + dCol;
 
+        /* out of bounds */
         if (newRow < 0 || newRow >= this._maze.Rows || newCol < 0 || newCol >= this._maze.Cols)
             return false;
 
-        if (this._maze.Maze[newCol + newRow * this._maze.Cols] == '0')
-        {
+        if (this._maze.Maze[newCol + newRow * this._maze.Cols] == '0') {
             var newPos = {
                 Row: newRow,
                 Col: newCol
@@ -77,10 +77,10 @@
             this.playerPos = newPos;
             return true;
         }
-        return false;
+        return false; // cell is blocked
     }
 
-    won() { return (this._maze.End.Row == this._playerPos.Row && this._maze.End.Col == this._playerPos.Col);}
+    won() { return (this._maze.End.Row == this._playerPos.Row && this._maze.End.Col == this._playerPos.Col); }
 
     set playerPos(newPos) {
         var context = this._canvas.getContext("2d");
@@ -119,7 +119,9 @@
         return this._maze.Name;
     }
 }
+
 var timer = null;
+
 (function ($) {
     var mazeObj = null;
     var hubObj = null;
@@ -149,16 +151,18 @@ var timer = null;
     };
 
     var keyDownFuncForMultiplayer = function (e) {
-        if (keyDownFunc(e))
-            hub.server.playMove(mazeObj.mazeName, e.which);
+        if (keyDownFunc(e)) { //if this move was legal
+            hub.server.playMove(mazeObj.mazeName, e.which); //notify server about move
+            if (mazeObj.won())
+                hub.server.closeGame(mazeObj.mazeName);
+        }
     }
 
     var solution = null;
     var indexOfMoveToMake = 0;
-    
+
 
     function doAStepInSolution() {
-        //alert("index is " + indexOfMoveToMake);
         if (indexOfMoveToMake >= solution.length && !(timer === null)) {
             window.clearInterval(timer);
             timer = null;
@@ -169,8 +173,14 @@ var timer = null;
 
     $.fn.mazeBoard =
         function (option, mazeOrSolOrDir, hub) {
-            if (option == undefined || mazeOrSolOrDir == undefined)
-                return;
+            if (option == undefined || mazeOrSolOrDir == undefined) {
+                if (option == "close" && mazeObj != null && hubObj != null) {
+                    hub.server.closeGame(mazeObj.mazeName);
+                    $(this).off("keydown");
+                    mazeObj = null;
+                    hub = null;
+                }
+            }
             switch (option) {
                 default:
                     break;
@@ -223,8 +233,7 @@ var timer = null;
                         default:
                             break;
                     }
-                    if (mazeObj.won())
-                    {
+                    if (mazeObj.won()) {
                         alert("You have lost :(");
                         $("canvas").off("keydown");
                     }
@@ -232,4 +241,4 @@ var timer = null;
             }
             return this;
         };
-    })(jQuery);
+})(jQuery);

@@ -6,3 +6,8 @@ select {
     text-align: left !important;
     width: auto !important;
 }
+
+canvas {
+    border-color: black !important;
+    border-width: thin !important;
+}

@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using MazeLib;
 using MazeGeneratorLib;
+using System.Collections.Concurrent;
 
 namespace MazeWebApplication.Models
 {
     public class MultiplayerManager : IMultiplayerManager
     {
-        private static IDictionary<string, MazeGame> games = new Dictionary<string, MazeGame>();
+        private static IDictionary<string, MazeGame> games = new ConcurrentDictionary<string, MazeGame>();
 
-        public string GetOtherPlayerId(string name, String id)
+        public string GetOtherPlayerId(string id, string name)
         {
             if (id == null || !games.ContainsKey(name))
                 return null;
@@ -19,19 +20,19 @@ namespace MazeWebApplication.Models
             return games[name].GetOtherPlayerId(id);
         }
 
-        public MazeGame JoinGame(string id, string name)
+        public MazeGame JoinGame(string name, string id)
         {
             if (!games.ContainsKey(name) || games[name].Player2Id != null)
-                return null; //game is full
+                return null; //game is full or doesn't exist
             games[name].Player2Id = id;
             return games[name];
         }
 
         public IEnumerable<string> ListGames()
         {
-            return ((Dictionary<string, MazeGame>)games.Where(
+            return games.Where(
                     (game, x) => game.Value.Player2Id == null
-                )).Keys.ToList();
+                ).Select((game, x) => game.Key).ToList();
         }
 
         public bool StartGame(string name, int rows, int cols, string id)
