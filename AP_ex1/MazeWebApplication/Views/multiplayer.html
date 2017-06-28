@@ -61,17 +61,17 @@
             </div>
         </div>
         <div class="col-sm-8 text-center">
-            <div id="loader" class="loader col-sm-4" hidden="hidden"></div>
-            <div class="col-sm-4">
-                <label id="yourLabel" class="control-label col-sm-3" hidden="hidden">Your Board:</label>
-                <canvas id="mycanvas" tabindex="1" class="maze-board" width="400"
-                        height="400"></canvas>
-            </div>
-            <div class="col-sm-8">
-                <label id="otherLabel" class="control-label col-sm-3" hidden="hidden">Other player's Board:</label>
-                <canvas id="othercanvas" tabindex="1" class="maze-board" width="400"
-                        height="400"></canvas>
-            </div>
+                <div id="loader" class="loader col-sm-4" hidden="hidden"></div>
+                <div class="col-sm-4">
+                    <label id="yourLabel" class="control-label col-sm-4">Your Board:</label>
+                    <canvas id="mycanvas" tabindex="1" class="maze-board" width="400"
+                            height="400" style="border: dashed 3px #ff0000"></canvas>
+                </div>
+                <div class="col-sm-offset-3 col-sm-4">
+                    <label id="otherLabel" class="control-label col-sm-3">Other's Board:</label>
+                    <canvas id="othercanvas" tabindex="1" class="maze-board" width="400"
+                            height="400"></canvas>
+                </div>
         </div>
     </div>
     <script src="../Scripts/jquery.signalR-2.2.2.js"></script>

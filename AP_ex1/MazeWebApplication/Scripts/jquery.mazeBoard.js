@@ -123,7 +123,7 @@
 var timer = null;
 
 (function ($) {
-    var mazeObj = null;
+    var mazeObj = null, otherMaze = null;
     var hubObj = null;
     var keyDownFunc = function (e) {
         var isLegalMove = false;
@@ -152,9 +152,9 @@ var timer = null;
 
     var keyDownFuncForMultiplayer = function (e) {
         if (keyDownFunc(e)) { //if this move was legal
-            hub.server.playMove(mazeObj.mazeName, e.which); //notify server about move
+            hubObj.server.playMove(mazeObj.mazeName, e.which); //notify server about move
             if (mazeObj.won())
-                hub.server.closeGame(mazeObj.mazeName);
+                hubObj.server.closeGame(mazeObj.mazeName);
         }
     }
 
@@ -175,10 +175,10 @@ var timer = null;
         function (option, mazeOrSolOrDir, hub) {
             if (option == undefined || mazeOrSolOrDir == undefined) {
                 if (option == "close" && mazeObj != null && hubObj != null) {
-                    hub.server.closeGame(mazeObj.mazeName);
+                    hubObj.server.closeGame(mazeObj.mazeName);
                     $(this).off("keydown");
                     mazeObj = null;
-                    hub = null;
+                    hubObj = null;
                 }
             }
             switch (option) {
@@ -210,30 +210,30 @@ var timer = null;
                     this.keydown(keyDownFuncForMultiplayer);
                     break;
                 case "other": //start other maze board
-                    mazeObj = null;
+                    otherMaze = null;
                     $(this).off("keydown");
-                    mazeObj = new MazeViewer(mazeOrSolOrDir, this[0]);
+                    otherMaze = new MazeViewer(mazeOrSolOrDir, this[0]);
                     break;
                 case "play": //other plays
-                    if (mazeObj === null)
+                    if (otherMaze === null)
                         return;
                     switch (mazeOrSolOrDir) {
                         case 37: //left
-                            mazeObj.play(0, -1);
+                            otherMaze.play(0, -1);
                             break;
                         case 38: //up
-                            mazeObj.play(-1, 0);
+                            otherMaze.play(-1, 0);
                             break;
                         case 39: //right
-                            mazeObj.play(0, 1);
+                            otherMaze.play(0, 1);
                             break;
                         case 40: //down
-                            mazeObj.play(1, 0);
+                            otherMaze.play(1, 0);
                             break;
                         default:
                             break;
                     }
-                    if (mazeObj.won()) {
+                    if (otherMaze.won()) {
                         alert("You have lost :(");
                         $("canvas").off("keydown");
                     }

@@ -10,14 +10,14 @@
         $("#loader").hide();
         $("#otherLabel").show();
         $("#yourLabel").show();
-        $("#mycanvas").mazeBoard("start", maze, hub);
         $("#othercanvas").mazeBoard("other", maze);
+        $("#mycanvas").mazeBoard("start", maze, hub);
         $("title").html(maze.Name);
         mazeName = maze.Name;
     };
 
     hub.client.play = function (direction) {
-        $("#othercanvas").mazeBoard("play", direction);
+        $("#othercanvas")[0].mazeBoard("play", direction);
     }
 
     hub.client.closeGame = function (name) {
@@ -76,8 +76,8 @@
                 $("#loader").hide();
                 $("#otherLabel").show();
                 $("#yourLabel").show();
-                $("#mycanvas").mazeBoard("start", data, hub);
                 $("#othercanvas").mazeBoard("other", data);
+                $("#mycanvas").mazeBoard("start", data, hub);
                 $("title").html(data.Name);
                 mazeName = gameName;
             });

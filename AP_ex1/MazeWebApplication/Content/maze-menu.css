@@ -8,6 +8,5 @@ select {
 }
 
 canvas {
-    border-color: black !important;
-    border-width: thin !important;
+    border: 3px solid #000000;
 }
