@@ -5,25 +5,23 @@
     <title> User Login </title>
 
     <script src="../Scripts/jquery-3.1.1.min.js"></script>
-    <!--<script src="../Scripts/bootstrap.min.js"></script>-->
+    <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/jquery.validate.min.js"></script>
     <script src="../Scripts/ClientsLoginScript.js"></script>
 
     <link href="LoaderSymbol.css" rel="stylesheet" />
 
-    <script src="../Scripts/NavigationBarScript.js"></script>
-    <link rel="stylesheet" href="../Scripts/bootstrap.min.js" /><!--https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">‏-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">‏
 
 </head>
 <body>
+    <div id="navbar" class="page-header">
+        <script src="../Scripts/NavigationBarScript.js"></script>
+    </div>
     <div>
         <h1> User Login </h1>
     </div>
 
-    <div id="navbar">
-        <script src="NavigationBarScript.js"></script>
-    </div>
-    
     <form class="form-group" id="UserLogin">
         <div class="form-group">
             User Name: <input id="userName" name="userName" required />
@@ -32,7 +30,7 @@
             Password: <input id="password" name="password" required />
         </div>
         <div>
-            <input type="button" value="Sign Up" onclick="LoginCompleted(event)"/>
+            <input type="button" value="Sign In" onclick="LoginCompleted(event)" />
         </div>
         <div>
             <a href="Clients.html"> Do not have a user? register now! </a>

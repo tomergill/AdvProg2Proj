@@ -2,7 +2,7 @@
     if (sessionStorage.getItem("id") == undefined)
     {
         alert("You must be logged in to play multiplayer. BE GONE!");
-        window.location.replace("/HomePage.html");
+        window.location.replace("/Views/HomePage.html");
     }
 
     var mazeName = null;
