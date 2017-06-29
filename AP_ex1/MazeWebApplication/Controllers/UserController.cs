@@ -23,7 +23,7 @@ namespace MazeWebApplication.Controllers
         // GET: api/User
         public IQueryable<User> GetUsers()
         {
-            return db.Users;
+            return db.Users.OrderByDescending(e=>e.Wins-e.Losses);
         }
 
         // GET: api/User/5
@@ -157,5 +157,7 @@ namespace MazeWebApplication.Controllers
             string hash64 = Convert.ToBase64String(hash);
             return hash64;
         }
+
+
     }
 }
