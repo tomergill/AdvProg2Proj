@@ -7,6 +7,7 @@ using System.Web.Http;
 using MazeWebApplication.Models;
 using MazeLib;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace MazeWebApplication.Controllers
 {
@@ -15,24 +16,30 @@ namespace MazeWebApplication.Controllers
         private static IMazeManager manager = new MazeManager();
 
         // GET: api/Maze
-        [HttpGet]
-        public IEnumerable<JObject> GetAllMazes()
-        {
-            IEnumerable<Maze> mazes = manager.GetAllMazes();
-            List<JObject> list = new List<JObject>();
-            foreach (Maze maze in mazes)
-            {
-                list.Add(JObject.Parse(maze.ToJSON()));
-            }
-            return list;
-        }
+        //[HttpGet]
+        //public IEnumerable<string> GetAllMazes()
+        //{
+        //    return manager.ListGames().Select(x => x.MazePlayed.Name);
+        //        //(game, res) => game.MazePlayed.Name).ToList();
+        //}
 
-        // GET: api/Maze/5  
+        //// GET: api/Maze/5  
+        //[HttpGet]
+        //public JObject GetMaze(string name)
+        //{
+        //    return JObject.Parse(manager.GetMaze(name).ToJSON());
+        //}
+
+        // GET : api/Maze/mymaze?algoId=0
         [HttpGet]
-        public JObject GetMaze(string name)
+        public JArray GetSolution(string name, int algoId)
         {
-            return JObject.Parse(manager.GetMaze(name).ToJSON());
-        }
+            algoId = (algoId >= 0 && algoId <= 1) ? algoId : algoId % 2;
+            IEnumerable<Position> ie = manager.GetSolution(name, algoId);
+            if (ie == null)
+                return null;
+            return JArray.FromObject(ie);
+        } 
 
         // GET: api/Maze/mymaze?rows=5&cols=6
         [HttpGet]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace MazeWebApplication
+namespace WebApplication1
 {
     public static class WebApiConfig
     {
@@ -13,17 +13,6 @@ namespace MazeWebApplication
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi1",
-                routeTemplate: "api/{controller}/{name}/{rows}/{cols}"
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi2",
-                routeTemplate: "api/{controller}/{name}/{algoId}",
-                defaults: new { name = RouteParameter.Optional, algoId = RouteParameter.Optional}
-            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

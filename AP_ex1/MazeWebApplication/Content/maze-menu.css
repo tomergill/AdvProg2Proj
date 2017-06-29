@@ -1,3 +1,12 @@
 ﻿label {
     text-align: left !important;
 }
+
+select {
+    text-align: left !important;
+    width: auto !important;
+}
+
+canvas {
+    border: 3px solid #000000;
+}
