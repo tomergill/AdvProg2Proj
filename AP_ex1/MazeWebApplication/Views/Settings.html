@@ -10,8 +10,19 @@
     <link href="LoaderSymbol.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>
+        body {
+            color: white;
+        }
+
+        input {
+            color: black;
+        }
+    </style>
+
 </head>
-<body>
+<body background="../Resources/background1.jpg">
 
     <div id="navbar" class="page-header">
         <script src="../Scripts/NavigationBarScript.js"></script>
@@ -42,7 +53,7 @@
             </div>
 
             <div>
-                <input type="button" value="Submit Changes" onclick="SettingsChange(event)" />
+                <input type="button" class="btn btn-primary" value="Submit Changes" onclick="SettingsChange(event)" />
             </div>
 
             <div id="loader" class="loader"></div>
