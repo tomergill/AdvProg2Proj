@@ -157,5 +157,7 @@ namespace MazeWebApplication.Controllers
             string hash64 = Convert.ToBase64String(hash);
             return hash64;
         }
+
+
     }
 }

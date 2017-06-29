@@ -2,14 +2,11 @@
 
 
 function SettingsChange(event) {
-    var rows = $("#mazeRows").val();
-    var cols = $("#mazeCols").val();
-    var searchAlgorithm = document.getElementById("selectAlgo").selectedIndex;
     event.preventDefault();
-
-    localStorage.setItem("rows", rows);
-    localStorage.setItem("cols", cols);
-    localStorage.setItem("SH", searchAlgorithm);
+    
+    localStorage.setItem("rows", $("#mazeRows").val());
+    localStorage.setItem("cols", $("#mazeCols").val());
+    localStorage.setItem("SH", document.getElementById("selectAlgo").selectedIndex);
 
     window.location.replace("singleplayer.html");
     
@@ -17,9 +14,9 @@ function SettingsChange(event) {
 
 $(document).ready(function () {
     $("#loader").show();
-    $("#mazeRows").val() = localStorage.getItem("rows");
-    $("#mazeCols").val() = localStorage.getItem("cols");
+    document.getElementById("mazeRows").value = localStorage.getItem("rows");
+    document.getElementById("mazeCols").value = localStorage.getItem("cols");
     document.getElementById("selectAlgo").selectedIndex = localStorage.getItem("SH");
     $("#loader").hide();
 
-}
+});
