@@ -26,6 +26,8 @@
         $("#mycanvas").mazeBoard("start", maze, hub);
         $("title").html(maze.Name);
         mazeName = maze.Name;
+        $("canvas").css("border", "3px solid #000000");
+        $("label.myLabel").show();
     };
 
     hub.client.play = function (direction) {
@@ -95,6 +97,8 @@
                 $("#mycanvas").mazeBoard("start", data, hub);
                 $("title").html(data.Name);
                 mazeName = gameName;
+                $("canvas").css("border", "3px solid #000000");
+                $("label.myLabel").show();
             });
         }
 

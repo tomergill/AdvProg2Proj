@@ -55,6 +55,7 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
         $("title").html(data.Name);
 
         $("canvas").mazeBoard("generate", data).focus();
+        $("canvas").css("border", "3px solid #000000");
     });
 }
 
