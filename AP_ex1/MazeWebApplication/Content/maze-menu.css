@@ -1,5 +1,6 @@
 ﻿label {
     text-align: left !important;
+    color: white !important;
 }
 
 select {
@@ -7,6 +8,10 @@ select {
     width: auto !important;
 }
 
-canvas {
-    border: 3px solid #000000;
+h2 {
+    color: antiquewhite !important;
 }
+
+/*canvas {
+    border: 3px solid #000000;
+}*/

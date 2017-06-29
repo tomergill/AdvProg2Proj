@@ -13,15 +13,15 @@
     <script src="../Scripts/bootstrap.js"></script>
     <link href="LoaderSymbol.css" rel="stylesheet" />
 </head>
-<body>
+<body background="../Resources/background1.jpg">
     <div id="navbar" class="page-header">
         <script src="../Scripts/NavigationBarScript.js"></script>
     </div>
     <div class="container body-content">
-        <h2>Multi Player Game</h2><hr />
+        <h1 class="text-primary" >Multi Player Game</h1><br />
 
         <div class="col-sm-4 form-horizontal">
-            <h3>Join an exisiting game</h3><br />
+            <h2>Join an exisiting game</h2><br />
 
             <div class="form-group">
                 <label for="rfrshBtn" class="col-sm-5 control-label" style="padding-right: 5px"> Select Game: </label>
@@ -34,9 +34,9 @@
                 </select>
             </div>
             <button id="joinBtn" class="btn btn-default">Join Game</button>
-            <hr />
+            <br />
 
-            <h3>Start a new game</h3><br />
+            <h2>Start a new game</h2><br />
             <div class="form-group">
                 <label id="l1" for="mazeName" class="col-sm-3 control-label">Name</label>
                 <div class="col-sm-9">
@@ -64,12 +64,12 @@
         <div class="col-sm-8 text-center">
                 <div id="loader" class="loader col-sm-4"></div>
                 <div class="col-sm-4">
-                    <label id="yourLabel" class="control-label col-sm-4">Your Board:</label>
+                    <label id="yourLabel" class="control-label col-sm-4 myLabel" hidden="hidden">Your Board:</label>
                     <canvas id="mycanvas" tabindex="1" class="maze-board" width="400"
-                            height="400" style="border: dashed 3px #ff0000"></canvas>
+                            height="400"></canvas>
                 </div>
                 <div class="col-sm-offset-3 col-sm-4">
-                    <label id="otherLabel" class="control-label col-sm-3">Other's Board:</label>
+                    <label id="otherLabel" class="control-label col-sm-3 myLabel" hidden="hidden">Other's Board:</label>
                     <canvas id="othercanvas" tabindex="1" class="maze-board" width="400"
                             height="400"></canvas>
                 </div>
