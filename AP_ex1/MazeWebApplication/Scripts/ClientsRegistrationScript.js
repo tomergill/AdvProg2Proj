@@ -1,4 +1,6 @@
-﻿
+﻿/**
+ * Checks the input
+ */
 function InputCheck() {
     var pass = $("#password").val();
     var validPass = $("#validateUserName").val();
@@ -103,7 +105,10 @@ $(document).ready(function () {
     });
 });
 
-
+/**
+ * After register saves the user name is the session and redirects to the home page
+ * @param {any} event
+ */
 function RegisterCompleted(event) {
     event.preventDefault();
     if (InputCheck()) {

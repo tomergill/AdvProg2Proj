@@ -1,6 +1,7 @@
-﻿
-
-
+﻿/**
+ * Saves the settings to the local storage
+ * @param {any} event
+ */
 function SettingsChange(event) {
     event.preventDefault();
     
@@ -12,6 +13,7 @@ function SettingsChange(event) {
     
 }
 
+//sets the inputs values to the values saved in the local storage
 $(document).ready(function () {
     $("#loader").show();
     document.getElementById("mazeRows").value = localStorage.getItem("rows");

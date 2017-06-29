@@ -1,4 +1,4 @@
-﻿
+﻿//loads the ranking table
 window.onload = function getAllUsers()
 {
     var url = "../api/User";
