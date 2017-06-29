@@ -158,7 +158,6 @@
     <Content Include="Scripts\SettingScript.js" />
     <Content Include="Scripts\singleplayer.js" />
     <Content Include="Scripts\UserRankingScript.js" />
-    <Content Include="Views\GameDescription.html" />
     <Content Include="Views\HomePage.html" />
     <Content Include="Views\LoaderSymbol.css" />
     <Content Include="Views\Login.html" />
