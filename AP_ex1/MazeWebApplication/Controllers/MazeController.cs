@@ -11,26 +11,24 @@ using Newtonsoft.Json;
 
 namespace MazeWebApplication.Controllers
 {
+    /// <summary>
+    /// Controller for the singleplayer maze game.
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class MazeController : ApiController
     {
+        /// <summary>
+        /// The manager of the mazes.
+        /// </summary>
         private static IMazeManager manager = new MazeManager();
 
-        // GET: api/Maze
-        //[HttpGet]
-        //public IEnumerable<string> GetAllMazes()
-        //{
-        //    return manager.ListGames().Select(x => x.MazePlayed.Name);
-        //        //(game, res) => game.MazePlayed.Name).ToList();
-        //}
-
-        //// GET: api/Maze/5  
-        //[HttpGet]
-        //public JObject GetMaze(string name)
-        //{
-        //    return JObject.Parse(manager.GetMaze(name).ToJSON());
-        //}
-
         // GET : api/Maze/mymaze?algoId=0
+        /// <summary>
+        /// Gets the solution to the maze.
+        /// </summary>
+        /// <param name="name">The name of the maze.</param>
+        /// <param name="algoId">algorithm identifier.</param>
+        /// <returns>A JSON representation of the list of solution.</returns>
         [HttpGet]
         public JArray GetSolution(string name, int algoId)
         {
