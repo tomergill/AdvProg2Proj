@@ -9,6 +9,7 @@ window.onload = function getAllUsers()
             var tr;
             for (var i = 0; i < usersList.length; i++) {
                 tr = $('<tr/>');
+                tr.append("<th>" + (i+1) + "</th>");
                 tr.append("<th>" + (usersList[i].Wins - usersList[i].Losses)  + "</th>");
                 tr.append("<th>" + usersList[i].UserName + "</th>");
                 tr.append("<th>" + usersList[i].Wins + "</th>");
