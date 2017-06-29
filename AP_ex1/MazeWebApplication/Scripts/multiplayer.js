@@ -5,6 +5,10 @@
         window.location.replace("/Views/HomePage.html");
     }
 
+    document.getElementById("mazeRows").value = localStorage.getItem("rows");
+    document.getElementById("mazeCols").value = localStorage.getItem("cols");
+    document.getElementById("selectAlgo").selectedIndex = localStorage.getItem("SH");
+
     var mazeName = null;
 
     $("#loader").show();

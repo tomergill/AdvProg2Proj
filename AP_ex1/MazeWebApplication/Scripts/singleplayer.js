@@ -5,6 +5,12 @@ var downKey = 40;
 
 var nameOfMaze = null;
 
+$(document).ready(function () {
+    document.getElementById("mazeRows").value = localStorage.getItem("rows");
+    document.getElementById("mazeCols").value = localStorage.getItem("cols");
+    document.getElementById("selectAlgo").selectedIndex = localStorage.getItem("SH");
+});
+
 function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
     if (!checkGameDetails(nameEle, rowsEle, colsEle, err))
         return;
