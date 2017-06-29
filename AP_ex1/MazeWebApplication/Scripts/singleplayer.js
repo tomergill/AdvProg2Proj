@@ -11,6 +11,13 @@ $(document).ready(function () {
     document.getElementById("selectAlgo").selectedIndex = localStorage.getItem("SH");
 });
 
+/**
+ * Generates a maze with the requested parameters
+ * @param {HTMLInputElement} nameEle element containing the name
+ * @param {HTMLInputElement} rowsEle element containing the rows
+ * @param {HTMLInputElement} colsEle element containing the cols
+ * @param {HTMLLabelElement} err label for error
+ */
 function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
     if (!checkGameDetails(nameEle, rowsEle, colsEle, err))
         return;
@@ -51,6 +58,10 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
     });
 }
 
+/**
+ * Gets a solution for the maze and displays it.
+ * @param {HTMLSelectElement} selectEle element selecting algo
+ */
 function solveButtonClicked(selectEle) {
     if (nameOfMaze == null)
     {
