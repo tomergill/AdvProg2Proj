@@ -16,17 +16,34 @@ using System.Text;
 
 namespace MazeWebApplication.Controllers
 {
+    /// <summary>
+    /// Controller that handles the users DB.
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class UserController : ApiController
     {
+        /// <summary>
+        /// The database.
+        /// </summary>
         private MazeWebApplicationContext db = new MazeWebApplicationContext();
 
         // GET: api/User
+        /// <summary>
+        /// Gets the users.
+        /// </summary>
+        /// <returns>All the users ordered by the number of wins minus loses</returns>
         public IQueryable<User> GetUsers()
         {
             return db.Users.OrderByDescending(e => e.Wins - e.Losses);
         }
 
         // GET: api/User/5
+        /// <summary>
+        /// Gets the user.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="passWord">The pass word.</param>
+        /// <returns>The requested user.</returns>
         [Route("api/User/{id}/{passWord}")]
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> GetUser(string id, string passWord)
@@ -40,6 +57,12 @@ namespace MazeWebApplication.Controllers
         }
 
         // PUT: api/User/5
+        /// <summary>
+        /// Updates the user.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="user">The updated user.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUser(string id, User user)
         {
@@ -75,6 +98,11 @@ namespace MazeWebApplication.Controllers
         }
 
         // POST: api/User
+        /// <summary>
+        /// Creates a new user.
+        /// </summary>
+        /// <param name="user">The new user.</param>
+        /// <returns></returns>
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> PostUser([FromBody]JObject user)
         {
@@ -120,6 +148,11 @@ namespace MazeWebApplication.Controllers
         }
 
         // DELETE: api/User/5
+        /// <summary>
+        /// Deletes the user.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> DeleteUser(string id)
         {
@@ -135,6 +168,10 @@ namespace MazeWebApplication.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -144,11 +181,21 @@ namespace MazeWebApplication.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// returns wether a user with this id exists or not.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool UserExists(string id)
         {
             return db.Users.Count(e => e.UserName == id) > 0;
         }
 
+        /// <summary>
+        /// Computes the hash.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
         string ComputeHash(string input)
         {
             SHA1 sha = SHA1.Create();
@@ -159,6 +206,12 @@ namespace MazeWebApplication.Controllers
         }
 
         // POST: api/User
+        /// <summary>
+        /// Updates the rank.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="won">if set to <c>true</c> the user won, otherwise lost.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/User/{id}/{won}")]
         public async Task<IHttpActionResult> UpdateRank(string id, bool won)
