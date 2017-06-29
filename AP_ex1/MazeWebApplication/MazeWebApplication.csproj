@@ -123,6 +123,7 @@
     <Content Include="Content\maze-menu.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Resources\background.jpg" />
+    <Content Include="Resources\backGround1.jpg" />
     <Content Include="Resources\exit.png" />
     <Content Include="Resources\player.png" />
     <Content Include="Resources\wall.png" />

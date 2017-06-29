@@ -3,17 +3,24 @@
 <head>
     <title> Ranking </title>
     <meta charset="utf-8" />
-    <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/jquery-3.1.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/UserRankingScript.js"></script>
 
     <link href="LoaderSymbol.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <style>
+        body {
+            color: steelblue;
+            font: bolder;
+        }
+    </style>
+
 </head>
 
-<body>
+<body background="../Resources/background1.jpg">
 
 
     <div id="navbar" class="page-header">
@@ -21,10 +28,10 @@
     </div>
 
     <div style="margin-left:45px">
-        <h1> User Ranking </h1>
+        <h2 class="text-primary"> User Ranking </h2>
     </div>
 
-    <table id="usersTable" class="table" style="margin-top:100px; margin-left:50px">
+    <table id="usersTable" class="table" style="margin-right:50px;margin-left:50px;margin-top:10px;background-color:aliceblue" >
         <th>Rank</th>
         <th>Score</th>
         <th>Username</th>

@@ -13,13 +13,23 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">‏
 
+    <style>
+        body {
+            color: white;
+        }
+
+        input {
+            color: black;
+        }
+    </style>
+
 </head>
-<body>
+<body background="../Resources/background1.jpg">
     <div id="navbar" class="page-header">
         <script src="../Scripts/NavigationBarScript.js"></script>
     </div>
     <div style="margin-left:10px">
-        <h1> User Login </h1>
+        <h2 class="text-primary"> User Login </h2>
     </div>
 
     <form class="form-group" id="UserLogin">
@@ -30,7 +40,7 @@
             Password: <input id="password" name="password" type="password" required />
         </div>
         <div style="margin-left:10px">
-            <input type="button" value="Sign In" onclick="LoginCompleted(event)" />
+            <input type="button" class="btn btn-primary" value="Sign In" onclick="LoginCompleted(event)" />
         </div>
         <div style="margin-top:10px;margin-left:10px">
             <a href="Clients.html"> Do not have a user? register now! </a>
