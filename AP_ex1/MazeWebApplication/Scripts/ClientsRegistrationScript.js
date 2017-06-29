@@ -118,6 +118,7 @@ function RegisterCompleted(event) {
         $.post("../api/User", data)
             .done(function (user) {
                 alert("success");
+                sessionStorage.setItem("id", $("#userName").val());
                 window.location.replace("HomePage.html");
             })
             .fail(function (jqXHR, status, error) {

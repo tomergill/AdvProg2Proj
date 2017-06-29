@@ -7,28 +7,38 @@
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/jquery.validate.min.js"></script>
     <script src="../Scripts/ClientsRegistrationScript.js"></script>
+
+    <script src="../Scripts/NavigationBarScript.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
+
+    <div id="navbar">
+        <!--<script src="NavigationBarScript.js"></script>-->
+    </div>
+
+    <h2 style="margin-top:50px;margin-left:10px"> User Registration </h2>
     <form class="form-group" id="UserRegistration">
         <div class="form-group">
-            User Name: <input id="userName" name="userName" required/>
+            User Name: <input id="userName" name="userName" required />
         </div>
         <div class="form-group">
-            Password: <input id="password" name="password" required/>
+            Password: <input id="password" name="password" required />
         </div>
         <div class="form-group">
-            Password Validation: <input id="validateUserName" name="validateUserName" required/>
+            Password Validation: <input id="validateUserName" name="validateUserName" required />
         </div>
         <div class="form-group">
-            Email Adress: <input id="emailAdress" type="email" name="emailAdress" required/>
+            Email Adress: <input id="emailAdress" type="email" name="emailAdress" required />
         </div>
         <div>
-            <input type="button" value="Sign Up" onclick="RegisterCompleted(event)"/>
+            <input type="button" value="Sign Up" onclick="RegisterCompleted(event)" />
         </div>
         <!--
         <button class="btn" value="Sign Up"/>
             -->
-</form>
+    </form>
 </body>
 </html>
 

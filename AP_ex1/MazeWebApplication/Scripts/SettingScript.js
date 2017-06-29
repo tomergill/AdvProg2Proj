@@ -8,7 +8,7 @@ function SettingsChange(event) {
     localStorage.setItem("cols", $("#mazeCols").val());
     localStorage.setItem("SH", document.getElementById("selectAlgo").selectedIndex);
 
-    window.location.replace("singleplayer.html");
+    window.location.replace("HomePage.html");
     
 }
 
