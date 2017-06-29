@@ -1,10 +1,12 @@
 ﻿$(document).ready(function () {
+    //not logged in
     if (sessionStorage.getItem("id") == undefined)
     {
         alert("You must be logged in to play multiplayer. BE GONE!");
         window.location.replace("/Views/HomePage.html");
     }
 
+    //sets the values as the defaults in the local storage
     document.getElementById("mazeRows").value = localStorage.getItem("rows");
     document.getElementById("mazeCols").value = localStorage.getItem("cols");
 
@@ -12,6 +14,7 @@
 
     $("#loader").show();
     var hub = $.connection.gamesHub;
+
 
     hub.client.startGame = function (maze) {
         if (maze == null)
@@ -64,6 +67,9 @@
 
         $("#loader").hide();
 
+        /**
+         * Joins the requested game
+         */
         function joinButtonClicked() {
             if ($("#selectGame")[0].selectedIndex === -1) {
                 $("#err").html("<strong>Please select a game to join.</strong>").css("visibility", "visible");
@@ -92,6 +98,9 @@
             });
         }
 
+        /**
+         * Start a game with the chosen parameters
+         */
         function startButtonClicked() {
             if (!checkGameDetails($("#mazeName")[0], $("#mazeRows")[0], $("#mazeCols")[0], $("#err")[0]))
                 return;
@@ -132,6 +141,10 @@
     };
 });
 
+/**
+ * Updates the server that a user has won/lose
+ * @param {boolean} won
+ */
 function updateUserScore(won) {
     var url = "../api/User/" + sessionStorage.getItem("id").toString() + "/";
     if (won)

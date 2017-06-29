@@ -28,7 +28,7 @@ namespace MazeWebApplication.Controllers
         /// </summary>
         /// <param name="name">The name of the maze.</param>
         /// <param name="algoId">algorithm identifier.</param>
-        /// <returns>A JSON representation of the list of solution.</returns>
+        /// <returns>A JSON representation of the list of solution's positions.</returns>
         [HttpGet]
         public JArray GetSolution(string name, int algoId)
         {
@@ -37,9 +37,16 @@ namespace MazeWebApplication.Controllers
             if (ie == null)
                 return null;
             return JArray.FromObject(ie);
-        } 
+        }
 
         // GET: api/Maze/mymaze?rows=5&cols=6
+        /// <summary>
+        /// Generates a maze.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="rows">The rows.</param>
+        /// <param name="cols">The cols.</param>
+        /// <returns>JSON representation of a maze.</returns>
         [HttpGet]
         public JObject GenerateMaze(string name, int rows, int cols)
         {
@@ -51,16 +58,6 @@ namespace MazeWebApplication.Controllers
             {
                 return null;
             }
-        }
-
-        // PUT: api/Maze/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Maze/5
-        public void Delete(int id)
-        {
         }
     }
 }

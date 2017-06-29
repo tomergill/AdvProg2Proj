@@ -1,4 +1,4 @@
-﻿
+﻿//loads the nav bar
 $(document).ready(function loadBar() {
     $("#navbar").load("NavigationBar.html", function () {
         if (sessionStorage.getItem("id")) { //user is logged in
@@ -14,6 +14,9 @@ $(document).ready(function loadBar() {
     });
 });
 
+/**
+ * Logs off - deleting session and redirectos to the home page
+ */
 function logOff() {
     sessionStorage.removeItem("id");
     window.location.replace("HomePage.html");

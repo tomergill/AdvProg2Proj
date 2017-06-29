@@ -1,4 +1,12 @@
-﻿class MazeViewer {
+﻿/**
+ * Class representing drawing a maze on canvas
+ */
+class MazeViewer {
+    /**
+     * ctor
+     * @param {Object} maze the maze object
+     * @param {HTMLCanvasElement} canvas canvas object
+     */
     constructor(maze, canvas) {
         this._maze = maze;
         /*this._*/var context = canvas.getContext("2d");
@@ -61,6 +69,11 @@
         this._exitImage = exitImg;
     }
 
+    /**
+     * Plays a move.
+     * @param {Number} dRow -1, 0 or 1
+     * @param {Number} dCol -1, 0 or 1
+     */
     play(dRow, dCol) {
         var newRow = this._playerPos.Row + dRow;
         var newCol = this._playerPos.Col + dCol;
@@ -80,6 +93,9 @@
         return false; // cell is blocked
     }
 
+    /**
+     * Returns true if player won, false otherwise
+     */
     won() { return (this._maze.End.Row == this._playerPos.Row && this._maze.End.Col == this._playerPos.Col); }
 
     set playerPos(newPos) {
@@ -122,9 +138,17 @@
 
 var timer = null;
 
+/**
+ * the plugin
+ */
 (function ($) {
     var mazeObj = null, otherMaze = null;
     var hubObj = null;
+
+    /**
+     * Event for a key down on canvas
+     * @param {any} e event
+     */
     var keyDownFunc = function (e) {
         var isLegalMove = false;
         switch (e.which) {
@@ -150,6 +174,10 @@ var timer = null;
         return isLegalMove;
     };
 
+    /**
+     * Event for the multiplayer keydown event
+     * @param {any} e event
+     */
     var keyDownFuncForMultiplayer = function (e) {
         if (keyDownFunc(e)) { //if this move was legal
             hubObj.server.playMove(mazeObj.mazeName, e.which); //notify server about move
@@ -165,7 +193,9 @@ var timer = null;
     var solution = null;
     var indexOfMoveToMake = 0;
 
-
+    /**
+     * Draws the next step in the solution.
+     */
     function doAStepInSolution() {
         if (indexOfMoveToMake >= solution.length && !(timer === null)) {
             window.clearInterval(timer);
@@ -174,6 +204,7 @@ var timer = null;
         }
         mazeObj.playerPos = solution[indexOfMoveToMake++];
     }
+
 
     $.fn.mazeBoard =
         function (option, mazeOrSolOrDir, hub) {

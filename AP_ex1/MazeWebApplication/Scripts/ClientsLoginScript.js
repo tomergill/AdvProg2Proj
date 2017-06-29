@@ -1,4 +1,6 @@
-﻿
+﻿/**
+ * CHecks the input
+ */
 function InputCheck() {
     var pass = $("#password").val();
     var user = $("#userName").val();
@@ -8,7 +10,7 @@ function InputCheck() {
     return false;
 }
 
-
+//validates input
 $(document).ready(function () {
     if (sessionStorage.getItem('id') == null) {
         $.validator.setDefaults({
@@ -60,7 +62,10 @@ $(document).ready(function () {
     }
 });
 
-
+/**
+ * After login saves in session the user name and redirects to home page
+ * @param {any} event
+ */
 function LoginCompleted(event) {
     $("#loader").show();
     event.preventDefault();

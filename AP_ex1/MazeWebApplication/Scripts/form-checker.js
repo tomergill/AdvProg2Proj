@@ -1,4 +1,11 @@
-﻿function checkGameDetails(nameEle, rowsEle, colsEle, err) {
+﻿/**
+ * Checks if a game's details are valid
+ * @param {HTMLInputElement} nameEle element that holds the name
+ * @param {HTMLInputElement} rowsEle element that holds the rows
+ * @param {HTMLInputElement} colsEle element that holds the cols
+ * @param {HTMLLabelElement} err element that holds the error
+ */
+function checkGameDetails(nameEle, rowsEle, colsEle, err) {
 
     if (nameEle === null || rowsEle === null || colsEle === null || err === null)
         return null;
@@ -34,6 +41,13 @@
     return true;
 }
 
+/**
+ * Checks if the input's value is a number and a valid one
+ * @param {HTMLInputElement} inputEle requested input element
+ * @param {HTMLLabelElement} errEle error element
+ * @param {string} name name of the element
+ * @param {number} value value of the element
+ */
 function checkIfInputNumberValid(inputEle, errEle, name, value) {
     var min = parseInt(inputEle.getAttribute("min"));
     var max = parseInt(inputEle.getAttribute("max"));
