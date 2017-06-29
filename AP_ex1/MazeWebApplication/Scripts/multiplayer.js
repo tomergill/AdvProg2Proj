@@ -1,4 +1,10 @@
 ﻿$(document).ready(function () {
+    if (sessionStorage.getItem("id") == undefined)
+    {
+        alert("You must be logged in to play multiplayer. BE GONE!");
+        window.location.replace("/HomePage.html");
+    }
+
     var mazeName = null;
 
     $("#loader").show();
@@ -112,7 +118,7 @@
 
     });
 
-    window.onbeforeunload(function (e) {
+    window.onbeforeunload = function (e) {
         alert("onbeforeunload");
         try {
             if (mazeName != null)
@@ -120,13 +126,13 @@
         } catch (exc) {
             //do nothing
         }
-    }
-    );
+    };
 });
 
 function updateUserScore(won) {
+    var url = "../api/User/" + sessionStorage.getItem("id").toString() + "?won=";
     if (won)
-        //...
+        $.post(url + "true");
     else
-        //...
+        $.post(url + "false");
 }
