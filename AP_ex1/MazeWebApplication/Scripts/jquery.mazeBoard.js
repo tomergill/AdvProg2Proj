@@ -157,6 +157,7 @@ var timer = null;
 
                 hubObj.server.closeGame(mazeObj.mazeName);
                 hubObject = otherMaze = mazeObj = null;
+                updateUserScore(true);
             }
         }
     }
@@ -240,6 +241,7 @@ var timer = null;
                         alert("You have lost :(");
                         $("canvas").off("keydown");
                         hubObject = otherMaze = mazeObj = null;
+                        updateUserScore(false);
                     }
                     break;
             }

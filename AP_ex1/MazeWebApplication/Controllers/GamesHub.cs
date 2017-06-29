@@ -29,7 +29,7 @@ namespace MazeWebApplication
 
         public IEnumerable<string> GetGames()
         {
-            return manager.ListGames();
+            return manager.ListGames(Context.ConnectionId);
         }
 
         public void PlayMove(string name, int direction)

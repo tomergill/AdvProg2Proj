@@ -111,4 +111,22 @@
         $("#rfrshBtn").click(vm.getGames);
 
     });
+
+    window.onbeforeunload(function (e) {
+        alert("onbeforeunload");
+        try {
+            if (mazeName != null)
+                hub.server.closeGame(mazeName);
+        } catch (exc) {
+            //do nothing
+        }
+    }
+    );
 });
+
+function updateUserScore(won) {
+    if (won)
+        //...
+    else
+        //...
+}

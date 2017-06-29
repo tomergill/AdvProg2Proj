@@ -28,10 +28,10 @@ namespace MazeWebApplication.Models
             return games[name];
         }
 
-        public IEnumerable<string> ListGames()
+        public IEnumerable<string> ListGames(string id)
         {
             return games.Where(
-                    (game, x) => game.Value.Player2Id == null
+                    (game, x) => game.Value.Player2Id == null && game.Value.Player1Id != id
                 ).Select((game, x) => game.Key).ToList();
         }
 

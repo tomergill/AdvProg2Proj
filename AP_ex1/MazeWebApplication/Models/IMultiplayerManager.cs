@@ -10,7 +10,7 @@ namespace MazeWebApplication.Models
 {
     public interface IMultiplayerManager
     {
-        IEnumerable<string> ListGames();
+        IEnumerable<string> ListGames(string id);
         bool StartGame(string name, int rows, int cols, string id);
         MazeGame JoinGame(string name, string id);
         //void Play(string name, Direction dir, int id);
