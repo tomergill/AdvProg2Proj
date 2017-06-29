@@ -1,4 +1,5 @@
-﻿$(document).ready(function loadBar() {
+﻿
+$(document).ready(function loadBar() {
     $("#navbar").load("NavigationBar.html", function () {
         if (sessionStorage.getItem("UserName")) {
             document.getElementById("register").textContent = "Hello " + sessionStorage.getItem("UserName");

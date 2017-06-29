@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title> Ranking </title>
+    <meta charset="utf-8" />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-3.1.1.min.js"></script>
+    <script src="../Scripts/UserRankingScript.js"></script>
+
+    <link href="LoaderSymbol.css" rel="stylesheet" />
+
+    <script src="../Scripts/NavigationBarScript.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+    <script src="../Scripts/UserRankingScript.js"></script>>
+
+    <div id="navbar">
+        <script>
+            $("#navbar").load("NavBar.html")
+        </script>
+    </div>
+
+    <table id="usersTable" class="table" style="margin-top:100px; margin-left:50px">
+        <th>Rank</th>
+        <th>Username</th>
+        <th>Wins</th>
+        <th>Losses</th>
+        <th>Playing Since</th>
+    </table>
+
+    <div id="loader" class="loader"></div>
+</body>
+
+</html>
