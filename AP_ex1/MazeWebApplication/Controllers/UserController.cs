@@ -23,13 +23,13 @@ namespace MazeWebApplication.Controllers
         // GET: api/User
         public IQueryable<User> GetUsers()
         {
-            return db.Users.OrderByDescending(e=>e.Wins-e.Losses);
+            return db.Users.OrderByDescending(e => e.Wins - e.Losses);
         }
 
         // GET: api/User/5
         [Route("api/User/{id}/{passWord}")]
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> GetUser(string id,string passWord)
+        public async Task<IHttpActionResult> GetUser(string id, string passWord)
         {
             User user = await db.Users.FindAsync(id);
             if (user == null || user.Password != ComputeHash(passWord))
@@ -158,6 +158,21 @@ namespace MazeWebApplication.Controllers
             return hash64;
         }
 
+        // POST: api/User
+        [HttpPost]
+        [Route("api/User/{id}/{won}")]
+        public async Task<IHttpActionResult> UpdateRank(string id, bool won)
+        {
+            User user = await db.Users.FindAsync(id);
+            if (user == null)
+                return BadRequest();
+            if (won)
+                user.Wins++;
+            else
+                user.Losses++;
 
+            await db.SaveChangesAsync();
+            return Ok();
+        }
     }
 }

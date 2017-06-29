@@ -7,7 +7,6 @@
 
     document.getElementById("mazeRows").value = localStorage.getItem("rows");
     document.getElementById("mazeCols").value = localStorage.getItem("cols");
-    document.getElementById("selectAlgo").selectedIndex = localStorage.getItem("SH");
 
     var mazeName = null;
 
@@ -134,7 +133,7 @@
 });
 
 function updateUserScore(won) {
-    var url = "../api/User/" + sessionStorage.getItem("id").toString() + "?won=";
+    var url = "../api/User/" + sessionStorage.getItem("id").toString() + "/";
     if (won)
         $.post(url + "true");
     else

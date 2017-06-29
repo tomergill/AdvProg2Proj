@@ -22,6 +22,11 @@ namespace MazeWebApplication
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "DefaultApi10",
+                routeTemplate: "api/User/{name}/{won}"
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi1",
                 routeTemplate: "api/{controller}/{name}/{rows}/{cols}"
             );
