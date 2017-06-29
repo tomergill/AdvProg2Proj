@@ -116,6 +116,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MazeWebApplicationContext-20170619174741.mdf" />
+    <Content Include="App_Data\MazeWebApplicationContext-20170619174741_log.ldf">
+      <DependentUpon>MazeWebApplicationContext-20170619174741.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -206,9 +210,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706201604375_InitialDB.resx">
       <DependentUpon>201706201604375_InitialDB.cs</DependentUpon>

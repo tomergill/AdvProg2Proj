@@ -8,9 +8,6 @@ $(document).ready(function loadBar() {
             document.getElementById("login").onclick = logOff;
             document.getElementById("login").href = "#";
         }
-        //else {
-        //    $("#logout").hide();
-        //}
     });
 });
 

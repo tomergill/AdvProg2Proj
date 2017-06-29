@@ -48,9 +48,6 @@
             this.games = ko.observableArray(); // enables data binding
             var url = "../api/Maze";
             this.getGames = function () {
-                //$.getJSON(url).done(function (data) {
-                //    self.games(data);
-                //});
                 hub.server.getGames().done(function (data) {
                     if (data != null)
                         self.games(data);

@@ -78,14 +78,13 @@ function LoginCompleted(event) {
         var url = "../api/User/" + data.UserName + "/" + data.Password;
         $.get(url, data.UserName, data.Password)
             .done(function (user) {
-                alert("success");
                 sessionStorage.setItem("id", $("#userName").val());
                 window.location.replace("HomePage.html");
                 $("#loader").hide();
             })
             .fail(function (jqXHR, status, error) {
                 console.error("post failed, status: " + status + ", error: " + error);
-                alert("post failed, status: " + status + ", error: " + error);
+                alert("failed");
                 $("#loader").hide();
             });
     }

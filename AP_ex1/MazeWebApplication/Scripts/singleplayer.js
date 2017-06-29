@@ -47,9 +47,6 @@ function generateButtonClicked(nameEle, rowsEle, colsEle, err) {
         if (timer) {
             clearInterval(timer);
         }
-        //$("#loader").hide();
-        //$("canvas")[0].setAttribute("width", $("canvas")[0].getAttribute("height") * data.Cols / data.Rows);
-        //alert($("canvas")[0].getAttribute("width"));
 
         nameOfMaze = data.Name;
         $("title").html(data.Name);
@@ -80,9 +77,6 @@ function solveButtonClicked(selectEle) {
             $("#err").html("<strong>Connection error.</strong>").css("visibility", "visible");
             return;
         }
-        //console.log(typeof (data));
-        //console.log(data);
-        //console.log(data.length);
         $("#loader").hide();
         $("#err").html("").css("visibility", "hidden");
         $("canvas").mazeBoard("solve", data);

@@ -13,6 +13,7 @@ function InputCheck() {
 }
 
 $(document).ready(function () {
+    $("#loader").hide();
     $.validator.setDefaults({
         highlight: function (element) {
             $(element).closest('.form-group').addClass('has-error');
@@ -72,36 +73,6 @@ $(document).ready(function () {
                 alert("submitted!");
             }
         },
-
-        /*
-        success: function () {
-            var data = {
-                UserName: $("#userName").val(),
-                Password: $("#password").val(),
-                Wins: 0,
-                Losses: 0,
-                FirstSignedIn: new Date(),
-                EmailAdress: $("#emailAdress").val()
-            };
-
-            $.ajax({
-                type: "POST",
-                url: "../api/User",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify(data),
-                success: function () {
-                    $("#results").html("<li>thank you for signing up !</li>");
-                    $("form").fadeOut("fast");
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    //console.log(xhr);
-                    $("#results").html("<li>error</li>");
-                }
-
-            });
-        },
-        */
     });
 });
 
@@ -119,16 +90,17 @@ function RegisterCompleted(event) {
             Losses: 0,
             EmailAdress: $("#emailAdress").val()
         };
-
+        $("#loader").show();
         $.post("../api/User", data)
             .done(function (user) {
-                alert("success");
+                $("#loader").hide();
                 sessionStorage.setItem("id", $("#userName").val());
                 window.location.replace("HomePage.html");
             })
             .fail(function (jqXHR, status, error) {
+                $("#loader").hide();
                 console.error("post failed, status: " + status + ", error: " + error);
-                alert("post failed, status: " + status + ", error: " + error);
+                alert("failed");
             });
     }
 }
